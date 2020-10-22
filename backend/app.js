@@ -6,7 +6,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const brandsRouter = require('./routes/brands');
+const piecesRouter = require('./routes/pieces');
+const stylesRouter = require('./routes/styles');
+const materialsRouter = require('./routes/materials');
+const categoriesRouter = require('./routes/categories');
 
 require('dotenv').config();
 
@@ -30,6 +34,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/brands', brandsRouter);
+app.use('/pieces', piecesRouter);
+app.use('/styles', stylesRouter);
+app.use('/materials', materialsRouter);
+app.use('/categories', categoriesRouter);
 
 module.exports = app;
