@@ -29,7 +29,7 @@ const page = {
         const styles = await data.getStyles();
         console.log(styles.data);
         render.findPiecePage(categories.data, materials.data, styles.data);
-        addEventHandlersTo.findPiece();
+        addEventHandlersTo.findPiecePage();
     }
 }
 
@@ -105,8 +105,14 @@ const render = {
             <form>
                 <div class="form-group">
                     <label for="searchFormID">ID</label>
-                    <input type="string" class="form-control" id="searchFormID" placeholder="5f9093819c3ea25344d02e3d
-                    ">
+                    <div id="id-container">
+                        <input type="string" class="form-control" id="searchFormID" placeholder="5f9093819c3ea25344d02e3d
+                        "/>
+                        <div id="id-spinner" class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p id="confirm-id-text"></p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="searchFormCategory">${language[pageSettings.language].findPiecePage.category}</label>
@@ -144,7 +150,7 @@ const render = {
             </form>
         `
     },
-    
+
 }
 
 const addEventHandlersTo = {
@@ -157,8 +163,8 @@ const addEventHandlersTo = {
         document.getElementById("findPieceBtn").addEventListener("click", eventHandlers.onFindPieceBtnClicked);
         document.getElementById("addPieceBtn").addEventListener("click", eventHandlers.onAddPieceBtnClicked);
     },
-    findPiece: () => {
-
+    findPiecePage: () => {
+        document.getElementById("searchFormID").addEventListener("keyup", e => eventHandlers.onIdChange(e))
     }
 
 }
@@ -179,6 +185,18 @@ const eventHandlers = {
     },
     onAddPieceBtnClicked: () => {
         alert("click");
+    },
+    onIdChange: e => {
+        const realPass = "5f9093819c3ea25344d02e3d";
+        const exes = (() => {
+            let x = "";
+            e.target.split("").forEach(c => {
+                exes += "X"
+            });
+            return x;
+        })();
+        const os = 
+        document.getElementById("confirm-id-text").innerText = e.target.value;
     }
 }
 

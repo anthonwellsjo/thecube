@@ -23,3 +23,20 @@ a {
 .page-header {
   text-align: center;
 }
+
+#id-container {
+  width: 100%;
+  position: relative;
+}
+
+#id-spinner {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#confirm-id-text{
+  position: absolute;
+  left: 10px;
+  font-size: x-small;
+}
