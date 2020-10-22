@@ -19,3 +19,7 @@ a {
 #page-content {
   padding-top: 50px;
 }
+
+.page-header {
+  text-align: center;
+}

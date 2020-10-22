@@ -1,4 +1,4 @@
-import { categoryURI } from '/javascripts/modules/api-uri.mjs';
+import { URI } from '/javascripts/modules/api-uri.mjs';
 
 document.body.onload = script;
 
@@ -23,23 +23,40 @@ const page = {
     findPiece: async () => {
         render.pageIsBusy();
         const categories = await data.getCategories();
-        console.log(categories);
-        render.findPiecePage();
+        console.log(categories.data);
+        const materials = await data.getMaterials();
+        console.log(materials.data);
+        const styles = await data.getStyles();
+        console.log(styles.data);
+        render.findPiecePage(categories.data, materials.data, styles.data);
         addEventHandlersTo.findPiece();
     }
 }
 
+const pageSettings = {
+    language: "italian"
+}
+
 const render = {
+    pageIsBusy: () => {
+        document.getElementById("page-content").innerHTML = `
+        <div  id="spinner-container">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        `
+    },
     mainNav: () => {
         document.getElementById("app").innerHTML = `
         <nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-light">
             <a id="homeBtn" class="navbar-brand" href="#">Cube Admin</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" id="piecesBtn" href="#">${italian.nav.pieces}<span class="sr-only">(current)</span></a>
+                <a class="nav-link" id="piecesBtn" href="#">${language[pageSettings.language].nav.pieces}<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="leasingBtn" href="#">${italian.nav.leasing}</a>
+                <a class="nav-link" id="leasingBtn" href="#">${language[pageSettings.language].nav.leasing}</a>
                 </li>
             </ul>
         </nav>
@@ -53,10 +70,10 @@ const render = {
         <nav id="secondaryNav" class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" id="findPieceBtn" href="#">${italian.secNav.findPiece}<span class="sr-only">(current)</span></a>
+                <a class="nav-link" id="findPieceBtn" href="#">${language[pageSettings.language].secNav.findPiece}<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="addPieceBtn" href="#">${italian.secNav.addPiece}</a>
+                <a class="nav-link" id="addPieceBtn" href="#">${language[pageSettings.language].secNav.addPiece}</a>
                 </li>
             </ul>
         </nav>
@@ -67,52 +84,67 @@ const render = {
         <nav id="secondaryNav" class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" id="searchPieceBtn" href="#">${italian.secNav.newLease}<span class="sr-only">(current)</span></a>
+                <a class="nav-link" id="searchPieceBtn" href="#">${language[pageSettings.language].secNav.newLease}<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="addPieceBtn" href="#">${italian.secNav.findLease}</a>
+                <a class="nav-link" id="addPieceBtn" href="#">${language[pageSettings.language].secNav.findLease}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="addPieceBtn" href="#">${italian.secNav.ongoingLeases}</a>
+                <a class="nav-link" id="addPieceBtn" href="#">${language[pageSettings.language].secNav.ongoingLeases}</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" id="addPieceBtn" href="#">${italian.secNav.calendar}</a>
+                <a class="nav-link" id="addPieceBtn" href="#">${language[pageSettings.language].secNav.calendar}</a>
                 </li>
             </ul>
         </nav>
         `
     },
-    findPiecePage: () => {
+    findPiecePage: (categories, materials, styles) => {
         document.getElementById("page-content").innerHTML = `
-        <h3 class="page-header">${italian.findPiecePage.header}</h3>
+        <h3 class="page-header">${language[pageSettings.language].findPiecePage.header}</h3>
             <form>
                 <div class="form-group">
                     <label for="searchFormID">ID</label>
-                    <input type="string" class="form-control" id="searchFormID" placeholder="format: 5f9093819c3ea25344d02e3d
+                    <input type="string" class="form-control" id="searchFormID" placeholder="5f9093819c3ea25344d02e3d
                     ">
                 </div>
                 <div class="form-group">
-                    <label for="searchFormIDCategory">Category</label>
-                    <select class="form-control" id="searchFormIDCategory">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <label for="searchFormCategory">${language[pageSettings.language].findPiecePage.category}</label>
+                    <select class="form-control" id="searchFormCategory">
+                    <option id="null">-</option>
+                    ${categories.map(c => {
+            return (
+                `<option id=${c._id}>${c.name}</option>`
+            )
+        })}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="searchFormStyle">${language[pageSettings.language].findPiecePage.style}</label>
+                    <select class="form-control" id="searchFormStyle">
+                    <option id="null">-</option>
+                    ${styles.map(m => {
+            return (
+                `<option id=${m._id}>${m.type}</option>`
+            )
+        })}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="searchFormMaterial">${language[pageSettings.language].findPiecePage.material}</label>
+                    <select class="form-control" id="searchFormMaterial">
+                    <option id="null">-</option>
+                    ${materials.map(m => {
+            return (
+                `<option id=${m._id}>${m.type}</option>`
+            )
+        })}
                     </select>
                 </div>
             </form>
         `
     },
-    pageIsBusy: () => {
-        document.getElementById("page-content").innerHTML = `
-        <div  id="spinner-container">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        `
-    }
+    
 }
 
 const addEventHandlersTo = {
@@ -153,29 +185,48 @@ const eventHandlers = {
 const data = {
     getCategories: async () => {
         try {
-            return await axios.get(categoryURI.get)
+            return await axios.get(URI.categories.get);
         } catch (error) {
             console.error(error)
         }
-    }
+    },
+    getMaterials: async () => {
+        try {
+            return await axios.get(URI.materials.get);
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    getStyles: async () => {
+        try {
+            return await axios.get(URI.styles.get);
+        } catch (error) {
+            console.error(error)
+        }
+    },
 }
 
 
-const italian = {
-    nav: {
-        pieces: "Vestiti",
-        leasing: "Noleggio"
-    },
-    secNav: {
-        findPiece: "Ricerca vestito",
-        addPiece: "Aggiungere vestito",
-        newLease: "Nuovo noleggio",
-        findLease: "Trova noleggio",
-        ongoingLeases: "Noleggi in corso",
-        calendar: "Calendario"
-    },
-    findpiecePage: {
-        header: "Ricerca vestito",
-        
+const language = {
+    italian: {
+        nav: {
+            pieces: "Vestiti",
+            leasing: "Noleggio"
+        },
+        secNav: {
+            findPiece: "Ricerca vestito",
+            addPiece: "Aggiungere vestito",
+            newLease: "Nuovo noleggio",
+            findLease: "Trova noleggio",
+            ongoingLeases: "Noleggi in corso",
+            calendar: "Calendario"
+        },
+        findPiecePage: {
+            header: "Ricerca vestito",
+            categoryNullOption: "Nessun categoria",
+            category: "Categoria",
+            style: "Stile",
+            material: "Materiale"
+        }
     }
 }
