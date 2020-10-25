@@ -1,43 +1,43 @@
 var router = require('express').Router();
-let Material = require('../models/material.model');
+let Color = require('../models/color.model');
 
 
 router.route('/').get((req, res) => {
-  Material.find()
+  Color.find()
     .then(br => res.json(br))
     .catch(err => err.status(400).json('Error: ' + err))
 });
 
 router.route('/add').post((req, res) => {
   const name = req.body.name;
-  const newMaterial = new Material({
+  const newColor = new Color({
     name
   });
 
-  newMaterial.save()
-    .then(() => res.json('Material added!'))
+  newColor.save()
+    .then(() => res.json('Color added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
 router.route('/:id').get((req, res) => {
-  Material.findById(req.params.id)
+  Color.findById(req.params.id)
     .then(ex => res.json(ex))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route('/:id').delete((req, res) => {
-  Material.findByIdAndDelete(req.params.id)
-    .then(() => res.json("Material deleted!"))
+  Color.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Color deleted!"))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route('/update/:id').post((req, res) => {
-  Material.findById(req.params.id)
-    .then(material => {
-      material.name = req.body.name;
-      material.save()
-        .then(() => res.json('Material updated!'))
+  Color.findById(req.params.id)
+    .then(color => {
+      color.name = req.body.name;
+      color.save()
+        .then(() => res.json('Color updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

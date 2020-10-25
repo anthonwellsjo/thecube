@@ -1,12 +1,21 @@
 export const URI = {
     categories: {
-        get: "/categories"
+        get: "/categories/"
     },
     materials: {
-        get: "/materials"
+        get: "/materials/"
     },
     styles: {
-        get: "/styles"
-    }
+        get: "/styles/"
+    },
+    pieces: {
+        get: "/pieces/"
+    },
+    colors: {
+        get: "/colors/"
+    },
+    brands: {
+        get: "/brands/"
+    },
 }
 

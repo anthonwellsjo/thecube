@@ -9,9 +9,9 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const type = req.body.type;
+  const name = req.body.name;
   const newStyle = new Style({
-    type
+    name
   });
 
   newStyle.save()
@@ -35,7 +35,7 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Style.findById(req.params.id)
     .then(style => {
-      style.type = req.body.type;
+      style.name = req.body.name;
       style.save()
         .then(() => res.json('Style updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

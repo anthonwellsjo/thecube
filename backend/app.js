@@ -11,6 +11,7 @@ const piecesRouter = require('./routes/pieces');
 const stylesRouter = require('./routes/styles');
 const materialsRouter = require('./routes/materials');
 const categoriesRouter = require('./routes/categories');
+const colorsRouter = require('./routes/colors');
 
 require('dotenv').config();
 
@@ -39,5 +40,6 @@ app.use('/pieces', piecesRouter);
 app.use('/styles', stylesRouter);
 app.use('/materials', materialsRouter);
 app.use('/categories', categoriesRouter);
+app.use('/colors', colorsRouter);
 
 module.exports = app;
