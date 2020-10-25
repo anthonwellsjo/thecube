@@ -147,50 +147,46 @@ const render = {
                     </div>
                 </div>
             </form>
-            <br>
             <hr>
-            <br>
             <form class="attributes-form">
-                <div class="form-group">
-                    <label for="search-form-category">${language[pageSettings.language].findPiecePage.category}</label>
-                    <select class="form-control" id="search-form-category">
-                    <option id="null">-</option>
+                <div class="input-group">
+                    <select name="category" class="select-search" id="search-form-category">
+                    <option id="null">${language[pageSettings.language].findPiecePage.category}</option>
                     ${data.categories.map(c => {
             return (
-                `<option name="category" id=${c._id}>${c.name}</option>`
+                `<option id=${c._id}>${c.name}</option>`
             )
         })}
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="search-form-style">${language[pageSettings.language].findPiecePage.style}</label>
-                    <select class="form-control" id="search-form-style">
-                    <option id="null">-</option>
+                    <select name="style" class="select-search" id="search-form-style">
+                    <option id="null">${language[pageSettings.language].findPiecePage.style}</option>
                     ${data.styles.map(m => {
             return (
-                `<option name="style" id=${m._id}>${m.name}</option>`
+                `<option id=${m._id}>${m.name}</option>`
             )
         })}
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="search-form-material">${language[pageSettings.language].findPiecePage.material}</label>
-                    <select class="form-control" id="search-form-material">
-                    <option id="null">-</option>
+                    <select name="material" class="select-search" id="search-form-material">
+                    <option id="null">${language[pageSettings.language].findPiecePage.material}</option>
                     ${data.materials.map(m => {
             return (
-                `<option name="material" id=${m._id}>${m.name}</option>`
+                `<option id=${m._id}>${m.name}</option>`
             )
         })}
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="search-form-color">${language[pageSettings.language].findPiecePage.color}</label>
-                    <select class="form-control" id="search-form-color">
-                    <option id="null">-</option>
+                    <select name="color" class="select-search" id="search-form-color">
+                    <option id="null">${language[pageSettings.language].findPiecePage.color}</option>
                     ${data.colors.map(m => {
             return (
-                `<option name="material" id=${m._id}>${m.name}</option>`
+                `<option id=${m._id}>${m.name}</option>`
+            )
+        })}
+                    </select>
+                    <select name="brand" class="select-search" id="search-form-brand">
+                    <option id="null">${language[pageSettings.language].findPiecePage.brand}</option>
+                    ${data.brands.map(m => {
+            return (
+                `<option id=${m._id}>${m.name}</option>`
             )
         })}
                     </select>
@@ -210,8 +206,11 @@ const render = {
                 return (`<div class="card" style="width: 18rem;">
             <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
                 <div class="card-body">
-                <h5 class="card-title">${data.categories.find(c => c._id === p.category).name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${data.styles.find(s => s._id === p.style).name}</h6>
+                <h5 class="card-title">${p.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${data.categories.find(c => c._id === p.category).name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${data.styles.find(c => c._id === p.style).name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${data.materials.find(c => c._id === p.material).name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${data.brands.find(c => c._id === p.brand).name}</h6>
                 <p class="card-text">${p.description}</p>
                 </div>
             </div>`)
@@ -225,39 +224,56 @@ const render = {
                 <form class="add-piece-form" autocomplete="off">
                 <div class="form-group">
                     <label for="add-form-name">${language[pageSettings.language].addPiecePage.name}</label>
-                    <input type="text" class="form-control" id="add-form-name" name="name" placeholder="${language[pageSettings.language].addPiecePage.nameInputPlaceholder}">
+                    <input value="Name" type="text" class="form-control" id="add-form-name" name="name" placeholder="${language[pageSettings.language].addPiecePage.nameInputPlaceholder}">
                 </div>
                 <div class="form-group">
                     <label for="add-form-description">${language[pageSettings.language].addPiecePage.description}</label>
-                    <textarea maxlength="150" style="height: 65px; resize: none;" name="description" class="form-control" id="add-form-description" placeholder="${language[pageSettings.language].addPiecePage.descriptionInputPlaceholder}"></textarea>
+                    <textarea maxlength="150" style="height: 65px; resize: none;" name="description" class="form-control" id="add-form-description" placeholder="${language[pageSettings.language].addPiecePage.descriptionInputPlaceholder}">Description</textarea>
                 </div>
               
                 <div class="autocomplete">
                     <label for="add-form-brand">${language[pageSettings.language].addPiecePage.brand}</label>
-                    <input class="form-control" class="form-control" id="add-form-brand" type="text" name="brand" placeholder="${language[pageSettings.language].addPiecePage.brandInputPlaceholder}" />
+                    <input value="Brand" class="form-control" class="form-control" id="add-form-brand" type="text" name="brand" db="brands" placeholder="${language[pageSettings.language].addPiecePage.brandInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-category">${language[pageSettings.language].addPiecePage.category}</label>
-                    <input class="form-control" class="form-control" id="add-form-category" type="text" name="category" placeholder="${language[pageSettings.language].addPiecePage.categoryInputPlaceholder}" />
+                    <input value="Category" class="form-control" class="form-control" id="add-form-category" type="text" name="category" db="categories" placeholder="${language[pageSettings.language].addPiecePage.categoryInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-style">${language[pageSettings.language].addPiecePage.style}</label>
-                    <input class="form-control" id="add-form-style" type="text" name="style" placeholder="${language[pageSettings.language].addPiecePage.styleInputPlaceholder}" />
+                    <input value="Style" class="form-control" id="add-form-style" type="text" name="style" db="styles" placeholder="${language[pageSettings.language].addPiecePage.styleInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-material">${language[pageSettings.language].addPiecePage.material}</label>
-                    <input class="form-control" id="add-form-material" type="text" name="material" placeholder="${language[pageSettings.language].addPiecePage.materialInputPlaceholder}" />
+                    <input value="Material" class="form-control" id="add-form-material" type="text" name="material" db="materials" placeholder="${language[pageSettings.language].addPiecePage.materialInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-color">${language[pageSettings.language].addPiecePage.color}</label>
-                    <input class="form-control" id="add-form-color" type="text" name="color" placeholder="${language[pageSettings.language].addPiecePage.colorInputPlaceholder}" />
+                    <input value="Color" class="form-control" id="add-form-color" type="text" name="color" db="colors" placeholder="${language[pageSettings.language].addPiecePage.colorInputPlaceholder}" />
                 </div>
                 <button id="add-form-submit" type="submit" class="btn btn-primary">${language[pageSettings.language].addPiecePage.addBtn}</button>
             </form>
         `
     },
-    previewNewPieceModal: () => {
-
+    previewNewPieceModal: (piece) => {
+        document.getElementById("app").innerHTML += `
+        <div id="modal-backdrop">
+            <div class="card" style="width: 18rem;">
+                <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">${piece.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
+                <p class="card-text">${piece.description}</p>
+                </div>
+            </div>
+            <div id="card-buttons">
+                <button class="btn btn-success" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.saveBtn}
+                <button class="btn btn-danger" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.cancelBtn}
+            </div>
+        </div>`
     }
 
 
@@ -448,8 +464,8 @@ const eventHandlers = {
     },
     onChangeAttributesForm: async (e) => {
         console.log(e.target);
-        const [category, style, material, color] = functions.getAllIdsFromSearchForm(e.target.parentNode.parentNode);
-        console.log("category", category, "style", style, "material", material, "color", color,);
+        const {category, style, material, color, brand} = functions.getAllIdsFromSearchForm(e.target.parentNode);
+        console.log("category", category, "style", style, "material", material, "color", color, "brand", brand);
         if (category !== "null" || style !== "null" || material !== "null" || color !== "null") {
             const pieces = await data.getPiecesFromAttributes(category, style, material, color);
             data.piecesFound = [...pieces.data];
@@ -467,7 +483,7 @@ const eventHandlers = {
             render.siteIsBusy();
             const nameValues = functions.getAllNamesFromAddForm(form);
             const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
-            render.previewNewPieceModal(nameValues);
+            render.previewNewPieceModal(fullValues);
         }
         finally {
             render.siteIsNotBusy();
@@ -599,14 +615,16 @@ const functions = {
     },
     getAllIdsFromSearchForm: form => {
         console.log("form", form);
-        var attributes = [];
-        for (var i = 0; i < form.children.length; i++) {
-            var e = form.children[i].children[1];
-            const s = e.options[e.selectedIndex];
-            console.log(s.id);
-            attributes.push(s.id);
-        }
-        return attributes;
+        console.log("form children", form.children);
+        const HTMLobj = form.children;
+        const obj = {};
+        Object.keys(HTMLobj).forEach(k => {
+            console.log("key", k,HTMLobj[k].name, HTMLobj[k].options[HTMLobj[k].selectedIndex].id);
+            obj[`${HTMLobj[k].name}`] = {};
+            obj[`${HTMLobj[k].name}`] = { id: `${HTMLobj[k].options[HTMLobj[k].selectedIndex].id}`, name: `${HTMLobj[k].options[HTMLobj[k].selectedIndex].value}` };
+        });
+        console.log("obj", obj);
+        return obj;
     },
     getAllNamesFromAddForm: form => {
         console.log("form", form);
@@ -638,7 +656,88 @@ const functions = {
         });
     },
     getAllDbIdsOfSelectedAttributes: obj => {
-        Object.keys(obj).forEach(obj => console.log(obj));
+        let updObj = {};
+        console.log("updobj", updObj);
+        console.log("data", data.categories);
+
+        Object.keys(obj).forEach(k => {
+            switch (k) {
+                case "name": {
+                    updObj.name = obj[k];
+                    break;
+                }
+                case "description": {
+                    updObj.description = obj[k];
+                    break;
+                }
+                case "category": {
+                    const val = data.categories.find(c => c.name === obj[k]);
+                    console.log("found", val, obj[k]);
+                    updObj.category = {};
+                    if (val) {
+                        updObj.category._id = val._id;
+                    } else {
+                        updObj.category._id = "new";
+                    }
+                    updObj.category.name = obj[k];
+                    break;
+                }
+                case "style": {
+                    const val = data.styles.find(c => c.name === obj[k]);
+                    console.log("found", val, obj[k]);
+                    updObj.style = {};
+                    if (val) {
+                        updObj.style._id = val._id;
+                    } else {
+                        updObj.style._id = "new";
+                    }
+                    updObj.style.name = obj[k];
+                    break;
+                }
+                case "brand": {
+                    const val = data.brands.find(c => c.name === obj[k]);
+                    console.log("found", val, obj[k]);
+                    updObj.brand = {};
+                    if (val) {
+                        updObj.brand._id = val._id;
+                    } else {
+                        updObj.brand._id = "new";
+                    }
+                    updObj.brand.name = obj[k];
+                    break;
+                }
+                case "material": {
+                    const val = data.materials.find(c => c.name === obj[k]);
+                    console.log("found", val, obj[k]);
+                    updObj.material = {};
+                    if (val) {
+                        updObj.material._id = val._id;
+                    } else {
+                        updObj.material._id = "new";
+                    }
+                    updObj.material.name = obj[k];
+                    break;
+                }
+                case "color": {
+                    const val = data.colors.find(c => c.name === obj[k]);
+                    console.log("found", val, obj[k]);
+                    updObj.color = {};
+                    if (val) {
+                        updObj.color._id = val._id;
+                    } else {
+                        updObj.color._id = "new";
+                    }
+                    updObj.color.name = obj[k];
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+        );
+        console.log("updobje after", updObj);
+        return updObj;
     }
 }
 
@@ -677,6 +776,7 @@ const language = {
             style: "Stile",
             material: "Materiale",
             color: "Colore",
+            brand: "Marca"
         },
         addPiecePage: {
             header: "Aggiungere vestito",
@@ -695,6 +795,10 @@ const language = {
             color: "Colore",
             colorInputPlaceholder: "Es. rosso.",
             addBtn: "Aggiunge"
+        },
+        piecePreviewModal: {
+            saveBtn: "Salva capo",
+            cancelBtn: "Cancella"
         }
     }
 }

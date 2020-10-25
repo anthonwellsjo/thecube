@@ -70,6 +70,8 @@ a {
 }
 
 /*AUTOCOMPLETE-BOCX*/
+
+
 .autocomplete {
   position: relative;
   display: inline-block;
@@ -115,4 +117,35 @@ input[type="submit"] {
   left: 0;
   right: 0;
   bottom: 150px;
+}
+
+#modal-backdrop{
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#card-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#card-buttons button{
+  margin: 10px;
+}
+
+.input-group {
+}
+
+.select-search{
+
 }
