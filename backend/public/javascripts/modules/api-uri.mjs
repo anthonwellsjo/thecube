@@ -1,21 +1,27 @@
 export const URI = {
     categories: {
-        get: "/categories/"
+        get: "/categories/",
+        post: "/categories/add/",
     },
     materials: {
-        get: "/materials/"
+        get: "/materials/",
+        post: "/materials/add/",
     },
     styles: {
-        get: "/styles/"
+        get: "/styles/",
+        post: "/styles/add/",
     },
     pieces: {
-        get: "/pieces/"
+        get: "/pieces/",
+        post: "/pieces/add/",
     },
     colors: {
-        get: "/colors/"
+        get: "/colors/",
+        post: "/colors/add/",
     },
     brands: {
-        get: "/brands/"
+        get: "/brands/",
+        post: "/brands/add/",
     },
 }
 

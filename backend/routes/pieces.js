@@ -65,8 +65,8 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:category/:style/:material/:color').get((req, res) => {
-  const {category, style, material, color } = req.params;
+router.route('/:category/:style/:material/:color/:brand').get((req, res) => {
+  const {category, style, material, color, brand } = req.params;
   let query = {};
   if(category != "null"){
     query.category = category;
@@ -79,6 +79,9 @@ router.route('/:category/:style/:material/:color').get((req, res) => {
   }
   if(color != "null"){
     query.color = color;
+  }
+  if(brand != "null"){
+    query.brand = brand;
   }
   Piece.find(query)
     .then(ex => res.json(ex))

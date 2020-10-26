@@ -52,6 +52,18 @@ const page = {
 
         }
     },
+    previewModal: (values) => {
+        render.previewNewPieceModal(values);
+        data.currentPreviewModal = values;
+        addEventHandlersTo.previewModal();
+    },
+    unloadPreviewModal: () => {
+        document.getElementById("preview-piece-modal-backdrop").remove();
+    },
+    alert: (header, text, obj) => {
+        render.alert(header, text, obj);
+        addEventHandlersTo.alert();
+    }
 }
 
 
@@ -257,23 +269,43 @@ const render = {
     },
     previewNewPieceModal: (piece) => {
         document.getElementById("app").innerHTML += `
-        <div id="modal-backdrop">
-            <div class="card" style="width: 18rem;">
+        <div id="preview-piece-modal-backdrop">
+            <div id="preview-piece-modal" class="card" style="width: 18rem;">
                 <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">${piece.name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
-                <p class="card-text">${piece.description}</p>
+                <div id="preview-piece-card" class="card-body">
+                    <h5 class="card-title">${piece.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
+                    <p class="card-text">${piece.description}</p>
                 </div>
             </div>
             <div id="card-buttons">
                 <button class="btn btn-success" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.saveBtn}
-                <button class="btn btn-danger" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.cancelBtn}
+                <button class="btn btn-danger" id="cancel-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.cancelBtn}
             </div>
         </div>`
+    },
+    alert: (header, text, obj) => {
+        document.getElementById("app").innerHTML += `
+        <div id="alert-container">
+            <div id="alert" class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">${header}</h4>
+                <p>${text}</p>
+                <hr>
+                ${Object.keys(obj).map(k => {
+            return `<button id="new-attr-btn" type="button" class="btn btn-light">${obj[k].name}</button>`
+        }).join("")}
+                <br>
+                <br>
+                <div id="alert-btn-container">
+                    <button class="alert-btn btn btn-success" id="ok-alert-btn">${language[pageSettings.language].alert.okBtn}
+                    <button class="alert-btn btn btn-danger" id="modify-alert-btn">${language[pageSettings.language].alert.abortBtn}
+                </div>
+            </div>
+        </div>
+        `
     }
 
 
@@ -407,8 +439,13 @@ const addEventHandlersTo = {
     addPiecePage: () => {
         document.getElementById("add-form-submit").addEventListener("click", e => eventHandlers.onSubmitAddFormClickedEventHandler(e));
     },
-
-
+    previewModal: () => {
+        document.getElementById("save-preview-piece-btn").addEventListener("click", eventHandlers.onSavePreviewPieceBtnClicked)
+    },
+    alert: () => {
+        document.getElementById("ok-alert-btn").addEventListener("click", eventHandlers.onOkAlertBtnClicked);
+        document.getElementById("modify-alert-btn").addEventListener("click", eventHandlers.onModifyAlertBtnClicked);
+    }
 }
 
 const eventHandlers = {
@@ -464,10 +501,10 @@ const eventHandlers = {
     },
     onChangeAttributesForm: async (e) => {
         console.log(e.target);
-        const {category, style, material, color, brand} = functions.getAllIdsFromSearchForm(e.target.parentNode);
+        const { category, style, material, color, brand } = functions.getAllIdsFromSearchForm(e.target.parentNode);
         console.log("category", category, "style", style, "material", material, "color", color, "brand", brand);
-        if (category !== "null" || style !== "null" || material !== "null" || color !== "null") {
-            const pieces = await data.getPiecesFromAttributes(category, style, material, color);
+        if (category !== "null" || style !== "null" || material !== "null" || color !== "null" || brand !== "null") {
+            const pieces = await data.getPiecesFromAttributeIds(category.id, style.id, material.id, color.id, brand.id);
             data.piecesFound = [...pieces.data];
         } else {
             data.piecesFound = [];
@@ -483,13 +520,33 @@ const eventHandlers = {
             render.siteIsBusy();
             const nameValues = functions.getAllNamesFromAddForm(form);
             const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
-            render.previewNewPieceModal(fullValues);
+            page.previewModal(fullValues);
+        }
+        finally {
+            render.siteIsNotBusy();
+        }
+    },
+    onSavePreviewPieceBtnClicked: () => {
+        data.newAttributes = functions.findNewAttributesInPreviewModal();
+        if (data.newAttributes) {
+            page.unloadPreviewModal();
+            page.alert(language[pageSettings.language].alert.newAttHeader, language[pageSettings.language].alert.newAttText, data.newAttributes);
+        }
+    },
+    onOkAlertBtnClicked: async () => {
+        console.log("ok button clicked");
+        try {
+            console.log("try")
+            render.siteIsBusy();
+            await data.addNewAttributesToDb();
+        }
+        catch {
+
         }
         finally {
             render.siteIsNotBusy();
         }
 
-        console.log("values", nameValues);
     }
 }
 
@@ -500,6 +557,8 @@ const data = {
     materials: [],
     colors: [],
     brands: [],
+    currentPreviewModal: {},
+    newAttributes: {},
     allDbDataFetched: () => {
         return (flag.categoriesFetched && flag.stylesFetched && flag.materialsFetched && flag.colorsFetched && flag.brandsFetched)
     },
@@ -531,7 +590,7 @@ const data = {
             console.error(error)
         }
     },
-    getbrands: async () => {
+    getBrands: async () => {
         try {
             return await axios.get(URI.brands.get);
         } catch (error) {
@@ -545,9 +604,9 @@ const data = {
             console.error(error)
         }
     },
-    getPiecesFromAttributes: async (category, style, material, color) => {
+    getPiecesFromAttributeIds: async (category, style, material, color, brand) => {
         try {
-            return await axios.get(URI.pieces.get + category + "/" + style + "/" + material + "/" + color);
+            return await axios.get(URI.pieces.get + category + "/" + style + "/" + material + "/" + color + "/" + brand);
         } catch (error) {
             console.error(error)
         }
@@ -579,13 +638,45 @@ const data = {
                 flag.colorsFetched = true;
             }
             if (!flag.brandsFetched) {
-                const brands = await data.getbrands();
+                const brands = await data.getBrands();
                 data.brands = brands.data;
                 console.log(brands.data);
                 flag.brandsFetched = true;
             }
         } catch (error) {
             console.log(error);
+        }
+    },
+    addNewAttributesToDb: async () => {
+        if (data.newAttributes.category) {
+            await axios.post(URI.categories.post, { "name": `${data.newAttributes.category.name}` })
+                .then(res => console.log(res))
+                .catch
+                (err => console.log(err))
+        }
+        if (data.newAttributes.style) {
+            await axios.post(URI.styles.post, { "name": `${data.newAttributes.style.name}` })
+                .then(res => console.log(res))
+                .catch
+                (err => console.log(err))
+        }
+        if (data.newAttributes.material) {
+            await axios.post(URI.materials.post, { "name": `${data.newAttributes.material.name}` })
+                .then(res => console.log(res))
+                .catch
+                (err => console.log(err))
+        }
+        if (data.newAttributes.color) {
+            await axios.post(URI.colors.post, { "name": `${data.newAttributes.color.name}` })
+                .then(res => console.log(res))
+                .catch
+                (err => console.log(err))
+        }
+        if (data.newAttributes.brand) {
+            await axios.post(URI.brands.post, { "name": `${data.newAttributes.brand.name}` })
+                .then(res => console.log(res))
+                .catch
+                (err => console.log(err))
         }
     }
 }
@@ -619,7 +710,7 @@ const functions = {
         const HTMLobj = form.children;
         const obj = {};
         Object.keys(HTMLobj).forEach(k => {
-            console.log("key", k,HTMLobj[k].name, HTMLobj[k].options[HTMLobj[k].selectedIndex].id);
+            console.log("key", k, HTMLobj[k].name, HTMLobj[k].options[HTMLobj[k].selectedIndex].id);
             obj[`${HTMLobj[k].name}`] = {};
             obj[`${HTMLobj[k].name}`] = { id: `${HTMLobj[k].options[HTMLobj[k].selectedIndex].id}`, name: `${HTMLobj[k].options[HTMLobj[k].selectedIndex].value}` };
         });
@@ -738,6 +829,15 @@ const functions = {
         );
         console.log("updobje after", updObj);
         return updObj;
+    },
+    findNewAttributesInPreviewModal: () => {
+        const newAttr = {}
+        Object.keys(data.currentPreviewModal).forEach(k => {
+            if (data.currentPreviewModal[k]._id === "new") {
+                newAttr[`${k}`] = { ...data.currentPreviewModal[k] };
+            }
+        })
+        return newAttr;
     }
 }
 
@@ -799,6 +899,12 @@ const language = {
         piecePreviewModal: {
             saveBtn: "Salva capo",
             cancelBtn: "Cancella"
+        },
+        alert: {
+            newAttHeader: "Attenzione",
+            newAttText: "I seguenti attributi sono nuovi nel database. Aggiungergli?",
+            okBtn: "Ok",
+            abortBtn: "Modifica"
         }
     }
 }

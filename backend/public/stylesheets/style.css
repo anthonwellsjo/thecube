@@ -119,7 +119,7 @@ input[type="submit"] {
   bottom: 150px;
 }
 
-#modal-backdrop{
+#preview-piece-modal-backdrop{
   position: absolute;
   top:0;
   left:0;
@@ -143,9 +143,29 @@ input[type="submit"] {
   margin: 10px;
 }
 
-.input-group {
+#alert-container {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.select-search{
+#new-attr-btn{
+  margin: 5px;
+}
 
+#alert-btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.alert-btn{
+  margin: 5px;
 }
