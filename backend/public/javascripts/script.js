@@ -2,7 +2,6 @@ import { URI } from '/javascripts/modules/api-uri.mjs';
 
 document.body.onload = script;
 
-
 function script() {
     page.main();
 }
@@ -63,6 +62,9 @@ const page = {
     alert: (header, text, obj) => {
         render.alert(header, text, obj);
         addEventHandlersTo.alert();
+    },
+    unloadAlert: () => {
+        document.getElementById("alert-container").remove();
     }
 }
 
@@ -79,15 +81,17 @@ const render = {
         `
     },
     siteIsBusy: () => {
-        document.getElementById("page-content").innerHTML += `
-        <div id="site-is-busy-container">
+        const element = document.createElement("div");
+        element.setAttribute("id", "site-is-busy-container");
+        element.innerHTML = `
             <div id="spinner-container">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-        <div id="site-is-busy-container">
         `
+
+        document.getElementById("page-content").append(element);
     },
     siteIsNotBusy: () => {
         document.getElementById("site-is-busy-container").remove();
@@ -233,59 +237,62 @@ const render = {
         document.getElementById("page-content").innerHTML = `
         <h3 class="page-header">${language[pageSettings.language].addPiecePage.header}</h3>
             <br>
-                <form class="add-piece-form" autocomplete="off">
+                <form id="add-piece-form" class="add-piece-form" autocomplete="off">
                 <div class="form-group">
                     <label for="add-form-name">${language[pageSettings.language].addPiecePage.name}</label>
-                    <input value="Name" type="text" class="form-control" id="add-form-name" name="name" placeholder="${language[pageSettings.language].addPiecePage.nameInputPlaceholder}">
+                    <input value="${data.currentNewPiece.name}" type="text" class="form-control" id="add-form-name" name="name" placeholder="${language[pageSettings.language].addPiecePage.nameInputPlaceholder}">
                 </div>
                 <div class="form-group">
                     <label for="add-form-description">${language[pageSettings.language].addPiecePage.description}</label>
-                    <textarea maxlength="150" style="height: 65px; resize: none;" name="description" class="form-control" id="add-form-description" placeholder="${language[pageSettings.language].addPiecePage.descriptionInputPlaceholder}">Description</textarea>
+                    <textarea value="${data.currentNewPiece.description}" maxlength="150" style="height: 65px; resize: none;" name="description" class="form-control" id="add-form-description" placeholder="${language[pageSettings.language].addPiecePage.descriptionInputPlaceholder}"></textarea>
                 </div>
               
                 <div class="autocomplete">
                     <label for="add-form-brand">${language[pageSettings.language].addPiecePage.brand}</label>
-                    <input value="Brand" class="form-control" class="form-control" id="add-form-brand" type="text" name="brand" db="brands" placeholder="${language[pageSettings.language].addPiecePage.brandInputPlaceholder}" />
+                    <input value="${data.currentNewPiece.brand}" class="form-control" class="form-control" id="add-form-brand" type="text" name="brand" db="brands" placeholder="${language[pageSettings.language].addPiecePage.brandInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-category">${language[pageSettings.language].addPiecePage.category}</label>
-                    <input value="Category" class="form-control" class="form-control" id="add-form-category" type="text" name="category" db="categories" placeholder="${language[pageSettings.language].addPiecePage.categoryInputPlaceholder}" />
+                    <input value="${data.currentNewPiece.category}" class="form-control" class="form-control" id="add-form-category" type="text" name="category" db="categories" placeholder="${language[pageSettings.language].addPiecePage.categoryInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-style">${language[pageSettings.language].addPiecePage.style}</label>
-                    <input value="Style" class="form-control" id="add-form-style" type="text" name="style" db="styles" placeholder="${language[pageSettings.language].addPiecePage.styleInputPlaceholder}" />
+                    <input value="${data.currentNewPiece.style}" class="form-control" id="add-form-style" type="text" name="style" db="styles" placeholder="${language[pageSettings.language].addPiecePage.styleInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-material">${language[pageSettings.language].addPiecePage.material}</label>
-                    <input value="Material" class="form-control" id="add-form-material" type="text" name="material" db="materials" placeholder="${language[pageSettings.language].addPiecePage.materialInputPlaceholder}" />
+                    <input value="${data.currentNewPiece.material}" class="form-control" id="add-form-material" type="text" name="material" db="materials" placeholder="${language[pageSettings.language].addPiecePage.materialInputPlaceholder}" />
                 </div>
                 <div class="autocomplete">
                     <label for="add-form-color">${language[pageSettings.language].addPiecePage.color}</label>
-                    <input value="Color" class="form-control" id="add-form-color" type="text" name="color" db="colors" placeholder="${language[pageSettings.language].addPiecePage.colorInputPlaceholder}" />
+                    <input value="${data.currentNewPiece.color}" class="form-control" id="add-form-color" type="text" name="color" db="colors" placeholder="${language[pageSettings.language].addPiecePage.colorInputPlaceholder}" />
                 </div>
                 <button id="add-form-submit" type="submit" class="btn btn-primary">${language[pageSettings.language].addPiecePage.addBtn}</button>
             </form>
         `
     },
     previewNewPieceModal: (piece) => {
-        document.getElementById("app").innerHTML += `
-        <div id="preview-piece-modal-backdrop">
-            <div id="preview-piece-modal" class="card" style="width: 18rem;">
-                <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
-                <div id="preview-piece-card" class="card-body">
-                    <h5 class="card-title">${piece.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
-                    <p class="card-text">${piece.description}</p>
-                </div>
-            </div>
-            <div id="card-buttons">
-                <button class="btn btn-success" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.saveBtn}
-                <button class="btn btn-danger" id="cancel-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.cancelBtn}
-            </div>
-        </div>`
+        const element = document.createElement("div");
+        element.setAttribute("id", "preview-piece-modal-backdrop");
+        element.innerHTML = `
+        <div id="preview-piece-modal" class="card" style="width: 18rem;">
+        <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
+        <div id="preview-piece-card" class="card-body">
+            <h5 class="card-title">${piece.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
+            <p class="card-text">${piece.description}</p>
+        </div>
+        </div>
+        <div id="card-buttons">
+            <button class="btn btn-success" id="save-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.saveBtn}
+            <button class="btn btn-danger" id="cancel-preview-piece-btn">${language[pageSettings.language].piecePreviewModal.cancelBtn}
+        </div>
+        `
+
+        document.getElementById("app").append(element);
     },
     alert: (header, text, obj) => {
         document.getElementById("app").innerHTML += `
@@ -301,7 +308,7 @@ const render = {
                 <br>
                 <div id="alert-btn-container">
                     <button class="alert-btn btn btn-success" id="ok-alert-btn">${language[pageSettings.language].alert.okBtn}
-                    <button class="alert-btn btn btn-danger" id="modify-alert-btn">${language[pageSettings.language].alert.abortBtn}
+                    <button class="alert-btn btn btn-danger" id="abort-alert-btn">${language[pageSettings.language].alert.abortBtn}
                 </div>
             </div>
         </div>
@@ -438,13 +445,17 @@ const addEventHandlersTo = {
     },
     addPiecePage: () => {
         document.getElementById("add-form-submit").addEventListener("click", e => eventHandlers.onSubmitAddFormClickedEventHandler(e));
+        Object.keys(data.currentNewPiece).forEach(k => {
+            document.getElementById(`add-form-${k}`).addEventListener("keyup", e => eventHandlers.onNewPieceFormInputChangeEventHandler(e, k));
+        })
     },
     previewModal: () => {
-        document.getElementById("save-preview-piece-btn").addEventListener("click", eventHandlers.onSavePreviewPieceBtnClicked)
+        document.getElementById("save-preview-piece-btn").addEventListener("click", eventHandlers.onSavePreviewPieceBtnClicked);
+        document.getElementById("cancel-preview-piece-btn").addEventListener("click", eventHandlers.onCancelPreviewPieceBtnClicked);
     },
     alert: () => {
         document.getElementById("ok-alert-btn").addEventListener("click", eventHandlers.onOkAlertBtnClicked);
-        document.getElementById("modify-alert-btn").addEventListener("click", eventHandlers.onModifyAlertBtnClicked);
+        document.getElementById("abort-alert-btn").addEventListener("click", eventHandlers.onAbortAlertBtnClicked);
     }
 }
 
@@ -513,6 +524,7 @@ const eventHandlers = {
         page.piecesFound();
     },
     onSubmitAddFormClickedEventHandler: e => {
+        console.log("submit pressed")
         e.preventDefault();
         const form = e.target.parentNode;
         try {
@@ -526,27 +538,64 @@ const eventHandlers = {
             render.siteIsNotBusy();
         }
     },
-    onSavePreviewPieceBtnClicked: () => {
+    onNewPieceFormInputChangeEventHandler: (e, inputName) => {
+        console.log("data", data);
+        if (data.currentNewPiece === undefined) {
+            data.currentNewPiece = {};
+        }
+        if (data.currentNewPiece[`${inputName}`] === undefined) {
+            data.currentNewPiece[`${inputName}`] = "";
+        }
+        data.currentNewPiece[`${inputName}`] = e.target.value;
+        console.log("change", data.currentNewPiece);
+    },
+    onSavePreviewPieceBtnClicked: async () => {
         data.newAttributes = functions.findNewAttributesInPreviewModal();
-        if (data.newAttributes) {
+        if (Object.keys(data.newAttributes).length > 0) {
             page.unloadPreviewModal();
             page.alert(language[pageSettings.language].alert.newAttHeader, language[pageSettings.language].alert.newAttText, data.newAttributes);
+        } else {
+            try {
+                render.siteIsBusy();
+                await data.saveCurrentPreviewModalToDb();
+            }
+            catch (err) {
+                console.log(err);
+                flag.errorSavingPieceToDb = true;
+            }
+            finally {
+                render.siteIsNotBusy();
+                page.unloadPreviewModal();
+            }
+
         }
+    },
+    onCancelPreviewPieceBtnClicked: async () => {
+        functions.unlockAllInputsOnAddForm();
+        page.unloadPreviewModal();
     },
     onOkAlertBtnClicked: async () => {
         console.log("ok button clicked");
         try {
             console.log("try")
             render.siteIsBusy();
+
             await data.addNewAttributesToDb();
         }
-        catch {
-
+        catch (err) {
+            console.log(err);
+            flag.errorSavingAttributesToDb = true;
         }
         finally {
+            page.unloadAlert();
             render.siteIsNotBusy();
         }
 
+    },
+    onAbortAlertBtnClicked: async () => {
+        console.log("abort button clicked");
+        page.unloadAlert();
+        functions.unlockAllInputsOnAddForm();
     }
 }
 
@@ -558,6 +607,7 @@ const data = {
     colors: [],
     brands: [],
     currentPreviewModal: {},
+    currentNewPiece: { category: "", material: "", style: "", brand: "", color: "", name: "", description: "" },
     newAttributes: {},
     allDbDataFetched: () => {
         return (flag.categoriesFetched && flag.stylesFetched && flag.materialsFetched && flag.colorsFetched && flag.brandsFetched)
@@ -678,6 +728,9 @@ const data = {
                 .catch
                 (err => console.log(err))
         }
+    },
+    saveCurrentPreviewModalToDb: async () => {
+
     }
 }
 
@@ -740,6 +793,18 @@ const functions = {
         }
         var e = form.children[7];
         e.setAttribute("disabled", "true");
+    },
+    unlockAllInputsOnAddForm: () => {
+        const form = document.getElementById("add-piece-form");
+        console.log("form", form);
+        var attributes = {};
+        for (var i = 0; i < 7; i++) {
+            var e = form.children[i].children[1];
+            e.removeAttribute("disabled");
+
+        }
+        var e = form.children[7];
+        e.removeAttribute("disabled");
     },
     getStringArrayFromObjectsProperty: (obj, prop) => {
         return Object.keys(obj).map(k => {
@@ -850,6 +915,8 @@ const flag = {
     colorsFetched: false,
     brandsFetched: false,
     searchPieceSuccess: false,
+    errorSavingAttributesToDb: false,
+    errorSavingPieceToDb: false
 }
 
 const pageSettings = {
