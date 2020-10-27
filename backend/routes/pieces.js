@@ -17,7 +17,6 @@ router.route('/add').post((req, res) => {
   const color = req.body.color;
   const description = req.body.description;
   const brand = req.body.brand;
-  const productionYear = req.body.productionYear;
   const newPiece = new Piece({
     name,
     category,
@@ -26,7 +25,6 @@ router.route('/add').post((req, res) => {
     color,
     description,
     brand,
-    productionYear,
   });
 
   newPiece.save()

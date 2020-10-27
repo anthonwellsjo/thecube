@@ -6,7 +6,6 @@ function script() {
     page.main();
 }
 
-
 const page = {
     main: () => {
         render.mainNav();
@@ -65,10 +64,8 @@ const page = {
     },
     unloadAlert: () => {
         document.getElementById("alert-container").remove();
-    }
+    },
 }
-
-
 
 const render = {
     pageIsBusy: () => {
@@ -98,18 +95,20 @@ const render = {
     },
     mainNav: () => {
         document.getElementById("app").innerHTML = `
-        <nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-light">
-            <a id="homeBtn" class="navbar-brand" href="#">Cube Admin</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link" id="piecesBtn" href="#">${language[pageSettings.language].nav.pieces}<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a id="homeBtn" class="navbar-brand" href="#">The Cube</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-link" id="piecesBtn" href="#">${language[pageSettings.language].nav.pieces}</a>
                 <a class="nav-link" id="leasingBtn" href="#">${language[pageSettings.language].nav.leasing}</a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
-        <div id ="secondaryNavContainer">
+        <div id="secondaryNavContainer">
+        </div>
         </div>
         <div id="page-content"></div>
     `
@@ -118,10 +117,10 @@ const render = {
         document.getElementById("secondaryNavContainer").innerHTML = `
         <nav id="secondaryNav" class="navbar navbar-expand-lg navbar-light bg-light">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="li-item">
                 <a class="nav-link" id="findPieceBtn" href="#">${language[pageSettings.language].secNav.findPiece}<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="li-item">
                 <a class="nav-link" id="addPieceBtn" href="#">${language[pageSettings.language].secNav.addPiece}</a>
                 </li>
             </ul>
@@ -165,7 +164,7 @@ const render = {
             </form>
             <hr>
             <form class="attributes-form">
-                <div class="input-group">
+                <div id="search-attributes-inputs">
                     <select name="category" class="select-search" id="search-form-category">
                     <option id="null">${language[pageSettings.language].findPiecePage.category}</option>
                     ${data.categories.map(c => {
@@ -220,14 +219,16 @@ const render = {
             document.getElementById("pieces-found-container").innerHTML = `
         ${data.piecesFound.map(p => {
                 return (`<div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
+            <img src="https://picsum.photos/286/286" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">${p.name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${data.categories.find(c => c._id === p.category).name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${data.styles.find(c => c._id === p.style).name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${data.materials.find(c => c._id === p.material).name}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${data.brands.find(c => c._id === p.brand).name}</h6>
                 <p class="card-text">${p.description}</p>
+                <h6 class="card-details card-subtitle mb-2 text-muted">${language[pageSettings.language].pieceCard.category}: ${data.categories.find(c => c._id === p.category).name}</h6>
+                <h6 class="card-details card-subtitle mb-2 text-muted">${language[pageSettings.language].pieceCard.style}: ${data.styles.find(c => c._id === p.style).name}</h6>
+                <h6 class="card-details card-subtitle mb-2 text-muted">${language[pageSettings.language].pieceCard.material}: ${data.materials.find(c => c._id === p.material).name}</h6>
+                <h6 class="card-details card-subtitle mb-2 text-muted">${language[pageSettings.language].pieceCard.color}: ${data.colors.find(c => c._id === p.color).name}</h6>
+                <h6 class="card-details card-subtitle mb-2 text-muted">${language[pageSettings.language].pieceCard.brand}: ${data.brands.find(c => c._id === p.brand).name}</h6>
+                <span class="card-id">${p._id}</span>
                 </div>
             </div>`)
             })}
@@ -267,7 +268,9 @@ const render = {
                     <label for="add-form-color">${language[pageSettings.language].addPiecePage.color}</label>
                     <input value="${data.currentNewPiece.color}" class="form-control" id="add-form-color" type="text" name="color" db="colors" placeholder="${language[pageSettings.language].addPiecePage.colorInputPlaceholder}" />
                 </div>
+                <div id="submit-button-container" class="form-group">
                 <button id="add-form-submit" type="submit" class="btn btn-primary">${language[pageSettings.language].addPiecePage.addBtn}</button>
+                </div>
             </form>
         `
     },
@@ -276,7 +279,7 @@ const render = {
         element.setAttribute("id", "preview-piece-modal-backdrop");
         element.innerHTML = `
         <div id="preview-piece-modal" class="card" style="width: 18rem;">
-        <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
+        <img src="https://picsum.photos/286/286" class="card-img-top" alt="...">
         <div id="preview-piece-card" class="card-body">
             <h5 class="card-title">${piece.name}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Category: ${piece.category.name}</h6>
@@ -433,10 +436,10 @@ const UI = {
         const element = document.createElement("div");
         element.setAttribute("class", `alert alert-${type}`);
         element.setAttribute("id", `${pass}`);
-        element.style.position = "absolute";
-        element.style.left = "100px";
-        element.style.right = "100px";
-        element.style.bottom = "20px";
+        element.style.position = "sticky";
+        element.style.left = "10px";
+        element.style.right = "10px";
+        element.style.bottom = "10px";
         element.style.textAlign = "center";
         element.style.zIndex = "1000";
         element.innerText = message;
@@ -553,8 +556,24 @@ const eventHandlers = {
         const { category, style, material, color, brand } = functions.getAllIdsFromSearchForm(e.target.parentNode);
         console.log("category", category, "style", style, "material", material, "color", color, "brand", brand);
         if (category !== "null" || style !== "null" || material !== "null" || color !== "null" || brand !== "null") {
-            const pieces = await data.getPiecesFromAttributeIds(category.id, style.id, material.id, color.id, brand.id);
-            data.piecesFound = [...pieces.data];
+            flag.errorFindingPieces = false;
+            try {
+                render.siteIsBusy();
+                const pieces = await data.getPiecesFromAttributeIds(category.id, style.id, material.id, color.id, brand.id);
+                data.piecesFound = [...pieces.data];
+            }
+            catch (err) {
+                console.log(error);
+            }
+            finally {
+                if (data.errorFindingPieces) {
+                    UI.sendUserNotification(language[pageSettings.language].notifications.errorFindingPieces, "danger", 500, 5);
+                } else {
+                    UI.sendUserNotification(`${data.piecesFound.length} ${language[pageSettings.language].notifications.successFindingPieces}`, "success", 500, 5);
+                }
+                render.siteIsNotBusy();
+
+            }
         } else {
             data.piecesFound = [];
         }
@@ -575,7 +594,7 @@ const eventHandlers = {
     onSubmitAddFormClickedEventHandler: e => {
         console.log("submit pressed")
         e.preventDefault();
-        const form = e.target.parentNode;
+        const form = e.target.parentNode.parentNode;
 
         functions.checkIfNewPieceFOrmIsFilled(form);
 
@@ -592,11 +611,10 @@ const eventHandlers = {
                 render.siteIsNotBusy();
             }
         } else {
-            UI.sendUserNotification(`${language[pageSettings.language].notifications.missingInput}`, "danger", 1000, 4);
+            UI.sendUserNotification(`${language[pageSettings.language].notifications.missingInput}`, "danger", 500, 5);
         }
     },
     onSavePreviewPieceBtnClicked: async () => {
-
         data.newAttributes = functions.findNewAttributesInPreviewModal();
         console.log("new attributes", data.newAttributes);
         if (Object.keys(data.newAttributes).length > 0) {
@@ -614,6 +632,14 @@ const eventHandlers = {
             finally {
                 render.siteIsNotBusy();
                 page.unloadPreviewModal();
+                page.main();
+                if (flag.errorSavingPieceToDb) {
+                    UI.sendUserNotification(`${language[pageSettings.language].notifications.savePieceFailed}`, "danger", 500, 5);
+                } else {
+                    console.log("saved!")
+                    UI.sendUserNotification(`${language[pageSettings.language].notifications.savePieceSuccess}`, "success", 500, 5);
+                }
+
             }
 
         }
@@ -637,21 +663,18 @@ const eventHandlers = {
         finally {
             page.unloadAlert();
             if (!flag.errorSavingAttributesToDb) {
-                if (Object.keys(data.newAttributes).length > 0) {
-                    UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaved}`, "success", 1000, 4);
-                }
-                console.log("categories before", data.categories);
                 await data.getDbData();
-                console.log("categories after", data.categories);
+                if (Object.keys(data.newAttributes).length > 0) {
+                    UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaved}`, "success", 500, 5);
+                }
                 const nameValues = functions.getSimplifiedNameValueObjectOfCurrentPreviewModal(data.currentPreviewModal);
-                console.log("namevalues simplified", nameValues);
                 const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
 
                 console.log("data.currentPreviewModal", data.currentPreviewModal)
                 page.previewModal(fullValues);
                 render.siteIsNotBusy();
             } else {
-                UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaveFail}`, "danger", 1000, 4);
+                UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaveFail}`, "danger", 500, 5);
             }
         }
 
@@ -659,7 +682,7 @@ const eventHandlers = {
     onAbortNewAttributesBtnClicked: async () => {
         console.log("abort button clicked");
         UI.markAllNewAttributesInputsInAddPieceForm();
-        UI.sendUserNotification(`${language[pageSettings.language].notifications.modify}`, "warning", 1000, 4);
+        UI.sendUserNotification(`${language[pageSettings.language].notifications.modify}`, "warning", 100, 5);
         page.unloadAlert();
         functions.unlockAllInputsOnAddForm();
     }
@@ -724,6 +747,7 @@ const data = {
         try {
             return await axios.get(URI.pieces.get + category + "/" + style + "/" + material + "/" + color + "/" + brand);
         } catch (error) {
+            flag.errorFindingPieces = true;
             console.error(error)
         }
     },
@@ -823,16 +847,28 @@ const data = {
         }
     },
     postCurrentPreviewModalToDb: async () => {
-        await axios.post(URI.pieces.post, { "name": `${data.newAttributes.category.name}` })
-                .then(res => {
-                    console.log(res);
-                    flag.categoriesFetched = false;
-                })
-                .catch
-                (err => {
-                    console.log(err);
-                    flag.errorSavingAttributesToDb = true;
-                })
+        console.log("sending data piece");
+        const payLoad = {
+            "name": `${data.currentPreviewModal.name}`,
+            "description": `${data.currentPreviewModal.description}`,
+            "category": `${data.currentPreviewModal.category._id}`,
+            "style": `${data.currentPreviewModal.style._id}`,
+            "material": `${data.currentPreviewModal.material._id}`,
+            "color": `${data.currentPreviewModal.color._id}`,
+            "brand": `${data.currentPreviewModal.brand._id}`,
+
+        }
+
+        await axios.post(URI.pieces.post, payLoad)
+            .then(res => {
+                console.log(res);
+                flag.categoriesFetched = false;
+            })
+            .catch
+            (err => {
+                console.log(err);
+                flag.errorSavingPieceToDb = true;
+            })
     }
 }
 
@@ -1069,7 +1105,8 @@ const flag = {
     searchPieceSuccess: false,
     errorSavingAttributesToDb: false,
     errorSavingPieceToDb: false,
-    newPieceFormIsFilled: true
+    newPieceFormIsFilled: true,
+    errorFindingPieces: false,
 }
 
 const pageSettings = {
@@ -1097,6 +1134,15 @@ const language = {
             material: "Materiale",
             color: "Colore",
             brand: "Marca"
+        },
+        pieceCard: {
+            name: "Nome",
+            description: "Descrizione",
+            material: "Materiale",
+            category: "Categoria",
+            color: "Colore",
+            style: "Stile",
+            brand: "Marca",
         },
         addPiecePage: {
             header: "Aggiungere vestito",
@@ -1130,7 +1176,11 @@ const language = {
             missingInput: "Per favore riempire tutti gli dati.",
             modify: "Modifica i campi voluti.",
             attributesSaved: "Nuovi attributi salvati al database con successo!",
-            attributesSaveFail: "I attributi non sono stati salvati... Contatta amministratore."
+            attributesSaveFail: "I attributi non sono stati salvati... Contatta amministratore.",
+            savePieceFailed: "Il capo non é stato salvato con successo. Contatta amministratore.",
+            savePieceSuccess: "Il capo é stato salvato con successo.",
+            errorFindingPieces: "Un errore é stato incontrato cercando i capi...",
+            successFindingPieces: "capi sono stati ritrovati nel database."
         }
     }
 }

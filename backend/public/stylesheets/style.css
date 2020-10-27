@@ -21,7 +21,7 @@ a {
 }
 
 #page-content {
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 .page-header {
@@ -44,19 +44,48 @@ a {
   opacity: 0.4;
 }
 
+#search-attributes-inputs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-search{
+  width: 150px;
+  margin: 20px;
+}
+
 #pieces-found-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  background-color: rgb(226, 226, 226);
-  padding: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(10px, 1fr));
+  padding: 50px;
+  margin: 20px;
   min-height: 450px;
   width: 100%;
-  box-shadow: 3px 3px 15px black;
+}
+
+#add-form-submit{
+  margin-top: 30px;
+}
+
+#submit-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
   grid-column-start: auto;
   grid-column-end: auto;
+}
+
+.card-id{
+  font-size: 12px;
+}
+
+.card-details{
+  font-size: 13px;
 }
 
 #confirm-id-text {
@@ -69,7 +98,7 @@ a {
   color: grey;
 }
 
-/*AUTOCOMPLETE-BOCX*/
+/*AUTOCOMPLETE-BOX*/
 
 
 .autocomplete {
