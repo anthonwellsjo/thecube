@@ -60,7 +60,7 @@ const page = {
         document.getElementById("preview-piece-modal-backdrop").remove();
     },
     alert: (header, text, obj) => {
-        render.alert(header, text, obj);
+        render.missingAttributesAlert(header, text, obj);
         addEventHandlersTo.alert();
     },
     unloadAlert: () => {
@@ -294,9 +294,10 @@ const render = {
 
         document.getElementById("app").append(element);
     },
-    alert: (header, text, obj) => {
-        document.getElementById("app").innerHTML += `
-        <div id="alert-container">
+    missingAttributesAlert: (header, text, obj) => {
+        const element = document.createElement("div");
+        element.setAttribute("id", "alert-container");
+        element.innerHTML = `
             <div id="alert" class="alert alert-danger" role="alert">
                 <h4 class="alert-heading">${header}</h4>
                 <p>${text}</p>
@@ -311,8 +312,8 @@ const render = {
                     <button class="alert-btn btn btn-danger" id="abort-alert-btn">${language[pageSettings.language].alert.abortBtn}
                 </div>
             </div>
-        </div>
-        `
+        `;
+        document.getElementById("app").append(element);
     }
 
 
@@ -347,10 +348,10 @@ const UI = {
         }
     },
     createAutoComplete: (searchEle, arr) => {
-        var currentFocus;
+        let currentFocus;
         searchEle.addEventListener("input", function (e) {
             console.log("goooo");
-            var divCreate,
+            let divCreate,
                 b,
                 i,
                 fieldVal = this.value;
@@ -425,6 +426,34 @@ const UI = {
             closeAllLists(e.target);
         });
     },
+    sendUserNotification: (message, type, stayMs, fadeS) => {
+        console.log("user Identification!")
+        const pass = new Date().getTime();
+        const element = document.createElement("div");
+        element.setAttribute("class", `alert alert-${type}`);
+        element.setAttribute("id", `${pass}`);
+        element.style.position = "absolute";
+        element.style.left = "200px";
+        element.style.right = "200px";
+        element.style.bottom = "100px";
+        element.innerText = message;
+
+        document.getElementById("app").append(element);
+        setTimeout(() => {
+            document.getElementById(`${pass}`).style.transition = `opacity ${fadeS}s`;
+            document.getElementById(`${pass}`).style.opacity = "0";
+        }, stayMs)
+        setTimeout(() => {
+            document.getElementById(`${pass}`).remove();
+            console.log("remove", pass);
+        }, (fadeS * 1000) + stayMs)
+
+    },
+    markAllNewAttributesInputsInAddPieceForm: () => {
+        Object.keys(data.newAttributes).forEach(k => {
+            document.getElementById(`add-form-${k}`).style.backgroundColor = "LemonChiffon";
+        })
+    }
 }
 
 const addEventHandlersTo = {
@@ -523,21 +552,6 @@ const eventHandlers = {
         console.log(data.piecesFound);
         page.piecesFound();
     },
-    onSubmitAddFormClickedEventHandler: e => {
-        console.log("submit pressed")
-        e.preventDefault();
-        const form = e.target.parentNode;
-        try {
-            functions.lockAllInputsOnAddForm(form);
-            render.siteIsBusy();
-            const nameValues = functions.getAllNamesFromAddForm(form);
-            const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
-            page.previewModal(fullValues);
-        }
-        finally {
-            render.siteIsNotBusy();
-        }
-    },
     onNewPieceFormInputChangeEventHandler: (e, inputName) => {
         console.log("data", data);
         if (data.currentNewPiece === undefined) {
@@ -546,8 +560,30 @@ const eventHandlers = {
         if (data.currentNewPiece[`${inputName}`] === undefined) {
             data.currentNewPiece[`${inputName}`] = "";
         }
-        data.currentNewPiece[`${inputName}`] = e.target.value;
+        data.currentNewPiece[`${inputName}`] = functions.formatInput(e.target.value);
         console.log("change", data.currentNewPiece);
+    },
+    onSubmitAddFormClickedEventHandler: e => {
+        console.log("submit pressed")
+        e.preventDefault();
+        const form = e.target.parentNode;
+
+        functions.checkIfNewPieceFOrmIsFilled(form);
+
+        if (flag.newPieceFormIsFilled) {
+            try {
+                functions.lockAllInputsOnAddForm(form);
+                render.siteIsBusy();
+                // const nameValues = functions.getAllNamesFromAddForm(form);
+                const fullValues = functions.getAllDbIdsOfSelectedAttributes(data.currentNewPiece);
+                page.previewModal(fullValues);
+            }
+            finally {
+                render.siteIsNotBusy();
+            }
+        } else {
+            UI.sendUserNotification(`${language[pageSettings.language].notifications.missingInput}`, "danger", 1000, 4);
+        }
     },
     onSavePreviewPieceBtnClicked: async () => {
         data.newAttributes = functions.findNewAttributesInPreviewModal();
@@ -576,10 +612,10 @@ const eventHandlers = {
     },
     onOkAlertBtnClicked: async () => {
         console.log("ok button clicked");
+        flag.errorSavingAttributesToDb = false;
         try {
             console.log("try")
             render.siteIsBusy();
-
             await data.addNewAttributesToDb();
         }
         catch (err) {
@@ -588,12 +624,24 @@ const eventHandlers = {
         }
         finally {
             page.unloadAlert();
-            render.siteIsNotBusy();
+            if(!flag.errorSavingAttributesToDb){
+                await data.getDbData();
+                const fullValues = functions.getAllDbIdsOfSelectedAttributes(data.currentNewPiece);
+                page.previewModal(fullValues);
+
+
+                const newAttrStr = Object.keys(data.newAttributes).map(k => `${k.name}, `).join("");
+                
+                UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaved} + ${newAttrStr}`, "success", 1000, 4);
+                render.siteIsNotBusy();
+            }
         }
 
     },
     onAbortAlertBtnClicked: async () => {
         console.log("abort button clicked");
+        UI.markAllNewAttributesInputsInAddPieceForm();
+        UI.sendUserNotification(`${language[pageSettings.language].notifications.modify}`, "warning", 1000, 4);
         page.unloadAlert();
         functions.unlockAllInputsOnAddForm();
     }
@@ -783,6 +831,33 @@ const functions = {
         }
         return attributes;
     },
+    checkIfNewPieceFOrmIsFilled: (form) => {
+        console.log("checkIfNewPieceFOrmIsFilled", form);
+        flag.newPieceFormIsFilled = true;
+        for (var i = 0; i < 7; i++) {
+            var e = form.children[i].children[1];
+            const s = e.value;
+            if (s.length === 0) {
+                form.children[i].children[1].style.backgroundColor = "LemonChiffon";
+                flag.newPieceFormIsFilled = false;
+            } else {
+                form.children[i].children[1].style.removeProperty("background-color");
+            }
+        }
+    },
+    formatInput: (input) => {
+        console.log("before format", input);
+        input.toLowerCase();
+        const formatedInput = input.split("").map((char, i) => {
+            if (i === 0) {
+                return char.toUpperCase();
+            } else {
+                return char.toLowerCase();
+            }
+        }).join("");
+        console.log("afer format", formatedInput);
+        return formatedInput;
+    },
     lockAllInputsOnAddForm: form => {
         console.log("form", form);
         var attributes = {};
@@ -916,7 +991,8 @@ const flag = {
     brandsFetched: false,
     searchPieceSuccess: false,
     errorSavingAttributesToDb: false,
-    errorSavingPieceToDb: false
+    errorSavingPieceToDb: false,
+    newPieceFormIsFilled: true
 }
 
 const pageSettings = {
@@ -972,6 +1048,11 @@ const language = {
             newAttText: "I seguenti attributi sono nuovi nel database. Aggiungergli?",
             okBtn: "Ok",
             abortBtn: "Modifica"
+        },
+        notifications: {
+            missingInput: "Per favore riempire tutti gli dati.",
+            modify: "Modifica i campi voluti.",
+            attributesSaved: "I seguenti attributi salvati al database: "
         }
     }
 }
