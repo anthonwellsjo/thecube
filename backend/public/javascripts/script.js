@@ -52,14 +52,14 @@ const page = {
         }
     },
     previewModal: (values) => {
-        render.previewNewPieceModal(values);
         data.currentPreviewModal = values;
+        render.previewNewPieceModal(values);
         addEventHandlersTo.previewModal();
     },
     unloadPreviewModal: () => {
         document.getElementById("preview-piece-modal-backdrop").remove();
     },
-    alert: (header, text, obj) => {
+    missingAttributesAlert: (header, text, obj) => {
         render.missingAttributesAlert(header, text, obj);
         addEventHandlersTo.alert();
     },
@@ -279,11 +279,12 @@ const render = {
         <img src="https://picsum.photos/286/286?grayscale" class="card-img-top" alt="...">
         <div id="preview-piece-card" class="card-body">
             <h5 class="card-title">${piece.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${piece.category.name}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">${piece.style.name}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">${piece.material.name}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">${piece.brand.name}</h6>
-            <p class="card-text">${piece.description}</p>
+            <h6 class="card-subtitle mb-2 text-muted">Category: ${piece.category.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Style: ${piece.style.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Material: ${piece.material.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Color: ${piece.color.name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Brand: ${piece.brand.name}</h6>
+            <p class="card-text">Description: ${piece.description}</p>
         </div>
         </div>
         <div id="card-buttons">
@@ -433,9 +434,11 @@ const UI = {
         element.setAttribute("class", `alert alert-${type}`);
         element.setAttribute("id", `${pass}`);
         element.style.position = "absolute";
-        element.style.left = "200px";
-        element.style.right = "200px";
-        element.style.bottom = "100px";
+        element.style.left = "100px";
+        element.style.right = "100px";
+        element.style.bottom = "20px";
+        element.style.textAlign = "center";
+        element.style.zIndex = "1000";
         element.innerText = message;
 
         document.getElementById("app").append(element);
@@ -476,15 +479,21 @@ const addEventHandlersTo = {
         document.getElementById("add-form-submit").addEventListener("click", e => eventHandlers.onSubmitAddFormClickedEventHandler(e));
         Object.keys(data.currentNewPiece).forEach(k => {
             document.getElementById(`add-form-${k}`).addEventListener("keyup", e => eventHandlers.onNewPieceFormInputChangeEventHandler(e, k));
-        })
+        });
+        Object.keys(data.currentNewPiece).forEach(k => {
+            document.getElementById(`add-form-${k}`).addEventListener("focus", e => eventHandlers.onNewPieceFormInputChangeEventHandler(e, k));
+        });
+        Object.keys(data.currentNewPiece).forEach(k => {
+            document.getElementById(`add-form-${k}`).addEventListener("", e => eventHandlers.onNewPieceFormInputChangeEventHandler(e, k));
+        });
     },
     previewModal: () => {
         document.getElementById("save-preview-piece-btn").addEventListener("click", eventHandlers.onSavePreviewPieceBtnClicked);
         document.getElementById("cancel-preview-piece-btn").addEventListener("click", eventHandlers.onCancelPreviewPieceBtnClicked);
     },
     alert: () => {
-        document.getElementById("ok-alert-btn").addEventListener("click", eventHandlers.onOkAlertBtnClicked);
-        document.getElementById("abort-alert-btn").addEventListener("click", eventHandlers.onAbortAlertBtnClicked);
+        document.getElementById("ok-alert-btn").addEventListener("click", eventHandlers.onSaveNewAttributesBtnClicked);
+        document.getElementById("abort-alert-btn").addEventListener("click", eventHandlers.onAbortNewAttributesBtnClicked);
     }
 }
 
@@ -574,8 +583,9 @@ const eventHandlers = {
             try {
                 functions.lockAllInputsOnAddForm(form);
                 render.siteIsBusy();
-                // const nameValues = functions.getAllNamesFromAddForm(form);
-                const fullValues = functions.getAllDbIdsOfSelectedAttributes(data.currentNewPiece);
+                const nameValues = functions.getAllNamesFromAddForm(form);
+                console.log("namevalues", nameValues);
+                const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
                 page.previewModal(fullValues);
             }
             finally {
@@ -586,14 +596,16 @@ const eventHandlers = {
         }
     },
     onSavePreviewPieceBtnClicked: async () => {
+
         data.newAttributes = functions.findNewAttributesInPreviewModal();
+        console.log("new attributes", data.newAttributes);
         if (Object.keys(data.newAttributes).length > 0) {
             page.unloadPreviewModal();
-            page.alert(language[pageSettings.language].alert.newAttHeader, language[pageSettings.language].alert.newAttText, data.newAttributes);
+            page.missingAttributesAlert(language[pageSettings.language].alert.newAttHeader, language[pageSettings.language].alert.newAttText, data.newAttributes);
         } else {
             try {
                 render.siteIsBusy();
-                await data.saveCurrentPreviewModalToDb();
+                await data.postCurrentPreviewModalToDb();
             }
             catch (err) {
                 console.log(err);
@@ -610,13 +622,13 @@ const eventHandlers = {
         functions.unlockAllInputsOnAddForm();
         page.unloadPreviewModal();
     },
-    onOkAlertBtnClicked: async () => {
+    onSaveNewAttributesBtnClicked: async () => {
         console.log("ok button clicked");
         flag.errorSavingAttributesToDb = false;
         try {
             console.log("try")
             render.siteIsBusy();
-            await data.addNewAttributesToDb();
+            await data.postNewAttributesToDb();
         }
         catch (err) {
             console.log(err);
@@ -624,21 +636,27 @@ const eventHandlers = {
         }
         finally {
             page.unloadAlert();
-            if(!flag.errorSavingAttributesToDb){
+            if (!flag.errorSavingAttributesToDb) {
+                if (Object.keys(data.newAttributes).length > 0) {
+                    UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaved}`, "success", 1000, 4);
+                }
+                console.log("categories before", data.categories);
                 await data.getDbData();
-                const fullValues = functions.getAllDbIdsOfSelectedAttributes(data.currentNewPiece);
+                console.log("categories after", data.categories);
+                const nameValues = functions.getSimplifiedNameValueObjectOfCurrentPreviewModal(data.currentPreviewModal);
+                console.log("namevalues simplified", nameValues);
+                const fullValues = functions.getAllDbIdsOfSelectedAttributes(nameValues);
+
+                console.log("data.currentPreviewModal", data.currentPreviewModal)
                 page.previewModal(fullValues);
-
-
-                const newAttrStr = Object.keys(data.newAttributes).map(k => `${k.name}, `).join("");
-                
-                UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaved} + ${newAttrStr}`, "success", 1000, 4);
                 render.siteIsNotBusy();
+            } else {
+                UI.sendUserNotification(`${language[pageSettings.language].notifications.attributesSaveFail}`, "danger", 1000, 4);
             }
         }
 
     },
-    onAbortAlertBtnClicked: async () => {
+    onAbortNewAttributesBtnClicked: async () => {
         console.log("abort button clicked");
         UI.markAllNewAttributesInputsInAddPieceForm();
         UI.sendUserNotification(`${language[pageSettings.language].notifications.modify}`, "warning", 1000, 4);
@@ -745,40 +763,76 @@ const data = {
             console.log(error);
         }
     },
-    addNewAttributesToDb: async () => {
+    postNewAttributesToDb: async () => {
         if (data.newAttributes.category) {
             await axios.post(URI.categories.post, { "name": `${data.newAttributes.category.name}` })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    flag.categoriesFetched = false;
+                })
                 .catch
-                (err => console.log(err))
+                (err => {
+                    console.log(err);
+                    flag.errorSavingAttributesToDb = true;
+                })
         }
         if (data.newAttributes.style) {
             await axios.post(URI.styles.post, { "name": `${data.newAttributes.style.name}` })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    flag.stylesFetched = false;
+                })
                 .catch
-                (err => console.log(err))
+                (err => {
+                    console.log(err);
+                    flag.errorSavingAttributesToDb = true;
+                })
         }
         if (data.newAttributes.material) {
             await axios.post(URI.materials.post, { "name": `${data.newAttributes.material.name}` })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    flag.materialsFetched = false;
+                })
                 .catch
-                (err => console.log(err))
+                (err => {
+                    console.log(err);
+                    flag.errorSavingAttributesToDb = true;
+                })
         }
         if (data.newAttributes.color) {
             await axios.post(URI.colors.post, { "name": `${data.newAttributes.color.name}` })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    flag.colorsFetched = false;
+                })
                 .catch
-                (err => console.log(err))
+                (err => {
+                    console.log(err);
+                    flag.errorSavingAttributesToDb = true;
+                })
         }
         if (data.newAttributes.brand) {
             await axios.post(URI.brands.post, { "name": `${data.newAttributes.brand.name}` })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    flag.brandsFetched = false;
+                })
                 .catch
                 (err => console.log(err))
         }
     },
-    saveCurrentPreviewModalToDb: async () => {
-
+    postCurrentPreviewModalToDb: async () => {
+        await axios.post(URI.pieces.post, { "name": `${data.newAttributes.category.name}` })
+                .then(res => {
+                    console.log(res);
+                    flag.categoriesFetched = false;
+                })
+                .catch
+                (err => {
+                    console.log(err);
+                    flag.errorSavingAttributesToDb = true;
+                })
     }
 }
 
@@ -826,7 +880,7 @@ const functions = {
             const s = e.value;
             console.log(s);
             attributes[`${e.name}`] = {};
-            attributes[`${e.name}`] = e.value;
+            attributes[`${e.name}`] = functions.capSentence(e.value);
 
         }
         return attributes;
@@ -844,6 +898,15 @@ const functions = {
                 form.children[i].children[1].style.removeProperty("background-color");
             }
         }
+    },
+    capSentence: text => {
+        let wordsArray = text.toLowerCase().split(' ')
+
+        let capsArray = wordsArray.map(word => {
+            return word.replace(word[0], word[0].toUpperCase())
+        })
+
+        return capsArray.join(' ')
     },
     formatInput: (input) => {
         console.log("before format", input);
@@ -978,6 +1041,20 @@ const functions = {
             }
         })
         return newAttr;
+    },
+    getSimplifiedNameValueObjectOfCurrentPreviewModal: (complexObj) => {
+        let simplifiedObj = {};
+        Object.keys(complexObj).forEach(k => {
+            if (`${k}` === "description") {
+                simplifiedObj[`${k}`] = complexObj[k];
+            }
+            else if (`${k}` === "name") {
+                simplifiedObj[`${k}`] = complexObj[k];
+            } else {
+                simplifiedObj[`${k}`] = complexObj[k].name;
+            }
+        })
+        return simplifiedObj;
     }
 }
 
@@ -1052,7 +1129,8 @@ const language = {
         notifications: {
             missingInput: "Per favore riempire tutti gli dati.",
             modify: "Modifica i campi voluti.",
-            attributesSaved: "I seguenti attributi salvati al database: "
+            attributesSaved: "Nuovi attributi salvati al database con successo!",
+            attributesSaveFail: "I attributi non sono stati salvati... Contatta amministratore."
         }
     }
 }

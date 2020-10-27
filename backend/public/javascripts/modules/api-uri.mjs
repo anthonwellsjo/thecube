@@ -23,5 +23,9 @@ export const URI = {
         get: "/brands/",
         post: "/brands/add/",
     },
+    pieces: {
+        get: "/pieces/",
+        post: "/pieces/add/",
+    },
 }
 
