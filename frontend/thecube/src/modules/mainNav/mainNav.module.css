@@ -7,7 +7,10 @@
 }
 
 .navLink:hover{
-  animation: flash .5s infinite;
+  background-color: black;
+  color:white;
+  transition: all .2s;
+  /* animation: flash .5s infinite; */
 }
 
 

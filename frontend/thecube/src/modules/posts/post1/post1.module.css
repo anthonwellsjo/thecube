@@ -3,7 +3,6 @@
   font-weight: 900;
   font-size: 42px;
   letter-spacing: 0.5px;
-  cursor: pointer;
 }
 
 .textHolder {
@@ -14,11 +13,11 @@
 }
 
 .colorBox {
-  width: 30%;
+  width: 400px;
   height: 400px;
+  background-color: white;
   position: absolute;
   z-index: 1;
-  background-color: yellow;
   display: flex;
   align-items: center;
 }

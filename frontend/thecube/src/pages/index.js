@@ -6,7 +6,9 @@ import Centralizer from "../modules/layout/centralizer/centralizer";
 import logo from '../images/logo-xsmall.png';
 import MainNav from "../modules/mainNav/mainNav";
 import LogInMenuMain from "../modules/logInMenuMain/logInMenuMain";
-import Post1 from "../modules/post1/post1";
+import Post1 from "../modules/posts/post1/post1";
+import Post2 from "../modules/posts/post2/post2";
+import Post3 from "../modules/posts/post3/post3";
 
 
 export default function Home() {
@@ -21,6 +23,8 @@ export default function Home() {
         </Centralizer>
       </Header>
       <Post1/>
+      <Post2/>
+      <Post3/>
     </>
   )
 }
