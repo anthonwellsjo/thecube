@@ -3,6 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import LineAnimation from '../../animations/lineAnimation';
 import Centralizer from '../../layout/centralizer/centralizer';
 import classes from './post3.module.css';
+import classnames from 'classnames';
 
 export default function Post2(props) {
 
@@ -23,7 +24,7 @@ export default function Post2(props) {
 
   return (
     <Centralizer>
-      <div className={classes.wrapper} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+      <div className={classnames("indexItemGlobal",classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
         <Centralizer>
           <div className={classes.colorBox}>
             <div className={classes.textHolder}>
@@ -31,8 +32,8 @@ export default function Post2(props) {
               <h1 className={classes.bigtext}>Digital</h1>
               <p className={classes.text2}>take me there</p>
             </div>
-            <div style={{ position: "absolute", bottom: "80px", right: "-110px" }}>
-              <LineAnimation fat={9} end={360} start={160} hover={hover} />
+            <div style={{ position: "absolute", bottom: "80px", right: "-160px" }}>
+              <LineAnimation fat={9} end={320} start={160} hover={hover} />
             </div>
           </div>
           <img src='https://picsum.photos/1000/400' style={{ position: "absolute", right: "0" }} />

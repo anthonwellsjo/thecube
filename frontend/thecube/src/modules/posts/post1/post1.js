@@ -23,7 +23,7 @@ export default function Post1(props) {
 
   return (
     <Centralizer>
-      <div onMouseLeave={onMouseLeave} onMouseOver={onMouseOver} style={{ cursor:"pointer", height: "400px", width: "100%", overflow: "hidden", position: "relative" }}>
+      <div className="indexItemGlobal" onMouseLeave={onMouseLeave} onMouseOver={onMouseOver} style={{ cursor:"pointer", height: "400px", width: "100%", overflow: "hidden", position: "relative" }}>
         <div className={classes.colorBox}>
           <div className={classes.textHolder}>
             <p className={classes.text}>Fashion Archive with a digital platform of inspirational ideas for creatives</p>

@@ -9,6 +9,10 @@ import LogInMenuMain from "../modules/logInMenuMain/logInMenuMain";
 import Post1 from "../modules/posts/post1/post1";
 import Post2 from "../modules/posts/post2/post2";
 import Post3 from "../modules/posts/post3/post3";
+import Post4 from "../modules/posts/post4/post4";
+import BlogCarousel from "../modules/blogCarousel/blogCarousel";
+import PhotoCarousel from "../modules/photoCarousel/photoCarousel";
+import ContactFooter from "../modules/contactFooter/contactFooter";
 
 
 export default function Home() {
@@ -25,6 +29,10 @@ export default function Home() {
       <Post1/>
       <Post2/>
       <Post3/>
+      <BlogCarousel/>
+      <Post4/>
+      <PhotoCarousel/>
+      <ContactFooter/>
     </>
   )
 }

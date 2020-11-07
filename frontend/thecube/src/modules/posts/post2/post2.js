@@ -3,6 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import LineAnimation from '../../animations/lineAnimation';
 import Centralizer from '../../layout/centralizer/centralizer';
 import classes from './post2.module.css';
+import classnames from 'classnames';
 
 export default function Post2(props) {
 
@@ -23,7 +24,7 @@ export default function Post2(props) {
 
   return (
     <Centralizer>
-      <div className={classes.wrapper} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+      <div className={classnames("indexItemGlobal",classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
         <Centralizer>
           <div className={classes.colorBox}>
             <div className={classes.textHolder}>

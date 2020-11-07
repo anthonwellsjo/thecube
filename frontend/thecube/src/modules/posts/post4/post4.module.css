@@ -1,34 +1,27 @@
 .wrapper{
-  height: 300px; 
-  width: 100%; 
+  width: 60%; 
   overflow: hidden; 
   position: relative;
-  cursor: pointer;
+  margin: -10px 0 60px 0;
+  cursor: default;
 }
 .text {
-  margin-top: 70px;
+  margin-top: 60px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 28px;
+  font-size: 40px;
   letter-spacing: 0.5px;
-}
-.text2 {
-  font-family: 'Helvetica Neue Bold';
-  font-weight: 900;
-  font-size: 28px;
-  margin-top: -40px;
-  margin-right: -40px;
-  letter-spacing: 0.5px;
-  text-align: right;
+  text-align: center;
 }
 .bigtext {
   margin-top: -40px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 102px;
+  font-size: 60px;
   margin-left: -5px;
   letter-spacing: 6px;
-  
+  text-align: center;
+  color: rgb(255, 102, 0);
 }
 
 .textHolder {

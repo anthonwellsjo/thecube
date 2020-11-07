@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 const Centralizer = props => {
     let classSpec = classes.centralizer;
+    let styleSpec = {position: ""};
     if (props.column) {
         classSpec = classnames(classes.centralizer, classes.column)
     }
@@ -13,8 +14,13 @@ const Centralizer = props => {
     if(props.space){
         classSpec = classnames(classes.centralizer, classes.space)
     }
+   
+    if(props.position !== undefined){
+      console.log("position",props.position);
+      styleSpec = {...styleSpec, position: `${props.position}`};
+    }
     return (
-        <div className={classSpec}>
+        <div className={classSpec} style={styleSpec}>
             {props.children}
         </div>
     )

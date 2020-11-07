@@ -1,0 +1,32 @@
+
+.whitebox{
+  height: 30%;
+  width: 100%;
+}
+
+.greybox{
+  background-color: rgb(71, 71, 71);
+  height: 60%;
+  width: 100%;
+  color:white;
+}
+
+.blackText{
+  margin-top: 4px;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.logo{
+  margin-top: 50px;
+}
+
+.whiteTextHeader{
+  margin-left: 100px;
+  margin-right: 100px;
+  font-family: 'Helvetica Neue';
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: .8px;
+}
