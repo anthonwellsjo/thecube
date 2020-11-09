@@ -44,7 +44,7 @@ a.address{
   color: darkgray;
   margin-bottom: -10px;
 }
-a.address:hover{
+a.address:hover, a.mail:hover{
   transition: all .3s;
   color: orangered;
 }

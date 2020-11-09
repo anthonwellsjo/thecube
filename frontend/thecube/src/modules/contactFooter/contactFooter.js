@@ -33,7 +33,7 @@ export default function ContactFooter() {
             <header>
               <Centralizer space>
                 <p className={classes.whiteTextHeader}><span style={{ fontFamily: 'Helvetica Neue Bold', letterSpacing: ".6px", fontSize: "13px" }}>TheCubE</span> - expand the concept of working space</p>
-                <p className={classes.whiteTextHeader}><span style={{ fontFamily: 'Helvetica Neue Bold', letterSpacing: ".6px", fontSize: "13px" }}>Want to rent the space?</span> Contact us at <a href="mailto:info@thecubearchive.com">info@thecubearchive.com</a></p>
+                <p className={classes.whiteTextHeader}><span style={{ fontFamily: 'Helvetica Neue Bold', letterSpacing: ".6px", fontSize: "13px" }}>Want to rent the space?</span> Contact us at <a className={classes.mail} href="mailto:info@thecubearchive.com">info@thecubearchive.com</a></p>
               </Centralizer>
             </header>
             <SocialBtns />

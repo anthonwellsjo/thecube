@@ -16,6 +16,7 @@
 body, html{
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .indexItemGlobal{
@@ -39,9 +40,4 @@ a:active {
     color: inherit;
     text-decoration: inherit;
     font-weight: inherit;
-}
-
-a:hover{
-  transition: all .3s;
-  color: orangered;
 }
