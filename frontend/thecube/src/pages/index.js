@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
+import { Link } from 'gatsby';
 import Header from "../modules/header/header"
 import '../global.css';
-import InnerTextHolder from "../modules/layout/innerTextHolder/innerTextHolder";
 import Centralizer from "../modules/layout/centralizer/centralizer";
 import logo from '../images/logo-xsmall.png';
 import MainNav from "../modules/mainNav/mainNav";
@@ -18,21 +18,25 @@ import ContactFooter from "../modules/contactFooter/contactFooter";
 export default function Home() {
   return (
     <>
-    <LogInMenuMain/>
+      <LogInMenuMain />
       <Header>
         <Centralizer space>
-          <MainNav link1="Contact" link2="Physical Space" />
-          <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
-          <MainNav link1="Digital Space" link2="The People" />
+          <MainNav name1="Contact" link1="" name2="Physical Space" link2="/physical" />
+          <Link to="/">
+            <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
+          </Link>
+          <MainNav name1="Digital Space" link1="" name2="The People" link2="" />
         </Centralizer>
       </Header>
-      <Badge1/>
-      <Badge2/>
-      <Badge3/>
-      <BlogCarousel/>
-      <Badge4/>
-      <PhotoCarousel/>
-      <ContactFooter/>
+      <Badge1 />
+      <Link to="/physical">
+        <Badge2 />
+      </Link>
+      <Badge3 />
+      <BlogCarousel />
+      <Badge4 />
+      <PhotoCarousel />
+      <ContactFooter />
     </>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'gatsby';
 import { useSpring, animated } from 'react-spring';
 import LineAnimation from '../../../animations/lineAnimation';
 import Centralizer from '../../../layout/centralizer/centralizer';
@@ -24,22 +25,21 @@ export default function HBadge2(props) {
 
   return (
     <Centralizer>
-      <div className={classnames("indexItemGlobal",classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+      <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
         <Centralizer>
-          <div className={classes.colorBox}>
-            <div className={classes.textHolder}>
-              <p className={classes.text}>Have a look and let's get</p>
-              <h1 className={classes.bigtext}>Physical</h1>
-              <p className={classes.text2}>take me there</p>
+            <div className={classes.colorBox}>
+              <div className={classes.textHolder}>
+                <p className={classes.text}>Have a look and let's get</p>
+                <h1 className={classes.bigtext}>Physical</h1>
+                <p className={classes.text2}>take me there</p>
+              </div>
+              <div style={{ position: "absolute", bottom: "80px", right: "-110px" }}>
+                <LineAnimation fat={9} end={360} start={160} hover={hover} />
+              </div>
             </div>
-            <div style={{ position: "absolute", bottom: "80px", right: "-110px" }}>
-              <LineAnimation fat={9} end={360} start={160} hover={hover} />
-            </div>
-          </div>
-          <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0" }} />
+            <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0" }} />
         </Centralizer>
       </div >
-
     </Centralizer>
   )
 };
