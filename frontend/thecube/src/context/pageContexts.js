@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-const PageContext = createContext();
+const PageContext = createContext([])
 
 const PageProvider = props => {
   const [page, setPage] = useState({
