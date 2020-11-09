@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import LineAnimation from '../../animations/lineAnimation';
-import Centralizer from '../../layout/centralizer/centralizer';
-import classes from './post2.module.css';
+import LineAnimation from '../../../animations/lineAnimation';
+import Centralizer from '../../../layout/centralizer/centralizer';
+import classes from './hBadge2.module.css';
 import classnames from 'classnames';
 
-export default function Post2(props) {
+export default function HBadge2(props) {
 
   const [hover, setHover] = useState(false);
 

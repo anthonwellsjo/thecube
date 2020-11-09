@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Centralizer from '../../layout/centralizer/centralizer';
-import classes from './post4.module.css';
+import Centralizer from '../../../layout/centralizer/centralizer';
+import classes from './hBadge4.module.css';
 import classnames from 'classnames';
 
-export default function Post4(props) {
+export default function HBadge4(props) {
 
 
   return (

@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Helvetica Neue";
-  src: url("../static/fonts/helveticaneue/HelveticaNeueRegular.woff")   format("woff");
+  src: url("../static/fonts/helveticaneue/HelveticaNeueThin.woff")   format("woff");
 } 
 @font-face {
   font-family: "Helvetica Neue Bold";
-  src: url("../static/fonts/helveticaneue/HelveticaNeueBold.woff")   format("woff");
+  src: url("../static/fonts/helveticaneue/HelveticaNeueHeavy.woff")   format("woff");
 } 
 
 
@@ -30,4 +30,18 @@ body, html{
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: inherit;
+}
+
+a:hover{
+  transition: all .3s;
+  color: orangered;
 }

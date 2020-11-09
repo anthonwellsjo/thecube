@@ -10,34 +10,42 @@ export default function SocialBtns() {
   return (
     <div className={classes.container}>
       <Centralizer space>
-        <Centralizer column>
-          <img style={{height: "30px"}} src={ms} alt="social1" />
-          <div className={classes.textbox}>
-            <h4 className={classes.h4}>Contact us</h4>
-            <p className={classes.p}>info@thecubearchive.com</p>
-          </div>
-        </Centralizer>
-        <Centralizer column>
-          <img style={{height: "30px"}} src={inst} alt="social2" />
-          <div className={classes.textbox}>
-            <h4 className={classes.h4}>Follow us</h4>
-            <p className={classes.p}>@thecubearchive</p>
-          </div>
-        </Centralizer>
-        <Centralizer column>
-          <img style={{height: "30px"}} src={fb} alt="social3" />
-          <div className={classes.textbox}>
-            <h4 className={classes.h4}>Be a friend</h4>
-            <p className={classes.p}>TheCubeArchive</p>
-          </div>
-        </Centralizer>
-        <Centralizer column>
-          <img style={{height: "30px"}} src={twi} alt="social1" />
-          <div className={classes.textbox}>
-            <h4 className={classes.h4}>Subscribe</h4>
-            <p className={classes.p}>TheCubeArchive</p>
-          </div>
-        </Centralizer>
+        <div className={classes.btnBox}>
+          <Centralizer column>
+            <img className={classes.btn} src={ms} alt="social1" />
+            <div className={classes.textbox}>
+              <h4 className={classes.h4}>Contact us</h4>
+              <p className={classes.p}>info@thecubearchive.com</p>
+            </div>
+          </Centralizer>
+        </div>
+        <div className={classes.btnBox}>
+          <Centralizer column>
+            <img className={classes.btn} src={inst} alt="social2" />
+            <div className={classes.textbox}>
+              <h4 className={classes.h4}>Follow us</h4>
+              <p className={classes.p}>@thecubearchive</p>
+            </div>
+          </Centralizer>
+        </div>
+        <div className={classes.btnBox}>
+          <Centralizer column>
+            <img className={classes.btn} src={fb} alt="social3" />
+            <div className={classes.textbox}>
+              <h4 className={classes.h4}>Be a friend</h4>
+              <p className={classes.p}>TheCubeArchive</p>
+            </div>
+          </Centralizer>
+        </div>
+        <div className={classes.btnBox}>
+          <Centralizer column>
+            <img className={classes.btn} src={twi} alt="social1" />
+            <div className={classes.textbox}>
+              <h4 className={classes.h4}>Subscribe</h4>
+              <p className={classes.p}>TheCubeArchive</p>
+            </div>
+          </Centralizer>
+        </div>
       </Centralizer>
     </div>
   )
