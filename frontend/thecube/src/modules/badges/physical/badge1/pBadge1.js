@@ -36,7 +36,7 @@ export default function PBadge1(props) {
               <LineAnimation fat={13} end={360} start={650} hover={hover} />
             </div>
           </div>
-          <img src='https://picsum.photos/1000/600' style={{ position: "absolute", left: "0" }} />
+          <img src='https://picsum.photos/1000/600?grayscale' style={{ position: "absolute", left: "0" }} />
         </Centralizer>
       </div >
     </Centralizer>

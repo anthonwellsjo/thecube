@@ -10,7 +10,9 @@ import LogInMenuMain from "../../modules/logInMenuMain/logInMenuMain";
 import ContactFooter from "../../modules/contactFooter/contactFooter";
 import CurrentPageHeader from "../../modules/currentPageHeader/currentPageHeader";
 import FadeIn from '../../modules/animations/fadeIn/fadeIn';
-import SearchBar from "../../modules/badges/digital/searchBar/searchBar";
+import BadgeHeader from "../../modules/badges/digital/badgeHeader/badgeHeader";
+import CategoryCarousel from "../../modules/badges/digital/categoryCarousel/categoryCarousel";
+import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
 
 
 
@@ -37,7 +39,19 @@ export default function PSpace() {
           <CurrentPageHeader header="Digital Space" />
         </FadeIn>
       </Header>
-      <SearchBar/>
+      <FadeIn>
+        <SearchBar />
+      </FadeIn>
+      <FadeIn>
+        <BadgeHeader>Search for Vestiaire</BadgeHeader>
+      </FadeIn>
+      <FadeIn>
+        <CategoryCarousel bgc="rgb(255, 240, 224)" />
+      </FadeIn>
+      <BadgeHeader>Search for Accessories</BadgeHeader>
+      <CategoryCarousel bgc="black" />
+      <BadgeHeader>Search for Themes</BadgeHeader>
+      <CategoryCarousel bgc="rgb(29, 172, 129)" />
       <ContactFooter />
     </>
   )
