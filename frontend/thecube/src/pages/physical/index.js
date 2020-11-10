@@ -50,7 +50,7 @@ export default function PSpace() {
         <HBadge4 />
       </div>
       <PPhotoCarousel />
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ marginTop: "150px" }}>
         <HBadge3 />
       </div>
       <ContactFooter />
