@@ -33,7 +33,7 @@ export default function PBadge1(props) {
               <h1 className={classes.bigtext}>Menswear<br></br>Vintage collection<br></br>Historical garments<br></br>Accessories<br></br>Fabric selection<br></br>Research</h1>
             </div>
             <div style={{ position: "absolute", bottom: "50px", right: "200px" }}>
-              <LineAnimation fat={13} end={360} start={160} hover={hover} />
+              <LineAnimation fat={13} end={360} start={650} hover={hover} />
             </div>
           </div>
           <img src='https://picsum.photos/1000/600' style={{ position: "absolute", left: "0" }} />

@@ -7,7 +7,7 @@ import SocialBtns from '../socialBtns/socialBtns';
 export default function ContactFooter() {
   return (
     <Centralizer>
-      <div className="indexItemGlobal" style={{ height: "450px", width: "100%", overflow: "hidden", position: "relative", marginBottom: "0" }}>
+      <div className="indexItemGlobal" style={{ height: "380px", width: "100%", overflow: "hidden", position: "relative", marginBottom: "0", }}>
         <Centralizer column>
           <div className={classes.whitebox}>
             <Centralizer space>

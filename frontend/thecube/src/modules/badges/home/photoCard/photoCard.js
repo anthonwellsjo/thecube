@@ -1,5 +1,5 @@
 import React from 'react';
-import Centralizer from '../layout/centralizer/centralizer';
+import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './photoCard.module.css';
 
 export default function PhotoCard(props) {

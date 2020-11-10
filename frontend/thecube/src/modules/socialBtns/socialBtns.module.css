@@ -1,25 +1,26 @@
-.textbox{
+.textbox {
   text-align: center;
   line-height: 0px;
-  letter-spacing: 1px; 
+  letter-spacing: 1px;
 }
-.h4{
+.h4 {
   font-family: 'Helvetica Neue Bold';
   font-size: 15px;
 }
-.p{
+.p {
   font-size: 12px;
   font-family: 'Helvetica Neue';
   letter-spacing: 1px;
 }
-.container{
- margin: 50px 80px 50px 80px;
+.container {
+  margin: 30px 80px;
 }
 
-.btn{
+.btn {
   height: 30px;
 }
 
-.btnBox{
+.btnBox {
+  width: 80%;
   cursor: pointer;
 }

@@ -1,6 +1,9 @@
 import React, { createContext, useState } from 'react';
 
-const PageContext = createContext([])
+let page = { currentColor: "black" };
+let setPage;
+
+const PageContext = createContext([page, setPage])
 
 const PageProvider = props => {
   const [page, setPage] = useState({

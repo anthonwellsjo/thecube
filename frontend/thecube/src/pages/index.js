@@ -12,8 +12,8 @@ import Badge1 from "../modules/badges/home/badge1/hBadge1";
 import Badge2 from "../modules/badges/home/badge2/hBadge2";
 import Badge3 from "../modules/badges/home/badge3/hBadge3";
 import Badge4 from "../modules/badges/home/badge4/hBadge4";
-import BlogCarousel from "../modules/blogCarousel/blogCarousel";
-import PhotoCarousel from "../modules/photoCarousel/photoCarousel";
+import BlogCarousel from "../modules/badges/home/blogCarousel/blogCarousel";
+import PhotoCarousel from "../modules/badges/home/photoCarousel/photoCarousel";
 import ContactFooter from "../modules/contactFooter/contactFooter";
 import SlideIn from "../modules/animations/slideIn/slideIn";
 
@@ -24,7 +24,10 @@ export default function Home() {
 
 
   useEffect(() => {
-    setPage(prev => ({ ...prev, currentColor: "black" }));
+    setTimeout(() => {
+      setPage(prev => ({ ...prev, currentColor: "black" }));
+    }, 500)
+
   }, []);
 
   return (
@@ -42,11 +45,9 @@ export default function Home() {
       <SlideIn direction="right">
         <Badge1 />
       </SlideIn>
-      <Link to="/physical">
-        <SlideIn direction="left">
-          <Badge2 />
-        </SlideIn>
-      </Link>
+      <SlideIn direction="left">
+        <Badge2 />
+      </SlideIn>
       <Badge3 />
       <BlogCarousel />
       <Badge4 />

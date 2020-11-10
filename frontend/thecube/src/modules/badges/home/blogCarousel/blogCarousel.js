@@ -1,8 +1,8 @@
 import React from 'react';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import classes from './blogCarousel.module.css';
-import Centralizer from '../layout/centralizer/centralizer';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import Centralizer from '../../../layout/centralizer/centralizer';
+import '../../../../../node_modules/pure-react-carousel/dist/react-carousel.es.css';
 import BlogCard from '../blogCard/blogCard';
 
 export default function BlogCarousel() {

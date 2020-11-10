@@ -24,9 +24,10 @@ export default function HBadge2(props) {
   }
 
   return (
-    <Centralizer>
-      <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
-        <Centralizer>
+    <Link to="/physical">
+      <Centralizer>
+        <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+          <Centralizer>
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
                 <p className={classes.text}>Have a look and let's get</p>
@@ -38,8 +39,9 @@ export default function HBadge2(props) {
               </div>
             </div>
             <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0" }} />
-        </Centralizer>
-      </div >
-    </Centralizer>
+          </Centralizer>
+        </div >
+      </Centralizer>
+    </Link>
   )
 };

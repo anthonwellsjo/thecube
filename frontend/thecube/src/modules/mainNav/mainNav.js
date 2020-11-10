@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PageContext } from '../../context/pageContexts';
 import { Link } from 'gatsby';
 import Centralizer from '../layout/centralizer/centralizer';
@@ -8,6 +8,7 @@ import { useSpring, animated } from 'react-spring';
 export default function MainNav(props) {
   const [page, setPage] = useContext(PageContext);
   let anim = useSpring({ backgroundColor: props.lineColor, from: { backgroundColor: page.currentColor } });
+
 
   return (
     <Centralizer column>
