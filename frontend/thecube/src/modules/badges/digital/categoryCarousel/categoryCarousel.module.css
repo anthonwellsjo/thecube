@@ -1,4 +1,36 @@
-.carouselContainer {  
-  width: 100%;
+.carouselContainer {
+  position: relative;
+  width: 80%;
   margin-top: 50px;
+}
+
+.backBtn {
+  position: absolute;
+  left:-80px;
+  top: 50%;
+  
+}
+
+.nextBtn {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+}
+
+.button {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+  border: none;
+}
+
+.img1 {
+  position: absolute;
+  margin-top: -20px;
+  transform: rotate(180deg);
+}
+.img2 {
+  position: absolute;
+  margin-top: -20px;
 }

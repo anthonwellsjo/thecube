@@ -5,19 +5,6 @@
  */
 
 module.exports = {
-  siteMetadata: {
-    title: 'The Cube',
-    menuLinks: [
-      {
-        name: 'home',
-        link: '/'
-      },
-      {
-        name: 'page2',
-        link: '/page-2'
-      }
-    ],
-    plugins: [],
-    pathPrefix: "/cube",
-  }
+  plugins: [],
+  pathPrefix: "/cube",
 }

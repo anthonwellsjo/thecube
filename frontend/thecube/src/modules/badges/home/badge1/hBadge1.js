@@ -29,10 +29,10 @@ export default function HBadge1(props) {
             <p className={classes.text}>Fashion Archive with a digital platform of inspirational ideas for creatives</p>
           </div>
           <div style={{ position: "absolute", top: "330px" }}>
-            <LineAnimation fat={14} end={300} start={160} hover={hover} />
+            <LineAnimation fat={14} end={300} start={300} hover={hover} />
           </div>
         </div>
-        <img src='https://picsum.photos/1200/400?grayscale' style={{ position: "absolute", right: "0", transform: hover ? "scale(1.05)" : "scale(1)", transition: "transform 3s" }} />
+        <img src='https://picsum.photos/1200/400?grayscale' style={{ position: "absolute", right: "0"}} />
       </div >
     </Centralizer>
   )
