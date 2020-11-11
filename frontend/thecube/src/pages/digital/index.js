@@ -13,6 +13,7 @@ import FadeIn from '../../modules/animations/fadeIn/fadeIn';
 import BadgeHeader from "../../modules/badges/digital/badgeHeader/badgeHeader";
 import CategoryCarousel from "../../modules/badges/digital/categoryCarousel/categoryCarousel";
 import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
+import RandomBadge from "../../modules/badges/digital/randomBadge/randomBadge";
 
 
 
@@ -52,6 +53,7 @@ export default function PSpace() {
       <CategoryCarousel bgc="black" />
       <BadgeHeader>Search for Themes</BadgeHeader>
       <CategoryCarousel bgc="rgb(29, 172, 129)" />
+      <RandomBadge />
       <ContactFooter />
     </>
   )

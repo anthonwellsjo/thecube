@@ -38,7 +38,7 @@ export default function HBadge2(props) {
                 <LineAnimation fat={9} end={360} start={160} hover={hover} />
               </div>
             </div>
-            <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0" }} />
+            <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0", transform: hover ? "scale(1.05)" : "scale(1)", transition: "transform 3s" }} />
           </Centralizer>
         </div >
       </Centralizer>

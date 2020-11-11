@@ -8,24 +8,9 @@ import classnames from 'classnames';
 
 export default function PBadge1(props) {
 
-  const [hover, setHover] = useState(false);
-
-  const onMouseOver = () => {
-    if (!hover) {
-      setHover(true);
-      console.log("set true", hover);
-    }
-  }
-  const onMouseLeave = () => {
-    if (hover) {
-      setHover(false);
-      console.log("set false", hover);
-    }
-  }
-
   return (
     <Centralizer>
-      <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+      <div className={classnames("indexItemGlobal", classes.wrapper)}>
         <Centralizer>
           <div className={classes.colorBox}>
             <div className={classes.textHolder}>
@@ -33,7 +18,7 @@ export default function PBadge1(props) {
               <h1 className={classes.bigtext}>Menswear<br></br>Vintage collection<br></br>Historical garments<br></br>Accessories<br></br>Fabric selection<br></br>Research</h1>
             </div>
             <div style={{ position: "absolute", bottom: "50px", right: "200px" }}>
-              <LineAnimation fat={13} end={360} start={650} hover={hover} />
+              <LineAnimation fat={13} end={360} start={360} hover={true} />
             </div>
           </div>
           <img src='https://picsum.photos/1000/600?grayscale' style={{ position: "absolute", left: "0" }} />

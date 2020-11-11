@@ -1,0 +1,45 @@
+.text {
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 42px;
+
+  line-height: 45px;
+}
+
+.textHolder {
+  position: absolute;
+  margin-left: -100px;
+  margin-top: -40px;
+  height: 100%;
+}
+
+.colorBox {
+  width: 30vw;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  margin-top: -35px;
+  margin-left: 45px;
+  background: none;
+  text-align: center;
+  font-size: 38px;
+  border: 2px solid black;
+  font-family: 'Helvetica Neue Bold';
+  cursor: pointer;
+  outline: none;
+  padding: 0px 10px;
+  transition: all 0.3s;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+  transition: all 0.3s;
+}
