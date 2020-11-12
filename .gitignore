@@ -1,9 +1,10 @@
-*/frontend*/
+*/node_modules
 
-/fronted/node_modules
+*/studio*/
+
+
 
 
 */backend*/
 
-backend/node_modules
 backend/.env
