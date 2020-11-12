@@ -1,0 +1,26 @@
+.textbox {
+  text-align: center;
+  line-height: 0px;
+  letter-spacing: 1px;
+}
+.h4 {
+  font-family: 'Helvetica Neue Bold';
+  font-size: 15px;
+}
+.p {
+  font-size: 12px;
+  font-family: 'Helvetica Neue';
+  letter-spacing: 1px;
+}
+.container {
+  margin: 30px 80px;
+}
+
+.btn {
+  height: 30px;
+}
+
+.btnBox {
+  width: 80%;
+  cursor: pointer;
+}

@@ -1,0 +1,13 @@
+.card{
+  height: 500px;
+  width: 400px;
+  background-color: lightpink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+
+.blogImg{
+  background-color: grey;
+} 

@@ -1,0 +1,50 @@
+.wrapper{
+  height: 300px; 
+  width: 100%; 
+  overflow: hidden; 
+  position: relative;
+  cursor: pointer;
+}
+.text {
+  margin-top: 70px;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+.text2 {
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 28px;
+  margin-top: -40px;
+  margin-right: -40px;
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+.bigtext {
+  margin-top: -40px;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 102px;
+  margin-left: -5px;
+  letter-spacing: 6px;
+  
+}
+
+.textHolder {
+  position: absolute;
+  width: 80%;
+  left: 40px;
+  height: 350px;
+}
+
+.colorBox {
+  width: 40%;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  background-color: pink;
+  display: flex;
+  align-items: center;
+}

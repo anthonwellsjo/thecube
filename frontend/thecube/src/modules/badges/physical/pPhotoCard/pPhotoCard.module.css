@@ -1,0 +1,20 @@
+
+
+.img{
+  background-color: grey;
+  cursor: grab;
+} 
+
+.text{
+  color: white;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 18px;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.holder{
+  
+}

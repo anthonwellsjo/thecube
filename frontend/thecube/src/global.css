@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("../static/fonts/helveticaneue/HelveticaNeueThin.woff")   format("woff");
+} 
+@font-face {
+  font-family: "Helvetica Neue Bold";
+  src: url("../static/fonts/helveticaneue/HelveticaNeueHeavy.woff")   format("woff");
+} 
+
+
+*{
+  font-family: "Helvetica Neue";
+  font-weight: 900;
+}
+
+body, html{
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.indexItemGlobal{
+  margin-bottom: 80px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: inherit;
+}

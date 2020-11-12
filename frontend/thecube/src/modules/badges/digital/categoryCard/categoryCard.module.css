@@ -1,0 +1,19 @@
+
+
+.wrap{
+  height: 360px;
+  width: 290px;
+  cursor: grab;
+} 
+
+.img{
+  margin-top: 30px;
+}
+
+.bigtext {
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 18px;
+  margin-top: 25px;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,33 @@
+.holder{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  text-align: right;
+}
+
+.member{
+  border-radius: 0;
+  font-family: "Helvetica Neue Bold";
+  padding: 3px 8px 3px 8px;
+  margin: 5px;
+  background-color: black;
+  border: solid black 2px;
+  color: white;
+  font-size: 15px;
+  border: none;
+	cursor: pointer;
+	outline: none;
+}
+.logIn{
+  border-radius: 0;
+  font-family: "Helvetica Neue Bold";
+  padding: 1px 5px 1px 5px;
+  margin: 5px;
+  width: auto;
+  
+  font-size: 15px;
+  background-color: white;
+  border: solid black 2px;
+	cursor: pointer;
+	outline: none;
+}

@@ -1,0 +1,15 @@
+@media (min-width: 526px){
+.column {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  vertical-align: auto;
+  justify-content: center;
+}}
+
+@media (max-width: 525px) {
+  .column {
+      height: 50%;
+  }
+}

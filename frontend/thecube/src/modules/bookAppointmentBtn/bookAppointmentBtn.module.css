@@ -1,0 +1,18 @@
+.button{
+  background: none;
+  width: 200px;
+  text-align: left;
+  font-size: 25px;
+	border: 2px solid black;
+	font-family: 'Helvetica Neue Bold';
+	cursor: pointer;
+  outline: none;
+  padding: 10px 15px;
+  transition: all .3s;
+}
+
+.button:hover{
+  background-color: black;
+  color: white;
+  transition: all .3s;
+}

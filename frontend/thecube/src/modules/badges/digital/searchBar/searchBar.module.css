@@ -1,0 +1,24 @@
+.wrapper {
+  position: absolute;
+  top: 230px;
+  right: 100px;
+  height: 150px;
+  width: 230px;
+}
+
+.input,
+.input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+  font-family: 'Helvetica Neue Bold';
+  color: black;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.input::-webkit-input-placeholder {/* Chrome/Opera/Safari/Edge */
+	font-family: 'Helvetica Neue Bold';
+  color: black;
+}

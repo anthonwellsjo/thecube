@@ -1,0 +1,15 @@
+.distance {
+  width: 100%;
+  box-shadow: none;
+  height: 70px;
+  transition: height 0.3s;
+}
+
+@media (max-width: 525px) {
+  .distance {
+    height: 30px;
+    transition: height 0.3s;
+  }
+}
+
+

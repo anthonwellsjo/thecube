@@ -1,0 +1,43 @@
+.wrapper{
+  width: 60%; 
+  overflow: hidden; 
+  position: relative;
+  margin: -10px 0 60px 0;
+  cursor: default;
+}
+.text {
+  margin-top: 60px;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+.bigtext {
+  margin-top: -40px;
+  font-family: 'Helvetica Neue Bold';
+  font-weight: 900;
+  font-size: 60px;
+  margin-left: -5px;
+  letter-spacing: 6px;
+  text-align: center;
+  color: rgb(255, 102, 0);
+}
+
+.textHolder {
+  position: absolute;
+  width: 80%;
+  left: 40px;
+  height: 350px;
+}
+
+.colorBox {
+  width: 40%;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  background-color: pink;
+  display: flex;
+  align-items: center;
+}
