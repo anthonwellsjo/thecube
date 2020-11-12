@@ -45,61 +45,9 @@ export default createSchema({
           validation: Rule => Rule.max(5),
         },
         {
-          name: 'Maglia',
-          title: 'Maglia nome',
+          name: 'CodiceCapo',
+          title: 'Codice Capo',
           type: 'string',
-        },
-        {
-          name: 'Funzionalita',
-          title: 'Funzionalita',
-          description: 'Massimo 100 carattere',
-          type: 'string',
-          validation: Rule => Rule.max(100)
-        },
-        
-        {
-          name: 'Brand',
-          title: 'Brand',
-          type: 'reference',
-          to: [
-            { type: 'brand' }
-          ]
-        },
-        {
-          name: 'Colore',
-          title: 'Colore',
-          type: 'array',
-          of: [
-            {
-              type: 'reference',
-              to: [
-                { type: 'colore' }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'ColoreUnito',
-          title: 'Colore Unito?',
-          type: 'boolean'
-        },
-        {
-          name: 'Fantasia',
-          title: 'Fantasia',
-          type: 'array',
-          of: [
-            {
-              type: 'reference',
-              to: [
-                { type: 'fantasia' }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'Fantasiaallover',
-          title: 'Fantasia Allover?',
-          type: 'boolean'
         },
         {
           name: 'Sottocategoria',
@@ -121,14 +69,19 @@ export default createSchema({
           ]
         },
         {
-          name: 'Tessuti',
-          title: 'Tessuti',
-          type: 'array',
-          of: [
-            {
-              type: 'reference',
-              to: [{ type: 'tessuto' }]
-            }
+          name: 'Funzionalita',
+          title: 'Funzionalità',
+          description: 'Massimo 100 carattere',
+          type: 'string',
+          validation: Rule => Rule.max(100)
+        },
+
+        {
+          name: 'Brand',
+          title: 'Brand',
+          type: 'reference',
+          to: [
+            { type: 'brand' }
           ]
         },
         {
@@ -153,6 +106,56 @@ export default createSchema({
           type: 'reference',
           to: [{ type: 'fit' }]
         },
+        {
+          name: 'Tessuti',
+          title: 'Tessuti',
+          type: 'array',
+          of: [
+            {
+              type: 'reference',
+              to: [{ type: 'tessuto' }]
+            }
+          ]
+        },
+        {
+          name: 'ColoreUnito',
+          title: 'Colore Unito?',
+          type: 'boolean'
+        },
+        {
+          name: 'Colore',
+          title: 'Colore',
+          type: 'array',
+          of: [
+            {
+              type: 'reference',
+              to: [
+                { type: 'colore' }
+              ]
+            }
+          ]
+        },
+
+        {
+          name: 'Fantasia',
+          title: 'Fantasia',
+          type: 'array',
+          of: [
+            {
+              type: 'reference',
+              to: [
+                { type: 'fantasia' }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'Fantasiaallover',
+          title: 'Fantasia Allover?',
+          type: 'boolean'
+        },
+
+
         {
           title: 'Lunghezza',
           name: 'Lunghezza',
@@ -180,11 +183,6 @@ export default createSchema({
               { title: 'Pesante', value: 'pesante' },
             ]
           },
-        },
-        {
-          name: 'haTrapunta',
-          title: 'Ha trapunta?',
-          type: 'boolean'
         },
         {
           name: 'Trapunta',
@@ -408,8 +406,7 @@ export default createSchema({
         type: 'string'
       }
       ]
-    }
-    ,
+    },
     {
       name: 'fit',
       title: 'Fit',
