@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PageContext } from '../../context/pageContexts';
 import { Link } from 'gatsby';
 import Header from "../../modules/header/header"
@@ -14,14 +14,38 @@ import BadgeHeader from "../../modules/badges/digital/badgeHeader/badgeHeader";
 import CategoryCarousel from "../../modules/badges/digital/categoryCarousel/categoryCarousel";
 import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../modules/badges/digital/randomBadge/randomBadge";
+import axios from 'axios';
 
 
 
 
-export default function PSpace() {
+export default function DSpace() {
   const [page, setPage] = useContext(PageContext);
+  const [data, setData] = useState({ vestiaire: {}, accessories: {}, themes: {} })
+
+
+
   useEffect(() => {
     setPage(prev => ({ ...prev, currentColor: "pink" }));
+    axios({
+      url: 'https://xx8d6vi2.api.sanity.io/v1/graphql/production/default',
+      method: 'post',
+      token: process.env.SANITY_TOKEN,
+      data: {
+        query: `
+          query {
+            allIconiRicercaSitoVestiaire {
+              IconiRicercaGiubbotti {
+                asset{url}
+              }
+            }
+          }
+          `
+      }
+    }).then((result) => {
+      console.log("getting data");
+      console.log(result.data);
+    });
   }, [])
 
 
