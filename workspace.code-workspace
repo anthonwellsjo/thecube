@@ -1,0 +1,14 @@
+{
+	"folders": [
+    {
+      "path": "studio"
+    },
+    {
+      "path": "frontend\\thecube"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {}
+}

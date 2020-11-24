@@ -18,7 +18,7 @@ export const colore = {
     {
       name: 'colore',
       title: 'Colore',
-      type: 'string'
+      type: 'string',
     }
   ]
 };
