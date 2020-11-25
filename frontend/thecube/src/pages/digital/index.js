@@ -24,31 +24,6 @@ export default function DSpace() {
   const [data, setData] = useState({ vestiaire: {}, accessories: {}, themes: {} })
 
 
-
-  useEffect(() => {
-    setPage(prev => ({ ...prev, currentColor: "pink" }));
-    axios({
-      url: 'https://xx8d6vi2.api.sanity.io/v1/graphql/production/default',
-      method: 'post',
-      token: process.env.SANITY_TOKEN,
-      data: {
-        query: `
-          query {
-            allIconiRicercaSitoVestiaire {
-              IconiRicercaGiubbotti {
-                asset{url}
-              }
-            }
-          }
-          `
-      }
-    }).then((result) => {
-      console.log("getting data");
-      console.log(result.data);
-    });
-  }, [])
-
-
   return (
     <>
       <LogInMenuMain />
