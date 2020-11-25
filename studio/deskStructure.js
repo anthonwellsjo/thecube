@@ -74,10 +74,10 @@ export default () =>
         )
       ,
       S.listItem()
-        .title('Proprietà')
+        .title('Attributi')
         .child(
           S.list()
-            .title('Proprietà')
+            .title('Attributi')
             .items([
               S.listItem()
                 .title('Sottocategorie Capi')
@@ -128,10 +128,10 @@ export default () =>
                     ])
                 ),
               S.listItem()
-                .title('Altri proprietá')
+                .title('Proprietá')
                 .child(
                   S.list()
-                    .title('Altri Proprietá')
+                    .title('Proprietá')
                     .items([
                       S.listItem()
                         .title('Brands')
