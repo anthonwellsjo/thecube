@@ -32,27 +32,27 @@ export default function Home() {
 
   return (
     <>
-      <LogInMenuMain />
-      <Header>
-        <Centralizer space>
-          <MainNav lineColor="black" name1="Contact" link1="/contact" name2="Physical Space" link2="/physical" />
-          <Link to="/">
-            <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
-          </Link>
-          <MainNav lineColor="black" name1="Digital Space" link1="/digital" name2="The People" link2="/people" />
-        </Centralizer>
-      </Header>
-      <SlideIn direction="right">
-        <Badge1 />
-      </SlideIn>
-      <SlideIn direction="left">
-        <Badge2 />
-      </SlideIn>
-      <Badge3 />
-      <BlogCarousel />
-      <Badge4 />
-      <PhotoCarousel />
-      <ContactFooter />
+        <LogInMenuMain />
+        <Header>
+          <Centralizer space>
+            <MainNav lineColor="black" name1="Contact" link1="/contact" name2="Physical Space" link2="/physical" />
+            <Link to="/">
+              <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
+            </Link>
+            <MainNav lineColor="black" name1="Digital Space" link1="/digital" name2="The People" link2="/people" />
+          </Centralizer>
+        </Header>
+        <SlideIn direction="right">
+          <Badge1 />
+        </SlideIn>
+        <SlideIn direction="left">
+          <Badge2 />
+        </SlideIn>
+        <Badge3 />
+        <BlogCarousel />
+        <Badge4 />
+        <PhotoCarousel />
+        <ContactFooter />
     </>
   )
 }

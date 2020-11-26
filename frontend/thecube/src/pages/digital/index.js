@@ -1,4 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+
+import { client } from '../../apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { GET_ICONS_VESTIAIRE } from '../../apollo/queries';
+
 import { PageContext } from '../../context/pageContexts';
 import { Link } from 'gatsby';
 import Header from "../../modules/header/header"
@@ -16,12 +21,29 @@ import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../modules/badges/digital/randomBadge/randomBadge";
 import axios from 'axios';
 
-
+const query = gql`
+query MyQuery {
+  allSanityInterno {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+`
 
 
 export default function DSpace() {
   const [page, setPage] = useContext(PageContext);
-  const [data, setData] = useState({ vestiaire: {}, accessories: {}, themes: {} })
+  const [data, setData] = useState({ vestiaire: {}, accessories: {}, themes: {} });
+  const { loading, error, graphQlData } = useQuery(GET_ICONS_VESTIAIRE);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  setTimeout(() => {
+    console.log(graphQlData);
+  }, 1000);
+
 
 
   return (
