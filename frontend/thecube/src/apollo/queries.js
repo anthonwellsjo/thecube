@@ -1,13 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const GET_ICONS_VESTIAIRE = gql`
+export const GET_CAROUSEL_ICONS = gql`
 query SiteQuery {
   sanityIconiRicercaSitoVestiaire {
-    IconiRicercaCappotti {
-      asset {
-        url
-      }
-    }
     IconiRicercaGiacche {
       asset {
         url
@@ -33,6 +28,39 @@ query SiteQuery {
         url
       }
     }
+    IconiRicercaCappotti {
+      asset {
+        url
+      }
+    }
+  }
+  sanityIconiRicercaSitoAccessories {
+    IconiRicercaBorse {
+      asset {
+        url
+      }
+    }
+    IconiRicercaCravatte {
+      asset {
+        url
+      }
+    }
+    IconiRicercaFoulardeSciarpe {
+      asset {
+        url
+      }
+    }
+    IconiRicercaPapillon {
+      asset {
+        url
+      }
+    }
+    IconiRicercaScarpe {
+      asset {
+        url
+      }
+    }
   }
 }
+
 `;

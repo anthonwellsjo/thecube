@@ -16,6 +16,7 @@ module.exports = {
         dataset: process.env.SANITY_DATASET,
         token: process.env.SANITY_TOKEN,
         // a token with read permissions is required
+
         // if you have a private dataset
 
         // If the Sanity GraphQL API was deployed using `--tag <name>`,
