@@ -25,6 +25,7 @@ export default function DSpace() {
   const [carouselImgs, setCarouselImgs] = useState({ vestiaire: {}, accessories: {}, themes: {} });
   const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
   const { loading, error, data } = useQuery(GET_CAROUSEL_ICONS);
+  
 
 
   useEffect(() => {
@@ -86,7 +87,7 @@ export default function DSpace() {
         <BadgeHeader>Search for Vestiaire</BadgeHeader>
       </FadeIn>
       <FadeIn>
-        <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(255, 240, 224)" />
+        <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(211, 82, 105)" />
       </FadeIn>
       <BadgeHeader>Search for Accessories</BadgeHeader>
       <CategoryCarousel data={carouselImgs.accessories} bgc="black" />
