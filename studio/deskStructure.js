@@ -41,6 +41,19 @@ export default () =>
                     ])
                 )
               ,
+              S.listItem()
+                .title('Landing Page')
+                .child(
+                  S.list()
+                    .title('Landing Page')
+                    .items([
+                      S.listItem()
+                        .title('Blog Posts')
+                        .schemaType('BlogPost')
+                        .child(S.documentTypeList('BlogPost').title('Blog Posts')),
+                    ])
+                )
+              ,
             ])
         ),
       S.listItem()
