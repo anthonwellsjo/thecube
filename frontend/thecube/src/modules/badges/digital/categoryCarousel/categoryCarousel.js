@@ -17,16 +17,13 @@ export default function CategoryCarousel(props) {
             visibleSlides={3}
             naturalSlideWidth={120}
             naturalSlideHeight={200}
-            totalSlides={6}
+            totalSlides={Object.keys(props.data).length}
             isPlaying={true}
           >
             <Slider>
-              <Slide index={0}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 1</PhotoCard></Centralizer></Slide>
-              <Slide index={1}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 2</PhotoCard></Centralizer></Slide>
-              <Slide index={2}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 3</PhotoCard></Centralizer></Slide>
-              <Slide index={3}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 4</PhotoCard></Centralizer></Slide>
-              <Slide index={4}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 5</PhotoCard></Centralizer></Slide>
-              <Slide index={5}><Centralizer><PhotoCard bgc={props.bgc}>asdasdasd 6</PhotoCard></Centralizer></Slide>
+              {Object.keys(props.data).map((k, index) => {
+                return (<Slide index={index}><Centralizer><PhotoCard src={props.data[k]} bgc={props.bgc}>{k}</PhotoCard></Centralizer></Slide>)
+              })}
             </Slider>
             <ButtonBack className={classnames(classes.backBtn, classes.button)}><img className={classes.img1} src={pageArrow} alt="arrow" /></ButtonBack>
             <ButtonNext className={classnames(classes.nextBtn, classes.button)}><img className={classes.img2} src={pageArrow} alt="arrow" /></ButtonNext>

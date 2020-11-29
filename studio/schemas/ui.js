@@ -4,16 +4,10 @@ export const categoryIconVestiaire = {
   type: 'document',
   fields: [
     {
-      name: 'IconiRicercaSitoVestiaire',
-      title: 'Iconi Ricerca Sito Vestiaire',
-      description: 'Aggiungere un numero. Il numero più alto tramite i batch creati viene selezionato dal sito.',
-      type: 'number',
-      validation: Rule => Rule.integer()
-    },
-    {
       name: 'IconiRicercaPiumini',
       title: 'Icona Piumini',
       description: 'Icona per Piumini.',
+      crop: 'true',
       type: 'image'
     },
     {
@@ -55,13 +49,6 @@ export const categoryIconAccessories = {
   title: 'Iconi Ricerca Sito Accessori',
   type: 'document',
   fields: [
-    {
-      name: 'IconiRicercaSitoAccesories',
-      title: 'Iconi Ricerca Sito Accessori',
-      description: 'Aggiungere un numero. Il numero più alto tramite i batch creati viene selezionato dal sito.',
-      type: 'number',
-      validation: Rule => Rule.integer()
-    },
     {
       name: 'IconiRicercaScarpe',
       title: 'Icona Scarpe',
@@ -106,13 +93,6 @@ export const categoryIconTemi = {
   title: 'Iconi Ricerca Sito Temi',
   type: 'document',
   fields: [
-    {
-      name: 'NumeroIconiRicercaSitoTemi',
-      title: 'Numero Iconi Ricerca Sito Temi',
-      description: 'Aggiungere un numero. Il numero più alto tramite i batch creati viene selezionato dal sito.',
-      type: 'number',
-      validation: Rule => Rule.integer()
-    },
     {
       name: 'IconiRicercaMilitare',
       title: 'Icona Militare',

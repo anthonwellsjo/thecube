@@ -16,28 +16,40 @@ import BlogCarousel from "../modules/badges/home/blogCarousel/blogCarousel";
 import PhotoCarousel from "../modules/badges/home/photoCarousel/photoCarousel";
 import ContactFooter from "../modules/contactFooter/contactFooter";
 import SlideIn from "../modules/animations/slideIn/slideIn";
+import BackDropIntro from '../modules/backDropIntro/backDropIntro';
+import { useSpring, animated } from "react-spring";
 
 
 export default function Home() {
   const [page, setPage] = useContext(PageContext);
-
-
+  const [siteReady, setSiteReady] = useState(false);
+  const animProps = useSpring({
+    height: siteReady ? '100px' : '150px', marginTop: siteReady ? '0' : '500px', zIndex: '1000', opacity: "1", position: 'relative',
+    from: { opacity: "0" },
+    config: {
+      tension: 300,
+      friction: 50,
+      mass: 0.5
+    }
+  })
 
   useEffect(() => {
     setTimeout(() => {
       setPage(prev => ({ ...prev, currentColor: "black" }));
-    }, 500)
+      setSiteReady(true);
+    }, 2000)
 
   }, []);
 
   return (
     <>
+      <BackDropIntro in={siteReady} />
       <LogInMenuMain />
       <Header>
         <Centralizer space>
           <MainNav lineColor="black" name1="Contact" link1="/contact" name2="Physical Space" link2="/physical" />
           <Link to="/">
-            <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
+            <animated.img style={animProps} src={logo} alt="the cube logo" />
           </Link>
           <MainNav lineColor="black" name1="Digital Space" link1="/digital" name2="The People" link2="/people" />
         </Centralizer>

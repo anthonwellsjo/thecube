@@ -15,13 +15,14 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.9",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.24.91",
+    "gatsby": "^2.27.3",
     "gatsby-source-sanity": "^6.0.4",
     "pure-react-carousel": "^1.27.6",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-spring": "^8.0.27"
   },
   "devDependencies": {

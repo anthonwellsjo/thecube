@@ -1,4 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+
+import { client } from '../../apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { GET_CAROUSEL_ICONS } from '../../apollo/queries';
+
 import { PageContext } from '../../context/pageContexts';
 import { Link } from 'gatsby';
 import Header from "../../modules/header/header"
@@ -14,14 +19,50 @@ import BadgeHeader from "../../modules/badges/digital/badgeHeader/badgeHeader";
 import CategoryCarousel from "../../modules/badges/digital/categoryCarousel/categoryCarousel";
 import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../modules/badges/digital/randomBadge/randomBadge";
-import axios from 'axios';
-
-
 
 
 export default function DSpace() {
-  const [page, setPage] = useContext(PageContext);
-  const [data, setData] = useState({ vestiaire: {}, accessories: {}, themes: {} })
+  const [carouselImgs, setCarouselImgs] = useState({ vestiaire: {}, accessories: {}, themes: {} });
+  const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
+  const { loading, error, data } = useQuery(GET_CAROUSEL_ICONS);
+  
+
+
+  useEffect(() => {
+    console.log("useeffect", apolloStatus.apolloJustFetched);
+    if (apolloStatus.apolloJustFetched) {
+      setCarouselImgs(prev => ({
+        ...prev,
+        vestiaire: {
+          ...prev.vestiaire,
+          Cappotti: data.sanityIconiRicercaSitoVestiaire.IconiRicercaCappotti.asset.url,
+          Giacche: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGiacche.asset.url,
+          Gilet: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGilet.asset.url,
+          Giubbotti: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGiubbotti.asset.url,
+          Maglieria: data.sanityIconiRicercaSitoVestiaire.IconiRicercaMaglieria.asset.url,
+          Piumini: data.sanityIconiRicercaSitoVestiaire.IconiRicercaPiumini.asset.url
+        },
+        accessories: {
+          ...prev.accessories,
+          Borse: data.sanityIconiRicercaSitoAccessories.IconiRicercaBorse.asset.url,
+          Cravatte: data.sanityIconiRicercaSitoAccessories.IconiRicercaCravatte.asset.url,
+          Foulard: data.sanityIconiRicercaSitoAccessories.IconiRicercaFoulardeSciarpe.asset.url,
+          Papillon: data.sanityIconiRicercaSitoAccessories.IconiRicercaPapillon.asset.url,
+          Scarpe: data.sanityIconiRicercaSitoAccessories.IconiRicercaScarpe.asset.url,
+        }
+      }
+      ))
+    }
+  }, [apolloStatus.apolloJustFetched])
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :( {error.message}</p>;
+
+  if (!apolloStatus.apolloJustFetched) {
+    setApolloStatus(prev => ({ ...prev, apolloJustFetched: true }));
+  }
+
+  console.log("carouselimgs", carouselImgs.vestiaire);
 
 
   return (
@@ -46,12 +87,12 @@ export default function DSpace() {
         <BadgeHeader>Search for Vestiaire</BadgeHeader>
       </FadeIn>
       <FadeIn>
-        <CategoryCarousel bgc="rgb(255, 240, 224)" />
+        <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(211, 82, 105)" />
       </FadeIn>
       <BadgeHeader>Search for Accessories</BadgeHeader>
-      <CategoryCarousel bgc="black" />
+      <CategoryCarousel data={carouselImgs.accessories} bgc="black" />
       <BadgeHeader>Search for Themes</BadgeHeader>
-      <CategoryCarousel bgc="rgb(29, 172, 129)" />
+      <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(29, 172, 129)" />
       <RandomBadge />
       <ContactFooter />
     </>

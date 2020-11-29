@@ -11,17 +11,36 @@ export default () =>
             .title('Design Sito')
             .items([
               S.listItem()
-                .title('Iconi Ricerca Sito Vestiaire')
-                .schemaType('IconiRicercaSitoVestiaire')
-                .child(S.documentTypeList('IconiRicercaSitoVestiaire').title('Iconi Ricerca Sito Vestiaire')),
-              S.listItem()
-                .title('Iconi Ricerca Sito Accessori')
-                .schemaType('IconiRicercaSitoAccessories')
-                .child(S.documentTypeList('IconiRicercaSitoAccessories').title('Iconi Ricerca Sito Accessori')),
-              S.listItem()
-                .title('Iconi Ricerca Sito Temi')
-                .schemaType('IconiRicercaSitoTemi')
-                .child(S.documentTypeList('IconiRicercaSitoTemi').title('Iconi Ricerca Sito Temi')),
+                .title('Digital Space')
+                .child(
+                  S.list()
+                    .title('Digital Space')
+                    .items([
+                      S.listItem()
+                        .title('Iconi Ricerca Vestiaire')
+                        .child(
+                          S.editor()
+                            .title('Iconi Ricerca Vestiaire')
+                            .schemaType('IconiRicercaSitoVestiaire')
+                            .documentId('IconiRicercaSitoVestiaire')
+                        ),
+                      S.listItem()
+                        .title('Iconi Ricerca Accessori')
+                        .child(
+                          S.editor()
+                            .title('Iconi Ricerca Accessori')
+                            .schemaType('IconiRicercaSitoAccessories')
+                            .documentId('IconiRicercaSitoAccessories')),
+                      S.listItem()
+                        .title('Iconi Ricerca Temi')
+                        .child(
+                          S.editor()
+                            .title('Iconi Ricerca Temi')
+                            .schemaType('IconiRicercaSitoTemi')
+                            .documentId('IconiRicercaSitoTemi')),
+                    ])
+                )
+              ,
             ])
         ),
       S.listItem()
@@ -198,6 +217,16 @@ export default () =>
 
             ])
         ),
+      S.listItem()
+        .title('TUTTO')
+        .child(
+          S.list()
+            .title('Content')
+            .items(
+              S.documentTypeListItems()
+            )
+
+        )
       // S.listItem()
       //   .title('Persons')
       //   .schemaType('person')
