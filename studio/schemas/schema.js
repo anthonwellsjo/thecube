@@ -9,7 +9,7 @@ import { subPiumino, subCappotto, subGiubbotto, subGiacca } from './subcategorie
 import { scarpe, borsaZainoValigia } from './accessories';
 import { subScarpe, subBorsaZainoValigia } from './subcategoriesAccessories'
 import { categoryIconVestiaire, categoryIconAccessories, categoryIconTemi } from './DigitalPage';
-import { BlogPost } from './LandingPage';
+import { BlogPost, PhotoAlbumCarousel } from './LandingPage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -38,6 +38,7 @@ export default createSchema({
     ////////////////////////////////////////////////////////////////////////LANDING PAGE
 
     BlogPost,
+    PhotoAlbumCarousel,
 
     ////////////////////////////////////////////////////////////////////////DIGITAL PAGE
     categoryIconVestiaire,

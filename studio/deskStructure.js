@@ -51,6 +51,10 @@ export default () =>
                         .title('Blog Posts')
                         .schemaType('BlogPost')
                         .child(S.documentTypeList('BlogPost').title('Blog Posts')),
+                      S.listItem()
+                        .title('Photo Album Carousel')
+                        .schemaType('PhotoAlbumCarousel')
+                        .child(S.documentTypeList('PhotoAlbumCarousel').title('Photo Album Carousel')),
                     ])
                 )
               ,
