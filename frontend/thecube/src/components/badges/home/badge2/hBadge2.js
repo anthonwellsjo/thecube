@@ -30,7 +30,7 @@ export default function HBadge2(props) {
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
                 <p className={classes.text}>Have a look and let's get</p>
-                <h1 className={classes.bigtext} style={{ transition: "transform .3s", transform: hover? "skewX(-10deg)" : "skewX(0)"}}>Physical</h1>
+                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover? "skewX(-20deg)" : "skewX(0)"}}>Physical</h1>
                 <p className={classes.text2}>take me there</p>
               </div>
               <div style={{ position: "absolute", bottom: "80px", right: "-110px" }}>

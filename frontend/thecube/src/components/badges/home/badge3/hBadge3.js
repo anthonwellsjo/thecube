@@ -30,10 +30,10 @@ export default function HBadge3(props) {
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
                 <p className={classes.text}>Get comfy and be inspired</p>
-                <h1 className={classes.bigtext} style={{ transition: "transform .3s", transform: hover? "skewX(-10deg)" : "skewX(0)"}}>Digital</h1>
+                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover? "skewX(-20deg)" : "skewX(0)"}}>Digital</h1>
                 <p className={classes.text2}>take me there</p>
               </div>
-              <div style={{ position: "absolute", bottom: "80px", right: "-160px" }}>
+              <div style={{ position: "absolute", bottom: "80px", left: "230px" }}>
                 <LineAnimation fat={9} end={300} start={160} hover={hover} />
               </div>
             </div>
