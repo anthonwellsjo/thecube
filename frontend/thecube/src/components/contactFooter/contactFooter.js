@@ -40,7 +40,7 @@ export default function ContactFooter() {
             <footer className={classes.footer}>
               <Centralizer space>
                 <span className={classes.scs}>SCS</span>
-                <a className={classes.address} target="_blank" href="http://maps.google.com/?q=ia Martiri della Libertà 95/F San Giovanni Valdarno" >Via Martiri della Libertà 95/F San Giovanni Valdarno (AR)</a>
+                <a className={classes.address} rel="noreferrer" target="_blank" href="http://maps.google.com/?q=ia Martiri della Libertà 95/F San Giovanni Valdarno" >Via Martiri della Libertà 95/F San Giovanni Valdarno (AR)</a>
                 <span className={classes.rights}>Copyright @ 2020 TheCubE<br></br>All Rights Reserved</span>
               </Centralizer>
             </footer>

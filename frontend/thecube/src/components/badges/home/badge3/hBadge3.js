@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSpring, animated } from 'react-spring';
 import LineAnimation from '../../../animations/lineAnimation';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './hBadge3.module.css';

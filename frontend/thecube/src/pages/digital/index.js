@@ -1,32 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { client } from '../../apollo/client';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_CAROUSEL_ICONS } from '../../apollo/queries';
 
 import { PageContext } from '../../context/pageContexts';
-import { Link } from 'gatsby';
-import Header from "../../modules/header/header"
-import '../../global.css';
-import Centralizer from "../../modules/layout/centralizer/centralizer";
-import logo from '../../images/logo-xsmall.png';
-import MainNav from "../../modules/mainNav/mainNav";
-import LogInMenuMain from "../../modules/logInMenuMain/logInMenuMain";
-import ContactFooter from "../../modules/contactFooter/contactFooter";
-import CurrentPageHeader from "../../modules/currentPageHeader/currentPageHeader";
-import FadeIn from '../../modules/animations/fadeIn/fadeIn';
-import BadgeHeader from "../../modules/badges/digital/badgeHeader/badgeHeader";
-import CategoryCarousel from "../../modules/badges/digital/categoryCarousel/categoryCarousel";
-import SearchBar from '../../modules/badges/digital/searchBar/searchBar';
-import RandomBadge from "../../modules/badges/digital/randomBadge/randomBadge";
+import FadeIn from '../../components/animations/fadeIn/fadeIn';
+import BadgeHeader from "../../components/badges/digital/badgeHeader/badgeHeader";
+import CategoryCarousel from "../../components/badges/digital/categoryCarousel/categoryCarousel";
+import SearchBar from '../../components/badges/digital/searchBar/searchBar';
+import RandomBadge from "../../components/badges/digital/randomBadge/randomBadge";
 
 
 export default function DSpace() {
+  const [page, setPage] = useContext(PageContext);
   const [carouselImgs, setCarouselImgs] = useState({ vestiaire: {}, accessories: {}, themes: {} });
   const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
   const { loading, error, data } = useQuery(GET_CAROUSEL_ICONS);
-  
 
+  useEffect(() => {
+    setPage(prev => ({ ...prev, currentColor: "pink" }));
+  }, []);
 
   useEffect(() => {
     console.log("useeffect", apolloStatus.apolloJustFetched);
@@ -67,19 +60,6 @@ export default function DSpace() {
 
   return (
     <>
-      <LogInMenuMain />
-      <Header>
-        <Centralizer space>
-          <MainNav lineColor="pink" name1="Contact" link1="/contact" name2="Physical Space" link2="/physical" />
-          <Link to="/">
-            <img style={{ height: "100px" }} src={logo} alt="the cube logo" />
-          </Link>
-          <MainNav lineColor="pink" name1="Digital Space" link1="/digital" name2="The People" link2="/people" />
-        </Centralizer>
-        <FadeIn>
-          <CurrentPageHeader header="Digital Space" />
-        </FadeIn>
-      </Header>
       <FadeIn>
         <SearchBar />
       </FadeIn>
@@ -94,7 +74,6 @@ export default function DSpace() {
       <BadgeHeader>Search for Themes</BadgeHeader>
       <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(29, 172, 129)" />
       <RandomBadge />
-      <ContactFooter />
     </>
   )
 }

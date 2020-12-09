@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { PageContext } from '../../context/pageContexts';
 import { Link } from 'gatsby';
 import Centralizer from '../layout/centralizer/centralizer';

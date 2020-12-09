@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
-import { useSpring, animated } from 'react-spring';
+import React from 'react';
 import LineAnimation from '../../../animations/lineAnimation';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './pBadge1.module.css';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { useSpring, animated } from 'react-spring';
 import LineAnimation from '../../../animations/lineAnimation';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './hBadge2.module.css';
@@ -26,7 +25,7 @@ export default function HBadge2(props) {
   return (
     <Link to="/physical">
       <Centralizer>
-        <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver}>
+        <div className={classnames("indexItemGlobal", classes.wrapper)} onMouseLeave={onMouseLeave} onMouseOver={onMouseOver} onFocus={onMouseOver}>
           <Centralizer>
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
