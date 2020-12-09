@@ -8,7 +8,8 @@ import { piumino, cappotto, giubbotto, giacca } from './vestiaire';
 import { subPiumino, subCappotto, subGiubbotto, subGiacca } from './subcategoriesVestiaire';
 import { scarpe, borsaZainoValigia } from './accessories';
 import { subScarpe, subBorsaZainoValigia } from './subcategoriesAccessories'
-import { categoryIconVestiaire, categoryIconAccessories, categoryIconTemi } from './ui';
+import { categoryIconVestiaire, categoryIconAccessories, categoryIconTemi } from './DigitalPage';
+import { BlogPost, PhotoAlbumCarousel } from './LandingPage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -18,7 +19,7 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     ////////////////////////////////////////////////////////////////////////VESTIAIRE
-    
+
     piumino,
     subPiumino,
     cappotto,
@@ -27,18 +28,22 @@ export default createSchema({
     subGiubbotto,
     giacca,
     subGiacca,
-    
+
     ////////////////////////////////////////////////////////////////////////ACCESSORI
     scarpe,
     subScarpe,
     borsaZainoValigia,
     subBorsaZainoValigia,
 
-    ////////////////////////////////////////////////////////////////////////UI
+    ////////////////////////////////////////////////////////////////////////LANDING PAGE
+
+    BlogPost,
+    PhotoAlbumCarousel,
+
+    ////////////////////////////////////////////////////////////////////////DIGITAL PAGE
     categoryIconVestiaire,
     categoryIconAccessories,
     categoryIconTemi,
-
 
     ////////////////////////////////////////////////////////////////////////TYPES
 

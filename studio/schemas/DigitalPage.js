@@ -43,7 +43,6 @@ export const categoryIconVestiaire = {
 
   ]
 };
-
 export const categoryIconAccessories = {
   name: 'IconiRicercaSitoAccessories',
   title: 'Iconi Ricerca Sito Accessori',

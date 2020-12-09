@@ -25,5 +25,5 @@ module.exports = {
       },
     },
   ],
-  pathPrefix: "/cube",
+  pathPrefix: "/thecube",
 }
