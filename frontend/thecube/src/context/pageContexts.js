@@ -7,7 +7,11 @@ const PageContext = createContext([page, setPage])
 
 const PageProvider = props => {
   const [page, setPage] = useState({
-    currentColor: "black"
+    currentColor: "black",
+    whiteBackDrop: true,
+    logoSpin: false,
+    logoInCenter: true,
+    logoAnimating: true
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

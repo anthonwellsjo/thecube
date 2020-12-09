@@ -4,16 +4,19 @@ const BackDropIntro = (props) => {
   const [opacity, setOpacity] = useState("1");
   const [mount, setMount] = useState(true);
   setTimeout(() => {
-    if (props.in) {
+    if (!props.in) {
       setOpacity("0");
       setTimeout(() => {
         setMount(false)
       }, 500)
+    } else {
+      setOpacity("1");
+      setMount(true);
     }
   }, 500)
 
   return (
-    mount ? <div style={{ transition: "all .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: "0", bottom: "0", left: "0", right: "0", zIndex: "100" }}></div> : null
+    mount ? <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: "0", bottom: "0", left: "0", right: "0", zIndex: "100" }}></div> : null
   )
 };
 

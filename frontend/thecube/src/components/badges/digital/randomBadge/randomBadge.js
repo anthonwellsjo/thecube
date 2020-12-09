@@ -32,7 +32,7 @@ export default function RandomBadge(props) {
             </Centralizer>
           </div>
         </div>
-        <img src='https://picsum.photos/1200/500?grayscale' style={{ position: "absolute", left: "0", transform: hover ? "scale(1.05)" : "scale(1)", transition: "transform 3s" }} />
+        <img src='https://picsum.photos/1200/500?grayscale' style={{ position: "absolute", left: "0", transform: hover ? "scale(1.2)" : "scale(1)", transition: "transform 3s" }} />
       </div >
     </Centralizer>
   )

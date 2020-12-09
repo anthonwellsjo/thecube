@@ -28,7 +28,7 @@
   font-size: 102px;
   margin-left: -5px;
   letter-spacing: 6px;
-  
+  transition: all .3s;
 }
 
 .textHolder {

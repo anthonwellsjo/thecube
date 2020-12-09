@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const GET_CAROUSEL_ICONS = gql`
 query SiteQuery {
-  sanityIconiRicercaSitoVestiaire {
+  allIconiRicercaSitoVestiaire {
     IconiRicercaGiacche {
       asset {
         url
@@ -34,7 +34,7 @@ query SiteQuery {
       }
     }
   }
-  sanityIconiRicercaSitoAccessories {
+  allIconiRicercaSitoAccessories {
     IconiRicercaBorse {
       asset {
         url

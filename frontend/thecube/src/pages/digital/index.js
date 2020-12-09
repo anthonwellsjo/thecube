@@ -3,13 +3,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from '@apollo/client';
 import { GET_CAROUSEL_ICONS } from '../../apollo/queries';
 
+import classes from './index.module.css';
+
 import { PageContext } from '../../context/pageContexts';
 import FadeIn from '../../components/animations/fadeIn/fadeIn';
 import BadgeHeader from "../../components/badges/digital/badgeHeader/badgeHeader";
 import CategoryCarousel from "../../components/badges/digital/categoryCarousel/categoryCarousel";
 import SearchBar from '../../components/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../components/badges/digital/randomBadge/randomBadge";
+import SlideIn from "../../components/animations/slideIn/slideIn";
 
+let apolloHasFetched = false;
 
 export default function DSpace() {
   const [page, setPage] = useContext(PageContext);
@@ -18,7 +22,9 @@ export default function DSpace() {
   const { loading, error, data } = useQuery(GET_CAROUSEL_ICONS);
 
   useEffect(() => {
-    setPage(prev => ({ ...prev, currentColor: "pink" }));
+    if (!apolloHasFetched) {
+      setPage(prev => ({ ...prev, logoSpin: true }));
+    }
   }, []);
 
   useEffect(() => {
@@ -28,52 +34,61 @@ export default function DSpace() {
         ...prev,
         vestiaire: {
           ...prev.vestiaire,
-          Cappotti: data.sanityIconiRicercaSitoVestiaire.IconiRicercaCappotti.asset.url,
-          Giacche: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGiacche.asset.url,
-          Gilet: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGilet.asset.url,
-          Giubbotti: data.sanityIconiRicercaSitoVestiaire.IconiRicercaGiubbotti.asset.url,
-          Maglieria: data.sanityIconiRicercaSitoVestiaire.IconiRicercaMaglieria.asset.url,
-          Piumini: data.sanityIconiRicercaSitoVestiaire.IconiRicercaPiumini.asset.url
+          Cappotti: data.allIconiRicercaSitoVestiaire[0].IconiRicercaCappotti.asset.url,
+          Giacche: data.allIconiRicercaSitoVestiaire[0].IconiRicercaGiacche.asset.url,
+          Gilet: data.allIconiRicercaSitoVestiaire[0].IconiRicercaGilet.asset.url,
+          Giubbotti: data.allIconiRicercaSitoVestiaire[0].IconiRicercaGiubbotti.asset.url,
+          Maglieria: data.allIconiRicercaSitoVestiaire[0].IconiRicercaMaglieria.asset.url,
+          Piumini: data.allIconiRicercaSitoVestiaire[0].IconiRicercaPiumini.asset.url
         },
         accessories: {
           ...prev.accessories,
-          Borse: data.sanityIconiRicercaSitoAccessories.IconiRicercaBorse.asset.url,
-          Cravatte: data.sanityIconiRicercaSitoAccessories.IconiRicercaCravatte.asset.url,
-          Foulard: data.sanityIconiRicercaSitoAccessories.IconiRicercaFoulardeSciarpe.asset.url,
-          Papillon: data.sanityIconiRicercaSitoAccessories.IconiRicercaPapillon.asset.url,
-          Scarpe: data.sanityIconiRicercaSitoAccessories.IconiRicercaScarpe.asset.url,
+          Borse: data.allIconiRicercaSitoAccessories[0].IconiRicercaBorse.asset.url,
+          Cravatte: data.allIconiRicercaSitoAccessories[0].IconiRicercaCravatte.asset.url,
+          Foulard: data.allIconiRicercaSitoAccessories[0].IconiRicercaFoulardeSciarpe.asset.url,
+          Papillon: data.allIconiRicercaSitoAccessories[0].IconiRicercaPapillon.asset.url,
+          Scarpe: data.allIconiRicercaSitoAccessories[0].IconiRicercaScarpe.asset.url,
         }
       }
       ))
     }
   }, [apolloStatus.apolloJustFetched])
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :( {error.message}</p>;
-
-  if (!apolloStatus.apolloJustFetched) {
-    setApolloStatus(prev => ({ ...prev, apolloJustFetched: true }));
-  }
-
-  console.log("carouselimgs", carouselImgs.vestiaire);
-
-
-  return (
-    <>
-      <FadeIn>
+  let render = <></>;
+  if (loading) {
+    render = <div className={classes.loadingDiv}></div>;
+  };
+  if (error) {
+    render = <p>Error :( {error.message}</p>;
+  };
+  if (!error && !loading) {
+    apolloHasFetched = true;
+    if (!apolloStatus.apolloJustFetched) {
+      setApolloStatus(prev => ({ ...prev, apolloJustFetched: true }));
+      setPage(prev => ({ ...prev, logoSpin: false, currentColor: "pink" }));
+    }
+    render = <>
+      <FadeIn >
         <SearchBar />
       </FadeIn>
-      <FadeIn>
+      <SlideIn direction="left">
         <BadgeHeader>Search for Vestiaire</BadgeHeader>
-      </FadeIn>
-      <FadeIn>
+      </SlideIn>
+      <SlideIn direction="right">
         <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(211, 82, 105)" />
-      </FadeIn>
+      </SlideIn>
       <BadgeHeader>Search for Accessories</BadgeHeader>
       <CategoryCarousel data={carouselImgs.accessories} bgc="black" />
       <BadgeHeader>Search for Themes</BadgeHeader>
       <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(29, 172, 129)" />
       <RandomBadge />
-    </>
+    </>;
+  }
+
+
+
+
+  return (
+    render
   )
 }
