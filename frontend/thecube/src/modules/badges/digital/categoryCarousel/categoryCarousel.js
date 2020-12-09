@@ -19,6 +19,7 @@ export default function CategoryCarousel(props) {
             naturalSlideHeight={200}
             totalSlides={Object.keys(props.data).length}
             isPlaying={true}
+            infinite
           >
             <Slider>
               {Object.keys(props.data).map((k, index) => {
