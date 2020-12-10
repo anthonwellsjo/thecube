@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const BackDropIntro = (props) => {
   const [opacity, setOpacity] = useState("1");
   const [mount, setMount] = useState(true);
-  setTimeout(() => {
-    if (!props.in) {
-      setOpacity("0");
-      setTimeout(() => {
-        setMount(false)
-      }, 500)
-    } else {
-      setOpacity("1");
-      setMount(true);
-    }
-  }, 500)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (!props.trans) {
+        setOpacity("0");
+        setTimeout(() => {
+          setMount(false)
+        }, 500)
+      } else {
+        setOpacity("1");
+        setMount(true);
+      }
+    }, 500);
+  }, [props.trans])
+
+  if (!props.in) return null;
 
   return (
-    mount ? <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: "0", bottom: "0", left: "0", right: "0", zIndex: "100" }}></div> : null
+    <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: mount ? "0" : "-1000px", height: "100%", left: "0", width: "100%", zIndex: "1" }}></div>
   )
 };
 

@@ -10,8 +10,10 @@ const PageProvider = props => {
     currentColor: "black",
     whiteBackDrop: true,
     logoSpin: false,
+    hideLogo: true,
     logoInCenter: true,
-    windowWidth: 1200
+    windowWidth: 1200,
+    firstStart: true
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

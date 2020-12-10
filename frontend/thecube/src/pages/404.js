@@ -1,7 +1,10 @@
 import React from 'react';
+import Layout from '../components/layout/Layout/Layout';
 
-export default function FourOFour(){
+export default function FourOFour() {
   return (
-    <h1>Monkey not found</h1>
+    <Layout>
+      <h1>Monkey not found</h1>
+    </Layout>
   )
 }

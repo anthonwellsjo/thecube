@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "TheCube",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "The Cube Archive",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby clean && gatsby build",
     "develop": "gatsby develop",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",
-    "babel-plugin-remove-graphql-queries": "^2.12.0",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.28.2",

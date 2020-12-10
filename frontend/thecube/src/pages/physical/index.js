@@ -6,6 +6,7 @@ import HBadge4 from "../../components/badges/home/badge4/hBadge4";
 import AppointmentBadge from "../../components/badges/physical/appointmentBadge/appointmentBadge";
 import PPhotoCarousel from "../../components/badges/physical/pPhotoCarousel/pPhotoCarousel";
 import HBadge3 from "../../components/badges/home/badge3/hBadge3";
+import Layout from "../../components/layout/Layout/Layout";
 
 
 
@@ -14,11 +15,11 @@ export default function PSpace() {
   const [page, setPage] = useContext(PageContext);
   useEffect(() => {
     setPage(prev => ({ ...prev, currentColor: "yellow" }));
-  },[])
+  }, [])
 
 
   return (
-    <>
+    <Layout>
       <SlideIn direction="left">
         <PBadge1 />
       </SlideIn>
@@ -30,6 +31,6 @@ export default function PSpace() {
       <div style={{ marginTop: "150px" }}>
         <HBadge3 />
       </div>
-    </>
+    </Layout>
   )
 }

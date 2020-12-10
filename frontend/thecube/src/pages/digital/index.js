@@ -4,6 +4,7 @@ import { useQuery, gql } from '@apollo/client';
 import { GET_CAROUSEL_ICONS } from '../../apollo/queries';
 
 import classes from './index.module.css';
+
 import { PageContext } from '../../context/pageContexts';
 import FadeIn from '../../components/animations/fadeIn/fadeIn';
 import BadgeHeader from "../../components/badges/digital/badgeHeader/badgeHeader";
@@ -11,78 +12,80 @@ import CategoryCarousel from "../../components/badges/digital/categoryCarousel/c
 import SearchBar from '../../components/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../components/badges/digital/randomBadge/randomBadge";
 import SlideIn from "../../components/animations/slideIn/slideIn";
+import Layout from "../../components/layout/Layout/Layout";
 
 let apolloHasFetched = false;
+
+const query = gql`
+query SiteQuery {
+  allIconiRicercaSitoVestiaire {
+    IconiRicercaGiacche {
+      asset {
+        url
+      }
+    }
+    IconiRicercaGilet {
+      asset {
+        url
+      }
+    }
+    IconiRicercaGiubbotti {
+      asset {
+        url
+      }
+    }
+    IconiRicercaMaglieria {
+      asset {
+        url
+      }
+    }
+    IconiRicercaPiumini {
+      asset {
+        url
+      }
+    }
+    IconiRicercaCappotti {
+      asset {
+        url
+      }
+    }
+  }
+  allIconiRicercaSitoAccessories {
+    IconiRicercaBorse {
+      asset {
+        url
+      }
+    }
+    IconiRicercaCravatte {
+      asset {
+        url
+      }
+    }
+    IconiRicercaFoulardeSciarpe {
+      asset {
+        url
+      }
+    }
+    IconiRicercaPapillon {
+      asset {
+        url
+      }
+    }
+    IconiRicercaScarpe {
+      asset {
+        url
+      }
+    }
+  }
+}
+`;
 
 export default function DSpace() {
 
   const [page, setPage] = useContext(PageContext);
   const [carouselImgs, setCarouselImgs] = useState({ vestiaire: {}, accessories: {}, themes: {} });
   const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
-  const { loading, error, data } = useQuery(gql`
-  query SiteQuery {
-    allIconiRicercaSitoVestiaire {
-      IconiRicercaGiacche {
-        asset {
-          url
-        }
-      }
-      IconiRicercaGilet {
-        asset {
-          url
-        }
-      }
-      IconiRicercaGiubbotti {
-        asset {
-          url
-        }
-      }
-      IconiRicercaMaglieria {
-        asset {
-          url
-        }
-      }
-      IconiRicercaPiumini {
-        asset {
-          url
-        }
-      }
-      IconiRicercaCappotti {
-        asset {
-          url
-        }
-      }
-    }
-    allIconiRicercaSitoAccessories {
-      IconiRicercaBorse {
-        asset {
-          url
-        }
-      }
-      IconiRicercaCravatte {
-        asset {
-          url
-        }
-      }
-      IconiRicercaFoulardeSciarpe {
-        asset {
-          url
-        }
-      }
-      IconiRicercaPapillon {
-        asset {
-          url
-        }
-      }
-      IconiRicercaScarpe {
-        asset {
-          url
-        }
-      }
-    }
-  }
-  
-  `);
+  const { loading, error, data } = useQuery(query);
 
   useEffect(() => {
     if (!apolloHasFetched) {
@@ -152,6 +155,8 @@ export default function DSpace() {
 
 
   return (
-    render
+    <Layout>
+      {render}
+    </Layout>
   )
 }
