@@ -17,7 +17,6 @@ import useWindowSize from '../../../hooks/useWindowSize';
 
 const Layout = ({ children }) => {
   const [page, setPage] = useContext(PageContext);
-  const [siteReady, setSiteReady] = useState(false);
   const { width } = useWindowSize();
   const animProps = useSpring({
     marginTop: page.logoInCenter ? '500px' : '0',
@@ -48,7 +47,6 @@ const Layout = ({ children }) => {
 
   console.log("window width", page.windowWidth);
   return (
-    <Centralizer>
       <div className={classes.frame}>
         <BackDropIntro in={page.whiteBackDrop} />
         <Header>
@@ -64,7 +62,6 @@ const Layout = ({ children }) => {
         {children}
         <ContactFooter />
       </div>
-    </Centralizer>
   )
 }
 

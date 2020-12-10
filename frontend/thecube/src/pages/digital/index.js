@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { GET_CAROUSEL_ICONS } from '../../apollo/queries';
 
 import classes from './index.module.css';
-
 import { PageContext } from '../../context/pageContexts';
 import FadeIn from '../../components/animations/fadeIn/fadeIn';
 import BadgeHeader from "../../components/badges/digital/badgeHeader/badgeHeader";
@@ -16,10 +15,74 @@ import SlideIn from "../../components/animations/slideIn/slideIn";
 let apolloHasFetched = false;
 
 export default function DSpace() {
+
   const [page, setPage] = useContext(PageContext);
   const [carouselImgs, setCarouselImgs] = useState({ vestiaire: {}, accessories: {}, themes: {} });
   const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
-  const { loading, error, data } = useQuery(GET_CAROUSEL_ICONS);
+  const { loading, error, data } = useQuery(gql`
+  query SiteQuery {
+    allIconiRicercaSitoVestiaire {
+      IconiRicercaGiacche {
+        asset {
+          url
+        }
+      }
+      IconiRicercaGilet {
+        asset {
+          url
+        }
+      }
+      IconiRicercaGiubbotti {
+        asset {
+          url
+        }
+      }
+      IconiRicercaMaglieria {
+        asset {
+          url
+        }
+      }
+      IconiRicercaPiumini {
+        asset {
+          url
+        }
+      }
+      IconiRicercaCappotti {
+        asset {
+          url
+        }
+      }
+    }
+    allIconiRicercaSitoAccessories {
+      IconiRicercaBorse {
+        asset {
+          url
+        }
+      }
+      IconiRicercaCravatte {
+        asset {
+          url
+        }
+      }
+      IconiRicercaFoulardeSciarpe {
+        asset {
+          url
+        }
+      }
+      IconiRicercaPapillon {
+        asset {
+          url
+        }
+      }
+      IconiRicercaScarpe {
+        asset {
+          url
+        }
+      }
+    }
+  }
+  
+  `);
 
   useEffect(() => {
     if (!apolloHasFetched) {
