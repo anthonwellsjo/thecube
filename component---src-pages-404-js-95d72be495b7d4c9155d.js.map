@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/404.js"],"names":["FourOFour"],"mappings":"2FAAA,wEAEe,SAASA,IACtB,OACE","file":"component---src-pages-404-js-95d72be495b7d4c9155d.js","sourcesContent":["import React from 'react';\r\n\r\nexport default function FourOFour(){\r\n  return (\r\n    <h1>Monkey not found</h1>\r\n  )\r\n}"],"sourceRoot":""}
