@@ -11,8 +11,7 @@ const PageProvider = props => {
     whiteBackDrop: true,
     logoSpin: false,
     logoInCenter: true,
-    logoAnimating: true,
-    windowWidth: 0
+    windowWidth: 1200
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

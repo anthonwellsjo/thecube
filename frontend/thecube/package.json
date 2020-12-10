@@ -19,6 +19,7 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.27.3",
+    "gatsby-plugin-apollo": "^3.0.2",
     "gatsby-source-sanity": "^6.0.4",
     "pure-react-carousel": "^1.27.6",
     "react": "^16.14.0",

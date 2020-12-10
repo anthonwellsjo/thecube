@@ -14,6 +14,9 @@ const Centralizer = props => {
     if(props.space){
         classSpec = classnames(classes.centralizer, classes.space)
     }
+    if(props.evenly){
+        classSpec = classnames(classes.centralizer, classes.evenly)
+    }
    
     if(props.position !== undefined){
       console.log("position",props.position);

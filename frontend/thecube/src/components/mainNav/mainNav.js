@@ -12,8 +12,8 @@ export default function MainNav(props) {
 
   return (
     <Centralizer column>
-      <div style={{ width: "50%" }}>
-        <Centralizer space>
+      <div style={{ width: "100%" }}>
+        <Centralizer evenly>
           <Link to={props.link1} className={classes.navLink}>{props.name1}</Link>
           <Link to={props.link2} className={classes.navLink}>{props.name2}</Link>
         </Centralizer>

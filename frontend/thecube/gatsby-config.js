@@ -24,6 +24,12 @@ module.exports = {
         graphqlTag: 'default',
       },
     },
+    {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: process.env.GRAPHQL_REALTIME_URI
+      }
+    }
   ],
   pathPrefix: "/thecube",
 }
