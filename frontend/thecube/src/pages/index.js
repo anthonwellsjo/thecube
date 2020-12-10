@@ -11,8 +11,8 @@ import Badge4 from "../components/badges/home/badge4/hBadge4";
 import BlogCarousel from "../components/badges/home/blogCarousel/blogCarousel";
 import PhotoCarousel from "../components/badges/home/photoCarousel/photoCarousel";
 import SlideIn from "../components/animations/slideIn/slideIn";
-import BackDropIntro from "../components/backDropIntro/backDropIntro";
 import useArrival from "../hooks/useArrival";
+import FadeIn from "../components/animations/fadeIn/fadeIn";
 
 
 export default function Home() {
@@ -28,10 +28,18 @@ export default function Home() {
       <SlideIn direction="left">
         <Badge2 />
       </SlideIn>
-      <Badge3 />
-      <BlogCarousel />
-      <Badge4 />
-      <PhotoCarousel />
+      <SlideIn direction="right">
+        <Badge3 />
+      </SlideIn>
+      <SlideIn direction="left">
+        <BlogCarousel />
+      </SlideIn>
+      <SlideIn direction="right">
+        <Badge4 />
+      </SlideIn>
+      <FadeIn>
+        <PhotoCarousel />
+      </FadeIn>
     </Layout>
   )
 }

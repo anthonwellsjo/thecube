@@ -1,19 +1,19 @@
 .text {
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 42px;
+  font-size: 3.5vw;
   letter-spacing: 0.5px;
 }
 
 .textHolder {
   position: absolute;
-  width: 400px;
-  left: 100px;
+  width: 40vw;
+  left: 10vw;
   height: 350px;
 }
 
 .colorBox {
-  width: 400px;
+  width: 35vw;
   height: 400px;
   background-color: white;
   position: absolute;

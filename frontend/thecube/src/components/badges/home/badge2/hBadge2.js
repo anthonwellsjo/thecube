@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'gatsby';
+import { PageContext } from '../../../../context/pageContexts';
 import LineAnimation from '../../../animations/lineAnimation';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './hBadge2.module.css';
 import classnames from 'classnames';
 
 export default function HBadge2(props) {
-
+  const [page, setPage] = useContext(PageContext);
   const [hover, setHover] = useState(false);
 
   const onMouseOver = () => {
@@ -33,8 +34,8 @@ export default function HBadge2(props) {
                 <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover? "skewX(-20deg)" : "skewX(0)"}}>Physical</h1>
                 <p className={classes.text2}>take me there</p>
               </div>
-              <div style={{ position: "absolute", bottom: "80px", right: "-110px" }}>
-                <LineAnimation fat={9} end={360} start={160} hover={hover} />
+              <div style={{ position: "absolute", bottom: "0", width: "100%", right: "30px" }}>
+                <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth / 3} start={100} hover={hover} />
               </div>
             </div>
             <img src='https://picsum.photos/600/400' style={{ position: "absolute", left: "0", transform: hover ? "scale(1.2)" : "scale(1)", transition: "transform 3s" }} />

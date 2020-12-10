@@ -47,11 +47,11 @@ const Layout = ({ children }) => {
       <Header>
         <LogInMenuMain />
         <Centralizer >
-          <MainNav lineColor={page.currentColor} name1="Contact" link1="/contact" name2={page.windowWidth >= 1200 ? "Physical Space" : "Physical"} link2="/physical" />
+          <MainNav lineColor={page.currentColor} name1="Contact" link1="/contact" name2={page.windowWidth >= 1150 ? "Physical Space" : "Physical"} link2="/physical" />
           <Link to="/">
             <animated.img style={animProps} src={logo} alt="the cube logo" />
           </Link>
-          <MainNav lineColor={page.currentColor} name1={page.windowWidth >= 1200 ? "Digital Space" : "Digital"} link1="/digital" name2={page.windowWidth >= 1200 ? "The People" : "People"} link2="/people" />
+          <MainNav lineColor={page.currentColor} name1={page.windowWidth >= 1150 ? "Digital Space" : "Digital"} link1="/digital" name2={page.windowWidth >= 1150 ? "The People" : "People"} link2="/people" />
         </Centralizer>
       </Header>
       {children}

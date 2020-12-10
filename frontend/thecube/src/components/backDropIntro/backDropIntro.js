@@ -21,7 +21,7 @@ const BackDropIntro = (props) => {
   if (!props.in) return null;
 
   return (
-    <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: mount ? "0" : "-1000px", height: "100%", left: "0", width: "100%", zIndex: "1" }}></div>
+    <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: mount ? "0" : "-1000px", height: "2000px", left: "0", width: "100%", zIndex: "1" }}></div>
   )
 };
 

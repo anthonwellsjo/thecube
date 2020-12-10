@@ -1,34 +1,38 @@
 .navLink {
   font-family: 'Helvetica Neue Bold';
-  font-size: 21px;
+  font-size: 1.5em;
   cursor: pointer;
   margin-bottom: 5px;
   letter-spacing: 1px;
 }
 
-.navLink:hover{
+@media (max-width: 650px) {
+  .navLink {
+    font-size: 1.2em;
+  }
+}
+
+.navLink:hover {
   background-color: black;
-  color:white;
-  transition: all .2s;
+  color: white;
+  transition: all 0.2s;
   /* animation: flash .5s infinite; */
 }
 
-
-@keyframes flash{
-  0%{
+@keyframes flash {
+  0% {
     color: white;
   }
-  49%{
+  49% {
     color: white;
   }
-  50%{
+  50% {
     color: black;
   }
-  99%{
+  99% {
     color: black;
   }
-  100%{
+  100% {
     color: white;
   }
-
 }
