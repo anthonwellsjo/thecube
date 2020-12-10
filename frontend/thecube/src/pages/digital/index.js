@@ -13,6 +13,7 @@ import SearchBar from '../../components/badges/digital/searchBar/searchBar';
 import RandomBadge from "../../components/badges/digital/randomBadge/randomBadge";
 import SlideIn from "../../components/animations/slideIn/slideIn";
 import Layout from "../../components/layout/Layout/Layout";
+import useArrival from "../../hooks/useArrival";
 
 let apolloHasFetched = false;
 
@@ -87,8 +88,10 @@ export default function DSpace() {
   const [apolloStatus, setApolloStatus] = useState({ apolloJustFetched: false });
   const { loading, error, data } = useQuery(query);
 
+  useArrival();
+
   useEffect(() => {
-    if (!apolloHasFetched) {
+    if (!apolloHasFetched && !page.firstStart) {
       setPage(prev => ({ ...prev, logoSpin: true }));
     }
   }, []);

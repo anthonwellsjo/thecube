@@ -12,6 +12,7 @@ import MainNav from '../../mainNav/mainNav';
 import ContactFooter from '../../contactFooter/contactFooter';
 import { useSpring, animated } from "react-spring";
 import useWindowSize from '../../../hooks/useWindowSize';
+import BackDropIntro from '../../backDropIntro/backDropIntro';
 
 const Layout = ({ children }) => {
   const [page, setPage] = useContext(PageContext);
@@ -30,17 +31,19 @@ const Layout = ({ children }) => {
   })
 
   useEffect(() => {
+    setPage(prev => ({ ...prev, hideLogo: false }));
     setTimeout(() => {
       setPage(prev => ({ ...prev, logoInCenter: false, logoSpin: false, windowWidth: width }))
     }, 1000)
   }, []);
 
   useEffect(() => {
-    setPage(prev => ({ ...prev, hideLogo: false, windowWidth: width }));
+    setPage(prev => ({ ...prev, windowWidth: width }));
   }, [width]);
 
   return (
     <div className={classes.frame}>
+      <BackDropIntro in={page.firstStart} trans={page.whiteBackDrop} />
       <Header>
         <LogInMenuMain />
         <Centralizer >

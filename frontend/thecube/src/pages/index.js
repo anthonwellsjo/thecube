@@ -12,26 +12,16 @@ import BlogCarousel from "../components/badges/home/blogCarousel/blogCarousel";
 import PhotoCarousel from "../components/badges/home/photoCarousel/photoCarousel";
 import SlideIn from "../components/animations/slideIn/slideIn";
 import BackDropIntro from "../components/backDropIntro/backDropIntro";
+import useArrival from "../hooks/useArrival";
 
 
 export default function Home() {
   const [page, setPage] = useContext(PageContext);
 
-  useEffect(() => {
-    setPage(prev => ({ ...prev, currentColor: "black" }));
-    if (page.firstStart) {
-      setTimeout(() => {
-        setPage(prev => ({ ...prev, whiteBackDrop: false }));
-      }, 1000)
-      setTimeout(() => {
-        setPage(prev => ({ ...prev, firstStart: false }));
-      }, 2000)
-    }
-  }, []);
+  useArrival();
 
   return (
     <Layout>
-      <BackDropIntro in={page.firstStart} trans={page.whiteBackDrop} />
       <SlideIn direction="right">
         <Badge1 />
       </SlideIn>

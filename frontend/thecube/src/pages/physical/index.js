@@ -7,12 +7,14 @@ import AppointmentBadge from "../../components/badges/physical/appointmentBadge/
 import PPhotoCarousel from "../../components/badges/physical/pPhotoCarousel/pPhotoCarousel";
 import HBadge3 from "../../components/badges/home/badge3/hBadge3";
 import Layout from "../../components/layout/Layout/Layout";
+import useArrival from "../../hooks/useArrival";
 
 
 
 
 export default function PSpace() {
   const [page, setPage] = useContext(PageContext);
+  useArrival();
   useEffect(() => {
     setPage(prev => ({ ...prev, currentColor: "yellow" }));
   }, [])
