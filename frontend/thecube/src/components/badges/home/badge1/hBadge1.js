@@ -29,9 +29,9 @@ export default function HBadge1(props) {
           <div className={classes.textHolder}>
             <p className={classes.text}>{page.windowWidth <= 550 ? "Fashion Archive with a digital platform" : "Fashion Archive with a digital platform of inspirational ideas for creatives"}</p>
           </div>
-          <div style={{ position: "absolute", top: "24vw", left: "3vw" }}>
-            <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth/4} start={page.windowWidth/4} hover={hover} />
-          </div>
+          {page.windowWidth > 550 && <div style={{ position: "absolute", top: "24vw", left: "3vw" }}>
+            <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth / 4} start={page.windowWidth / 4} hover={hover} />
+          </div>}
         </div>
         <img src='https://picsum.photos/1200/400?grayscale' style={{ position: "absolute", right: "0" }} />
       </div >

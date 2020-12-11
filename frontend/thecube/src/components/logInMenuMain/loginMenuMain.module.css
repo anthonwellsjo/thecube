@@ -5,6 +5,11 @@
   left: 20px;
   text-align: right;
 }
+.mobileHolder {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
 
 @media (max-width: 650px) {
   .holder{
@@ -32,8 +37,32 @@
   padding: 1px 5px 1px 5px;
   margin: 5px;
   width: auto;
-
   font-size: 0.95em;
+  background-color: white;
+  border: solid black 2px;
+  cursor: pointer;
+  outline: none;
+}
+.mobileMember{
+  border-radius: 0;
+  font-family: 'Helvetica Neue Bold';
+  padding: 1px 5px 1px 5px;
+  width: auto;
+  margin: 2px;
+  color: white;
+  font-size: 3vw;
+  background-color: black;
+  border: solid black 2px;
+  cursor: pointer;
+  outline: none;
+}
+.mobileLogIn {
+  border-radius: 0;
+  font-family: 'Helvetica Neue Bold';
+  padding: 1px 5px 1px 5px;
+  margin: 2px;
+  width: auto;
+  font-size: 3vw;
   background-color: white;
   border: solid black 2px;
   cursor: pointer;

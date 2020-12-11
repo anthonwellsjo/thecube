@@ -56,6 +56,7 @@ const Layout = ({ children }) => {
     </Header>;
   const mobileRender =
     <MobileHeader>
+      <LogInMenuMain isMobile={page.windowWidth <= 550} />
       <Centralizer>
         <Link to="/">
           <animated.img style={animProps} src={logo} alt="the cube logo" />
