@@ -1,13 +1,29 @@
-.card{
-  height: 500px;
-  width: 400px;
+.card {
+  height: 30vw;
+  width: 30vw;
   background-color: lightpink;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
 }
-
-.blogImg{
+.blogImg {
   background-color: grey;
-} 
+}
+
+.img {
+  height: 25vw;
+}
+
+@media (max-width: 900px){
+  .card{
+    height: 300px;
+    width: 300px;
+  }
+  .img{
+    height: 200px;
+  }
+}
+
+
+

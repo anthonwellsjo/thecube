@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import LineAnimation from '../../../animations/lineAnimation';
+import { PageContext } from '../../../../context/pageContexts';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './hBadge3.module.css';
 import classnames from 'classnames';
 import { Link } from 'gatsby';
 
 export default function HBadge3(props) {
-
+  const [page, setPage] = useContext(PageContext);
   const [hover, setHover] = useState(false);
 
   const onMouseOver = () => {
@@ -30,11 +31,11 @@ export default function HBadge3(props) {
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
                 <p className={classes.text}>Get comfy and be inspired</p>
-                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover? "skewX(-20deg)" : "skewX(0)"}}>Digital</h1>
+                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover ? "skewX(-20deg)" : "skewX(0)" }}>Digital</h1>
                 <p className={classes.text2}>take me there</p>
               </div>
-              <div style={{ position: "absolute", bottom: "80px", left: "230px" }}>
-                <LineAnimation fat={9} end={300} start={160} hover={hover} />
+              <div style={{ position: "absolute", bottom: "0", width: "100%", right: "0px" }}>
+                <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth / 3} start={100} hover={hover} />
               </div>
             </div>
             <img src='https://picsum.photos/1000/400' style={{ position: "absolute", right: "0", transform: hover ? "scale(1.2)" : "scale(1)", transition: "transform 3s" }} />

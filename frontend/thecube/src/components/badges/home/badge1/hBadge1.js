@@ -27,7 +27,7 @@ export default function HBadge1(props) {
       <div className="indexItemGlobal" onMouseLeave={onMouseLeave} onMouseOver={onMouseOver} style={{ cursor: "pointer", height: "30vw", width: "100%", overflow: "hidden", position: "relative" }}>
         <div className={classes.colorBox}>
           <div className={classes.textHolder}>
-            <p className={classes.text}>Fashion Archive with a digital platform of inspirational ideas for creatives</p>
+            <p className={classes.text}>{page.windowWidth <= 550 ? "Fashion Archive with a digital platform" : "Fashion Archive with a digital platform of inspirational ideas for creatives"}</p>
           </div>
           <div style={{ position: "absolute", top: "24vw", left: "3vw" }}>
             <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth/4} start={page.windowWidth/4} hover={hover} />

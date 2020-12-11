@@ -1,33 +1,43 @@
-.wrapper{
-  height: 300px; 
-  width: 100%; 
-  overflow: hidden; 
+.wrapper {
+  height: 25vw;
+  width: 100%;
+
+  overflow: hidden;
   position: relative;
   cursor: pointer;
 }
 .text {
-  margin-top: 70px;
+  margin-top: 10px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 28px;
+  font-size: 3vw;
   letter-spacing: 0.5px;
 }
 .text2 {
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 28px;
-  margin-top: -40px;
-  margin-left: 300px;
+  font-size: 4vw;
+  margin-top: -50px;
+  margin-left: 50px;
   letter-spacing: 0.5px;
 }
 .bigtext {
-  margin-top: -40px;
+  margin-top: -15px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 102px;
+  font-size: 10vw;
   margin-left: -5px;
   letter-spacing: 6px;
-  
+}
+@media screen and (min-width: 1100px) {
+  .bigtext {
+    font-size: 110px;
+  }
+}
+@media screen and (max-width: 655px) {
+  .bigtext {
+    font-size: 65px;
+  }
 }
 
 .textHolder {
@@ -38,12 +48,10 @@
 }
 
 .colorBox {
-  width: 40%;
-  height: 400px;
+  width: 40vw;
+  height: 25vw;
   position: absolute;
   left: 0;
   z-index: 1;
   background-color: pink;
-  display: flex;
-  align-items: center;
 }

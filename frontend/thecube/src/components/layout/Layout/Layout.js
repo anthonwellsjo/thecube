@@ -13,6 +13,7 @@ import ContactFooter from '../../contactFooter/contactFooter';
 import { useSpring, animated } from "react-spring";
 import useWindowSize from '../../../hooks/useWindowSize';
 import BackDropIntro from '../../backDropIntro/backDropIntro';
+import MobileHeader from '../../mobileHeader/mobileHeader';
 
 const Layout = ({ children }) => {
   const [page, setPage] = useContext(PageContext);
@@ -20,6 +21,7 @@ const Layout = ({ children }) => {
   const animProps = useSpring({
     marginTop: page.logoInCenter ? '500px' : '0',
     zIndex: '1000',
+    height: page.windowWidth <= 550 ? '70px' : "100px",
     transform: page.logoSpin ? "rotate(60deg)" : "rotate(0deg)",
     opacity: page.hideLogo ? "0" : "1",
     position: 'relative',
@@ -41,19 +43,33 @@ const Layout = ({ children }) => {
     setPage(prev => ({ ...prev, windowWidth: width }));
   }, [width]);
 
+  const desktopRender =
+    <Header>
+      <LogInMenuMain />
+      <Centralizer >
+        <MainNav lineColor={page.currentColor} name1="Contact" link1="/contact" name2={page.windowWidth >= 1150 ? "Physical Space" : "Physical"} link2="/physical" />
+        <Link to="/">
+          <animated.img style={animProps} src={logo} alt="the cube logo" />
+        </Link>
+        <MainNav lineColor={page.currentColor} name1={page.windowWidth >= 1150 ? "Digital Space" : "Digital"} link1="/digital" name2={page.windowWidth >= 1150 ? "The People" : "People"} link2="/people" />
+      </Centralizer>
+    </Header>;
+  const mobileRender =
+    <MobileHeader>
+      <Centralizer>
+        <Link to="/">
+          <animated.img style={animProps} src={logo} alt="the cube logo" />
+        </Link>
+      </Centralizer>
+    </MobileHeader>;
+
+
   return (
     <div className={classes.frame}>
       <BackDropIntro in={page.firstStart} trans={page.whiteBackDrop} />
-      <Header>
-        <LogInMenuMain />
-        <Centralizer >
-          <MainNav lineColor={page.currentColor} name1="Contact" link1="/contact" name2={page.windowWidth >= 1150 ? "Physical Space" : "Physical"} link2="/physical" />
-          <Link to="/">
-            <animated.img style={animProps} src={logo} alt="the cube logo" />
-          </Link>
-          <MainNav lineColor={page.currentColor} name1={page.windowWidth >= 1150 ? "Digital Space" : "Digital"} link1="/digital" name2={page.windowWidth >= 1150 ? "The People" : "People"} link2="/people" />
-        </Centralizer>
-      </Header>
+
+      {page.windowWidth > 550 ? desktopRender : mobileRender}
+
       {children}
       <ContactFooter />
     </div>

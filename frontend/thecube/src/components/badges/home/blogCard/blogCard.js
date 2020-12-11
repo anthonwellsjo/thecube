@@ -7,7 +7,7 @@ export default function BlogCard(props) {
     <div className={classes.card}>
       <div className={classes.blogImg}>
         <Centralizer>
-        <img src="https://picsum.photos/300/300" alt="photo"/>
+        <img className={classes.img} src="https://picsum.photos/300/300" alt="photo"/>
         </Centralizer>
       </div>
     </div>
