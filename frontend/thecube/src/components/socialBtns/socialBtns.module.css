@@ -13,11 +13,21 @@
   letter-spacing: 1px;
 }
 .container {
-  margin: 30px 80px;
+  margin: 30px 20px;
 }
 
 .btn {
   height: 30px;
+}
+@media (max-width: 900px) {
+  .btn {
+    height: 5vw;
+  }
+}
+@media (max-width: 630px) {
+  .btn {
+    height: 30px;
+  }
 }
 
 .btnBox {

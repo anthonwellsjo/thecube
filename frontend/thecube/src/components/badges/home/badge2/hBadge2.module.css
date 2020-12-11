@@ -57,5 +57,33 @@
   position: absolute;
   right: 0;
   z-index: 1;
-  background-color: yellow;  
+  background-color: yellow;
+}
+
+@media(max-width: 549px){
+  .colorBox {
+    width: 100vw;
+    background-color: rgb(255,255,0,.5);
+  }
+  .bigtext {
+    margin-top: 15px;
+    font-family: 'Helvetica Neue Bold';
+    font-weight: 900;
+    font-size: 15vw;
+    margin-left: 20px;
+    margin-right: 0;
+    letter-spacing: 6px;
+    transition: all .3s;
+  }
+  .textHolder {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    right: 0;
+    left:0;
+    height: 30vw;
+    text-align: center;
+  }
 }

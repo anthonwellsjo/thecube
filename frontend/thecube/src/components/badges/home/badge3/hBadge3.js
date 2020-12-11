@@ -30,13 +30,13 @@ export default function HBadge3(props) {
           <Centralizer>
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
-                <p className={classes.text}>Get comfy and be inspired</p>
+                {page.windowWidth > 550 && <p className={classes.text}>Get comfy and be inspired</p>}
                 <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover ? "skewX(-20deg)" : "skewX(0)" }}>Digital</h1>
-                <p className={classes.text2}>take me there</p>
+                {page.windowWidth > 550 && <p className={classes.text2}>take me there</p>}
               </div>
-              <div style={{ position: "absolute", bottom: "0", width: "100%", right: "0px" }}>
+              {page.windowWidth > 550 && <div style={{ position: "absolute", bottom: "0", width: "100%", right: "0px" }}>
                 <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth / 3} start={100} hover={hover} />
-              </div>
+              </div>}
             </div>
             <img src='https://picsum.photos/1000/400' style={{ position: "absolute", right: "0", transform: hover ? "scale(1.2)" : "scale(1)", transition: "transform 3s" }} />
           </Centralizer>

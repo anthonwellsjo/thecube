@@ -1,5 +1,12 @@
-.carouselContainer {  
+.carouselContainer {
+  margin-top: -80px;
   width: 100%;
   position: relative;
-  background-color: black;
+}
+@media (max-width: 350px) {
+  .carouselContainer {
+    margin-top: 0;
+    width: 100%;
+    position: relative;
+  }
 }

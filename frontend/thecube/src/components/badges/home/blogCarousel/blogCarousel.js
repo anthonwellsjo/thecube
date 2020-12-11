@@ -23,7 +23,7 @@ export default function BlogCarousel() {
           <CarouselProvider
             visibleSlides={noOfPhotos}
             naturalSlideWidth={100}
-            naturalSlideHeight={125}
+            naturalSlideHeight={100}
             totalSlides={6}
             isPlaying={true}
             infinite

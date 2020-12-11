@@ -1,6 +1,6 @@
 .wrapper{
   width: 60%; 
-  overflow: hidden; 
+  overflow: visible; 
   position: relative;
   margin: -10px 0 60px 0;
   cursor: default;

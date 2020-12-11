@@ -24,7 +24,7 @@
 }
 .textHolder2 {
   position: absolute;
-  right: 20vw;
+  right: 15vw;
   bottom: -100px;
   width: 50px;
 }
@@ -44,7 +44,11 @@
     font-size: 60px;
     line-height: 50px;
   }
-
+}
+@media (max-width: 1025px) {
+  .textHolder2 {
+    right: 20vw;
+  }
 }
 @media (max-width: 600px){
   .text,
@@ -63,6 +67,17 @@
   .text2 {
     line-height: 35px;
 
+  }
+}
+@media (max-width: 400px){
+  .carouselContainer {
+    margin-top: 50px;
+  }
+  .textHolder2 {
+    position: absolute;
+    right: 80px;
+    bottom: -100px;
+    width: 50px;
   }
 }
 

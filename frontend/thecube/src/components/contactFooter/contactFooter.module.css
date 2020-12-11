@@ -9,6 +9,7 @@
   height: 65%;
   width: 100%;
   color:white;
+  z-index: -1;
 }
 
 .blackText{
@@ -59,8 +60,15 @@ a.address:hover, a.mail:hover{
 
 .footer{
   margin: 0 50px -5px 50px;
-  position: absolute;
+  
   left: 0;
   right: 0;
   bottom: 10px;
+}
+
+.textContent{
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
+  z-index: -1;
 }

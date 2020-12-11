@@ -30,13 +30,13 @@ export default function HBadge2(props) {
           <Centralizer>
             <div className={classes.colorBox}>
               <div className={classes.textHolder}>
-                <p className={classes.text}>Have a look and let's get</p>
-                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover? "skewX(-20deg)" : "skewX(0)"}}>Physical</h1>
-                <p className={classes.text2}>take me there</p>
+                {page.windowWidth > 550 && <p className={classes.text}>Have a look and let's get</p>}
+                <h1 className={classes.bigtext} style={{ transition: "transform 1s", transform: hover ? "skewX(-20deg)" : "skewX(0)" }}>Physical</h1>
+                {page.windowWidth > 550 && <p className={classes.text2}>take me there</p>}
               </div>
-              <div style={{ position: "absolute", bottom: "0", width: "100%", right: "30px" }}>
+              {page.windowWidth > 550 && <div style={{ position: "absolute", bottom: "0", width: "100%", right: "30px" }}>
                 <LineAnimation fat={page.windowWidth / 100} end={page.windowWidth / 3} start={100} hover={hover} />
-              </div>
+              </div>}
             </div>
             <img src='https://picsum.photos/950/400' style={{ position: "absolute", left: "0", transform: hover ? "scale(1.2)" : "scale(1)", transition: "transform 3s" }} />
           </Centralizer>

@@ -1,6 +1,11 @@
 
 
 .img{
-  background-color: grey;
+  height: 300px;
+  width: 600px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: grab;
 } 

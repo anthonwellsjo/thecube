@@ -14,7 +14,7 @@ export default function PhotoCarousel() {
   if(page.windowWidth < 1073) noOfPhotos = 2.5;
   if(page.windowWidth < 898) noOfPhotos = 2;
   if(page.windowWidth < 730) noOfPhotos = 1.5;
-  if(page.windowWidth < 743) noOfPhotos = 1;
+  if(page.windowWidth < 560) noOfPhotos = 1;
   return (
     <>
       <Centralizer position="relative">
@@ -22,7 +22,7 @@ export default function PhotoCarousel() {
           <CarouselProvider
             visibleSlides={noOfPhotos}
             naturalSlideWidth={100}
-            naturalSlideHeight={85}
+            naturalSlideHeight={100}
             totalSlides={6}
             isPlaying={true}
             infinite
