@@ -14,6 +14,7 @@ import { useSpring, animated } from "react-spring";
 import useWindowSize from '../../../hooks/useWindowSize';
 import BackDropIntro from '../../backDropIntro/backDropIntro';
 import MobileHeader from '../../mobileHeader/mobileHeader';
+import MobileMenu from '../../mobileMenu/mobileMenu';
 
 const Layout = ({ children }) => {
   const [page, setPage] = useContext(PageContext);
@@ -67,7 +68,8 @@ const Layout = ({ children }) => {
 
   return (
     <div className={classes.frame}>
-      <BackDropIntro in={page.firstStart} trans={page.whiteBackDrop} />
+      <MobileMenu />
+      <BackDropIntro in={page.mountBackDrop} trans={page.transitionBackDrop} />
 
       {page.windowWidth > 550 ? desktopRender : mobileRender}
 

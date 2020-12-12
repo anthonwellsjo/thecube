@@ -1,12 +1,11 @@
 .HamburgerContainer{
-  position: absolute;
+  position: fixed;
+  z-index: 5;
   right: 20px;
   top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(3px);
-  
 }
 

@@ -5,14 +5,13 @@ import classes from './hamburgerMenu.module.css';
 
 export default function HamburgerMenu() {
   const [page, setPage] = useContext(PageContext);
-  const [hamburgerOpen, setHamburgerOpen] = useState(true);
   const [springs, set, stop] = useSprings(3, index => ({
     // transform: "translateX(0)",
     height: "4px",
     width: "40px",
     backgroundColor: "black",
     marginBottom: "8px",
-    marginTop: (index == 0 && !page.hamburgerOpen) ? "5px" : "0",
+    marginTop: (index == 0 && !page.mountMobileMenu) ? "5px" : "0",
     from: {
       // transform: `translateY(-${(index + 1) * 100}px)`,
     },
@@ -24,10 +23,21 @@ export default function HamburgerMenu() {
   }))
 
   const onClickEventHandler = () => {
-    const isOpen = page.hamburgerOpen;
-    setPage(prev => ({ ...prev, hamburgerOpen: !isOpen }));
-    console.log(isOpen);
-    set(index => ({ marginBottom: isOpen ? "8px" : "0", marginTop: (index == 0 && !isOpen) ? "0" : "5px", height: isOpen ? "4px" : "12px", borderRadius: isOpen? "10px" : "0", backgroundColor: isOpen? "black" : "darkgrey" }));
+    const mobileMenuMounted = page.mountMobileMenu;
+    if (mobileMenuMounted) {
+      setPage(prev => ({ ...prev, transitionMobileMenu: false, speedBackDrop: "300ms", delayBackDrop: 1, transitionBackDrop: false, }));
+      set(index => ({ marginBottom: "8px", marginTop: index == 0 ? "5px" : "0", height: "4px", borderRadius: "10px", backgroundColor: "black" }));
+      setTimeout(() => {
+        setPage(prev => ({ ...prev, mountMobileMenu: false, mountBackDrop: false, }));
+      }, 305);
+    }
+    if (!mobileMenuMounted) {
+      setPage(prev => ({ ...prev, speedBackDrop: "500ms", delayBackDrop: 300, mountMobileMenu: true, transitionMobileMenu: true, transitionBackDrop: true, mountBackDrop: true }));
+      set(index => ({ marginBottom: "0", marginTop: index == 0 ? "0" : "5px", height: "12px", borderRadius: "0", backgroundColor: "darkgrey" }));
+
+    }
+
+
 
   }
 

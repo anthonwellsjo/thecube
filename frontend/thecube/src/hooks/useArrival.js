@@ -6,12 +6,12 @@ export default function useArrival() {
   const [page, setPage] = useContext(PageContext);
   useEffect(() => {
     setPage(prev => ({ ...prev, currentColor: "black" }));
-    if (page.firstStart) {
+    if (page.mountBackDrop) {
       setTimeout(() => {
-        setPage(prev => ({ ...prev, whiteBackDrop: false }));
+        setPage(prev => ({ ...prev, transitionBackDrop: false }));
       }, 1000)
       setTimeout(() => {
-        setPage(prev => ({ ...prev, firstStart: false }));
+        setPage(prev => ({ ...prev, mountBackDrop: false }));
       }, 2000)
     }
   }, []);

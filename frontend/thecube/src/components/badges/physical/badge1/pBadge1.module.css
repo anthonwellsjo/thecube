@@ -1,5 +1,5 @@
 .wrapper{
-  height: 450px; 
+  height: 40vw; 
   width: 100%; 
   overflow: hidden; 
   position: relative;
@@ -7,38 +7,76 @@
   margin-top: 50px;
 }
 .text {
-  margin-top: -10px;
+  margin-top: -20px;
   margin-left: -8px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 28px;
-  letter-spacing: 0.5px;
+  font-size: 3vw;
+  letter-spacing: 1.5px;
 }
 .bigtext {
-  margin-top: 20px;
+  margin-top: 0px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 40px;
-  margin-left: -5px;
+  font-size: 5vw;
   letter-spacing: 3px;
-  line-height: 50px;
+  line-height: 4.2vw;
+}
+
+.line{
+  position: absolute;
+  top: 35vw;
+  right: 40vw;
+  width: 20vw;
+  height: .5vw;
+  background-color: black;
 }
 
 .textHolder {
   position: absolute;
-  top: 70px;
-  width: 700px;
-  right: -100px;
+  top: 5vw;
+  width: 70vw;
+  right: -10vw;
   height: 400px;
 }
 
 .colorBox {
   width: 35%;
-  height: 500px;
+  height: 40vw; 
   position: absolute;
   right: 0;
   z-index: 1;
   background-color: white;
   display: flex;
   align-items: center;
+}
+
+@media(max-width: 550px){
+  .colorBox {
+    width: 100vw;
+    height: 40vw; 
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    background-color: rgb(255, 255, 255, .5);
+    display: flex;
+    align-items: center;
+  }
+  .textHolder {
+    position: absolute;
+    top: 5vw;
+    width: 65%;
+    right: 0;
+    height: 400px;
+  }
+  .text {
+    position: absolute !important;
+    left: -20vw;
+    top: 15vw;
+    transform: rotate(90deg);
+    font-family: 'Helvetica Neue Bold';
+    font-weight: 900;
+    font-size: 3.8vw;
+    letter-spacing: 0.2px;
+  }
 }

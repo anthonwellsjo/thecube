@@ -8,13 +8,16 @@ const PageContext = createContext([page, setPage])
 const PageProvider = props => {
   const [page, setPage] = useState({
     currentColor: "black",
-    whiteBackDrop: true,
     logoSpin: false,
     hideLogo: true,
     logoInCenter: true,
     windowWidth: 1200,
-    firstStart: true,
-    hamburgerOpen: false
+    delayBackDrop: 500,
+    speedBackDrop: "500ms",
+    mountBackDrop: true,
+    transitionBackDrop: true,
+    mountMobileMenu: false,
+    transitionMobileMenu: false
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

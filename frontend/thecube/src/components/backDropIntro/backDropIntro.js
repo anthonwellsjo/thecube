@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { PageContext } from '../../context/pageContexts';
 
 const BackDropIntro = (props) => {
+  const [page, setPage] = useContext(PageContext);
   const [opacity, setOpacity] = useState("1");
   const [mount, setMount] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      if (!props.trans) {
+      if (!page.transitionBackDrop) {
         setOpacity("0");
         setTimeout(() => {
           setMount(false)
@@ -15,13 +17,13 @@ const BackDropIntro = (props) => {
         setOpacity("1");
         setMount(true);
       }
-    }, 500);
-  }, [props.trans])
+    }, page.delayBackDrop);
+  }, [page.transitionBackDrop])
 
-  if (!props.in) return null;
+  if (!page.mountBackDrop) return null;
 
   return (
-    <div style={{ transition: "opacity .5s linear", opacity: opacity, backgroundColor: "white", position: "fixed", top: mount ? "0" : "-1000px", height: "2000px", left: "0", width: "100%", zIndex: "1" }}></div>
+    <div style={{ transition: `opacity ${page.speedBackDrop} linear`, opacity: opacity, backgroundColor: "white", position: "fixed", top: mount ? "0" : "-1000px", height: "2000px", left: "0", width: "100%", zIndex: "1" }}></div>
   )
 };
 

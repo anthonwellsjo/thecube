@@ -91,7 +91,7 @@ export default function DSpace() {
   useArrival();
 
   useEffect(() => {
-    if (!apolloHasFetched && !page.firstStart) {
+    if (!apolloHasFetched && !page.mountBackDrop) {
       setPage(prev => ({ ...prev, logoSpin: true }));
     }
   }, []);
