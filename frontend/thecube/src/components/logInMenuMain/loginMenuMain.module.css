@@ -7,7 +7,7 @@
 }
 .mobileHolder {
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 5px;
 }
 
@@ -76,3 +76,9 @@
   }
 }
 
+@media (max-width: 435px) {
+  .mobileMember,
+  .mobileLogIn {
+    font-size: 13px;
+  }
+}

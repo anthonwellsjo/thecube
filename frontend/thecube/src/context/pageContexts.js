@@ -13,7 +13,8 @@ const PageProvider = props => {
     hideLogo: true,
     logoInCenter: true,
     windowWidth: 1200,
-    firstStart: true
+    firstStart: true,
+    hamburgerOpen: false
   });
   return (
     <PageContext.Provider value={[page, setPage]}>
