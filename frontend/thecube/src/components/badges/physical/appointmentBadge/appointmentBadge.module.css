@@ -1,28 +1,59 @@
-.wrapper{
-  height: 450px; 
-  width: 85%; 
-  overflow: hidden; 
+.wrapper {
+  
+  width: 85%;
+  margin-bottom: 100px;
+  overflow: hidden;
   position: relative;
   cursor: pointer;
-  
+}
+@media (max-width: 950px) {
+  .wrapper {
+    width: 100%;
+    display: grid;
+    flex-direction: row;
+  }
 }
 .text {
   font-family: 'Helvetica Neue';
   font-weight: 900;
-  font-size: 20px;
+  font-size: 1.2em;
   letter-spacing: 0.5px;
 }
 .textHolder {
-  
   top: 70px;
-  width: 400px;
-  
+  width: 30vw;
   height: 400px;
 }
 .textHolder2 {
-  
   top: 70px;
-  width: 400px;
-  
+  width: 30vw;
+
   height: 400px;
+}
+
+@media (max-width: 950px) {
+  .textHolder,
+  .textHolder2 {
+    width: 45vw;
+  }
+}
+@media (max-width: 620px) {
+  .text{
+    font-size: 1em;
+  }
+}
+@media (max-width: 620px) {
+  .text{
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 370px) {
+  .text{
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 307px) {
+  .text{
+    font-size: 0.7em;
+  }
 }

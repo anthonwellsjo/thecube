@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BookAppointmentBtn from '../../../bookAppointmentBtn/bookAppointmentBtn';
 import Centralizer from '../../../layout/centralizer/centralizer';
 import classes from './appointmentBadge.module.css';
 import classnames from 'classnames';
+import { PageContext } from '../../../../context/pageContexts';
 
 export default function AppointmentBadge() {
+  const [page, setPage] = useContext(PageContext);
   return (
-    <Centralizer>
+    <Centralizer column>
+      {page.windowWidth <= 950 && <BookAppointmentBtn />}
       <div className={classnames("indexItemGlobal", classes.wrapper)}>
         <Centralizer space>
           <div style={{ marginTop: "-250px" }}>
-            <BookAppointmentBtn />
+            {page.windowWidth > 950 && <BookAppointmentBtn />}
           </div>
           <div className={classes.textHolder}>
             <p className={classes.text}>
