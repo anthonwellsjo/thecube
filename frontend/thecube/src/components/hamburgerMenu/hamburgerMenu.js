@@ -32,7 +32,7 @@ export default function HamburgerMenu() {
       }, 305);
     }
     if (!mobileMenuMounted) {
-      setPage(prev => ({ ...prev, speedBackDrop: "500ms", delayBackDrop: 300, mountMobileMenu: true, transitionMobileMenu: true, transitionBackDrop: true, mountBackDrop: true }));
+      setPage(prev => ({ ...prev, speedBackDrop: "250ms", delayBackDrop: 1, mountMobileMenu: true, transitionMobileMenu: true, transitionBackDrop: true, mountBackDrop: true }));
       set(index => ({ marginBottom: "0", marginTop: index == 0 ? "0" : "5px", height: "12px", borderRadius: "0", backgroundColor: "darkgrey" }));
 
     }
