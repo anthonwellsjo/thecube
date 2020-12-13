@@ -7,6 +7,7 @@
   margin-top: 50px;
 }
 .text {
+  color: orangered;
   margin-top: -20px;
   margin-left: -8px;
   font-family: 'Helvetica Neue Bold';
@@ -26,10 +27,16 @@
 .line{
   position: absolute;
   top: 35vw;
+  margin-top: 5px;
   right: 40vw;
   width: 20vw;
   height: .5vw;
   background-color: black;
+}
+@media (min-width:930px){
+  .line{
+    margin-top: 15px;
+  }
 }
 
 .textHolder {
@@ -71,12 +78,16 @@
   }
   .text {
     position: absolute !important;
-    left: -20vw;
-    top: 15vw;
-    transform: rotate(90deg);
+    left: -25vw;
+    top: 45px;
+    transform: rotate(-90deg);
     font-family: 'Helvetica Neue Bold';
     font-weight: 900;
-    font-size: 3.8vw;
-    letter-spacing: 0.2px;
+    font-size: 6vw;
+    letter-spacing: 0.5px;
+  }
+  .bigtext {
+    margin-top: 0px;
+    line-height: 4.8vw;
   }
 }
