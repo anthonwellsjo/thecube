@@ -1,4 +1,4 @@
-.HamburgerContainer{
+.HamburgerContainer {
   position: fixed;
   z-index: 1;
   right: 20px;
@@ -7,6 +7,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: all .5s ;
+  transition: all 0.5s;
+}
+
+.Cross {
+  position: fixed;
+  z-index: 1;
+  right: 20px;
+  top: 20px;
+  color: white;
+}
+.line1{
+background-color: white;
+height: 2px;
+width: 20px;
 }
 

@@ -63,8 +63,14 @@ export default function HamburgerMenu() {
 
 
   return (
-    <div onClick={onClickEventHandler} style={{ opacity: page.showBurgerMenu ? "1" : "0" }} className={classes.HamburgerContainer}>
-      {springs.map((props, index) => <animated.div key={index} style={props} />)}
-    </div>
+    <>
+      <div onClick={onClickEventHandler} style={{ opacity: page.showBurgerMenu ? "1" : "0" }} className={classes.HamburgerContainer}>
+        {springs.map((props, index) => <animated.div key={index} style={props} />)}
+      </div>
+      {page.mountMobileMenu && <div className={classes.Cross}>
+          <div className={classes.line1}></div>
+          <div className={classes.line2}></div>
+        </div>}
+    </>
   )
 };
