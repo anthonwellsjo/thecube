@@ -1,21 +1,44 @@
-
-
-.wrap{
-  height: 30vw;
-  width: 25vw;
+.card {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  background-color: lightpink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: grab;
-} 
-
-.img{
-  margin-top: 30px;
-  height: 20vw;
-  width: 20vw;
+}
+.blogImg {
+  background-color: grey;
 }
 
 .bigtext {
+  position: absolute;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 3vw;
-  margin-top: 5px;
-  letter-spacing: 1px;
+  font-size: 1.5em;
+  letter-spacing: 6px;
+  bottom: 5px;
 }
+
+.img {
+  height: 220px;
+  width: 220px;
+}
+
+@media (min-width: 595px){
+  .bigtext{
+    font-size: 2em;
+  }
+  .card{
+    height: 300px;
+    width: 300px;
+  }
+  .img{
+    height: 250px;
+    width: 250px;
+  }
+}
+
+
+

@@ -6,9 +6,11 @@ export default function CategoryCard(props) {
   console.log("props", props.data);
 
   return (
-    <div className={classes.wrap} style={{ backgroundColor: props.bgc, color: props.bgc == "black" ? "white" : "black" }}>
+    <div className={classes.card} style={{ backgroundColor: props.bgc, color: props.bgc == "black" ? "white" : "black" }}>
       <Centralizer column>
-        <img className={classes.img} src={props.src} alt={`photo of ${props.children}`} />
+        <div className={classes.img} style={{ overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={props.src} alt={`photo of ${props.children}`} />
+        </div>
         <h1 className={classes.bigtext}>{props.children}</h1>
       </Centralizer>
     </div>

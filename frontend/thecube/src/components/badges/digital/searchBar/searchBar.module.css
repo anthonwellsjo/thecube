@@ -5,8 +5,8 @@
   height: 150px;
   width: 20vw;
 }
-@media(max-width: 550px){
-  .wrapper{
+@media (max-width: 550px) {
+  .wrapper {
     top: 50px;
   }
 }
@@ -24,19 +24,40 @@
   width: 200px;
 }
 
-@media(max-width: 550px){
-  .input, .input:focus{
+@media (max-width: 550px) {
+  .input,
+  .input:focus {
     font-size: 4vw;
     letter-spacing: 0;
     width: 45vw;
   }
-  .wrapper{
+  .wrapper {
     right: none;
     left: 20px;
   }
 }
 
-.input::-webkit-input-placeholder {/* Chrome/Opera/Safari/Edge */
-	font-family: 'Helvetica Neue Bold';
-  color: black;
+.input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari/Edge */
+  font-family: 'Helvetica Neue';
+  color: grey;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: 'Helvetica Neue';
+  color: grey;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-family: 'Helvetica Neue';
+  color: grey;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-family: 'Helvetica Neue';
+  color: grey;
 }

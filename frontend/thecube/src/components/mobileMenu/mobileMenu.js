@@ -4,19 +4,20 @@ import { PageContext } from '../../context/pageContexts';
 import Centralizer from '../layout/centralizer/centralizer';
 import classes from './mobileMenu.module.css';
 import classnames from 'classnames';
+import { navigate } from 'gatsby';
 
 const buttons = [
   {
     name: "Physical Space",
-    path: "/"
+    path: "/physical"
   },
   {
     name: "Digital Space",
-    path: "/"
+    path: "/digital"
   },
   {
     name: "Blog",
-    path: "/"
+    path: "/blog"
   },
   {
     name: "Log In",
@@ -44,6 +45,10 @@ export default function MobileMenu() {
     }
   }))
 
+  const onLinkClicked = (path) => {
+    navigate(path);
+  }
+
   useEffect(() => {
     set(index => ({ transform: page.transitionMobileMenu ? "translateY(0)" : `translateY(${1000 * index + 1000}px)` }))
   }, [page.transitionMobileMenu])
@@ -58,6 +63,7 @@ export default function MobileMenu() {
             <React.Fragment key={index}>
               <animated.button
                 style={props}
+                onClick={() => onLinkClicked(buttons[index].path)}
                 className={buttons[index].style == undefined ? classes.button : classnames(classes.button, buttons[index].style)}>
                 {buttons[index].name}
               </animated.button>
@@ -65,12 +71,6 @@ export default function MobileMenu() {
             </React.Fragment>
           )
         })}
-        {/* <button className={classes.button}>Log In</button>
-        <button className={classes.button}>Register</button>
-        <hr></hr>
-        <button className={classes.button}>Physical space</button>
-        <button className={classes.button}>Digital space</button>
-        <button className={classes.button}>Blog</button> */}
       </div>
     </div>
   )
