@@ -1,9 +1,14 @@
 .wrapper {
   position: absolute;
-  top: 230px;
+  top: 130px;
   right: 100px;
   height: 150px;
-  width: 230px;
+  width: 20vw;
+}
+@media(max-width: 550px){
+  .wrapper{
+    top: 50px;
+  }
 }
 
 .input,
@@ -14,8 +19,21 @@
   font-family: 'Helvetica Neue Bold';
   color: black;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 1em;
   letter-spacing: 0.5px;
+  width: 200px;
+}
+
+@media(max-width: 550px){
+  .input, .input:focus{
+    font-size: 4vw;
+    letter-spacing: 0;
+    width: 45vw;
+  }
+  .wrapper{
+    right: none;
+    left: 20px;
+  }
 }
 
 .input::-webkit-input-placeholder {/* Chrome/Opera/Safari/Edge */

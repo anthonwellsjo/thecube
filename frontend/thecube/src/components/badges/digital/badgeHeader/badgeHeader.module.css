@@ -1,6 +1,6 @@
 .wrapper{
   position: relative;
-  width: 80%;
+  width: 90%;
   margin-top: 50px;
 }
 
@@ -13,9 +13,9 @@
   margin-top: 20px;
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 45px;
+  font-size: 7vw;
   margin-left: -5px;
-  letter-spacing: 3px;
+  letter-spacing: 0px;
   line-height: 50px;
 }
 
@@ -23,7 +23,7 @@
   position: relative;
   margin-top: -20px;
   margin-left: -3px;
-  height: 6px;
+  height: .6vw;
   width: 80px;
   background-color: black;
 }

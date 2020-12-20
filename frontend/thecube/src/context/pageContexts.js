@@ -15,6 +15,7 @@ const PageProvider = props => {
     delayBackDrop: 500,
     speedBackDrop: "500ms",
     mountBackDrop: true,
+    showBurgerMenu: false,
     transitionBackDrop: true,
     mountMobileMenu: false,
     transitionMobileMenu: false

@@ -146,10 +146,18 @@ export default function DSpace() {
       <SlideIn direction="right">
         <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(211, 82, 105)" />
       </SlideIn>
-      <BadgeHeader>Search for Accessories</BadgeHeader>
-      <CategoryCarousel data={carouselImgs.accessories} bgc="black" />
-      <BadgeHeader>Search for Themes</BadgeHeader>
-      <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(29, 172, 129)" />
+      <SlideIn direction="left">
+        <BadgeHeader>Search for Accessories</BadgeHeader>
+      </SlideIn>
+      <SlideIn direction="right">
+        <CategoryCarousel data={carouselImgs.accessories} bgc="black" />
+      </SlideIn>
+      <SlideIn direction="left">
+        <BadgeHeader>Search for Themes</BadgeHeader>
+      </SlideIn>
+      <SlideIn direction="right">
+        <CategoryCarousel data={carouselImgs.vestiaire} bgc="rgb(29, 172, 129)" />
+      </SlideIn>
       <RandomBadge />
     </>;
   }

@@ -1,21 +1,21 @@
 
 
 .wrap{
-  height: 360px;
-  width: 290px;
+  height: 30vw;
+  width: 25vw;
   cursor: grab;
 } 
 
 .img{
   margin-top: 30px;
-  height: 250px;
-  width: 250px;
+  height: 20vw;
+  width: 20vw;
 }
 
 .bigtext {
   font-family: 'Helvetica Neue Bold';
   font-weight: 900;
-  font-size: 18px;
-  margin-top: 25px;
+  font-size: 3vw;
+  margin-top: 5px;
   letter-spacing: 1px;
 }

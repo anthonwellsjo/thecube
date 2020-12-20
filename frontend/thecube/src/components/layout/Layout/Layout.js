@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     setPage(prev => ({ ...prev, hideLogo: false }));
     setTimeout(() => {
-      setPage(prev => ({ ...prev, logoInCenter: false, logoSpin: false, windowWidth: width }))
+      setPage(prev => ({ ...prev, logoInCenter: false, logoSpin: false, windowWidth: width, showBurgerMenu: true }))
     }, 1000)
   }, []);
 
